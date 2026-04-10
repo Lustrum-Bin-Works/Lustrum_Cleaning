@@ -10,10 +10,12 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Smooth scroll for the whole page */
+    html { scroll-behavior: smooth; }
+
     body { font-family: 'Josefin Sans', sans-serif; background: #0a1a1a; color: #e8dfc0; overflow-x: hidden; }
 
     .gold { color: #c9a84c; }
-    .teal { color: #2a9d8f; }
     .serif { font-family: 'Playfair Display', serif; }
 
     /* TILE DIVIDER */
@@ -285,25 +287,43 @@
       line-height: 1.5;
     }
 
-    /* ============================
-       PROMOTIONS & RELIEF SECTION
-       ============================ */
+    /* =====================================================
+       PROMOTIONS & RELIEF — redesigned as stacked layout
+       ===================================================== */
     .promo-bg { background: #0a1a1a; }
 
-    .promo-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
+    /* Scrolling ticker across full width */
+    .promo-ticker {
+      background: #c9a84c;
+      color: #0a1a1a;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-bottom: 4rem;
     }
 
-    /* Relief / empathy copy block */
-    .relief-block {
-      border-left: 2px solid #c9a84c40;
-      padding-left: 2rem;
+    .promo-ticker-inner {
+      display: inline-block;
+      animation: ticker 22s linear infinite;
     }
 
-    .relief-block h2 {
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Empathy copy — full width centred */
+    .relief-center {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .relief-center h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.6rem, 3vw, 2.4rem);
       font-weight: 700;
@@ -312,91 +332,66 @@
       margin-bottom: 1.25rem;
     }
 
-    .relief-block p {
+    .relief-center p {
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
       font-style: italic;
       color: #8ab5b0;
       line-height: 1.8;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
-    .relief-checklist {
-      list-style: none;
-      margin-top: 1.5rem;
+    /* Checklist — horizontal row of pills */
+    .relief-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.75rem;
     }
 
-    .relief-checklist li {
+    .relief-pill {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px;
+      font-size: 9px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #5ab0a8;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid #c9a84c15;
+      border: 1px solid #2a6460;
+      padding: 7px 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
-    .relief-checklist li::before {
+    .relief-pill::before {
       content: '◇';
       color: #c9a84c;
-      font-size: 10px;
-      flex-shrink: 0;
+      font-size: 9px;
     }
 
-    /* Promotions ticker + cards */
-    .promo-panel {}
-
-    .promo-ticker {
-      background: #c9a84c;
-      color: #0a1a1a;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      padding: 10px 16px;
-      overflow: hidden;
-      white-space: nowrap;
-      margin-bottom: 1px;
-    }
-
-    .promo-ticker-inner {
-      display: inline-block;
-      animation: ticker 18s linear infinite;
-    }
-
-    @keyframes ticker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .promo-cards {
-      display: flex;
-      flex-direction: column;
+    /* Promo cards — horizontal 4-column grid */
+    .promo-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: #c9a84c20;
       border: 1px solid #c9a84c20;
-      border-top: none;
     }
 
     .promo-card {
       background: #0d1f1e;
-      padding: 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1.25rem;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
     }
 
     .promo-badge {
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       border: 1px solid #c9a84c50;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto 1rem;
       font-family: 'Playfair Display', serif;
       font-size: 13px;
       font-weight: 700;
@@ -405,18 +400,18 @@
       text-align: center;
     }
 
-    .promo-card-body h4 {
+    .promo-card h4 {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: #e8dfc0;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
     }
 
-    .promo-card-body p {
+    .promo-card p {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
+      font-size: 14px;
       font-style: italic;
       color: #6a9490;
       line-height: 1.5;
@@ -429,7 +424,6 @@
       color: #2a6460;
       text-align: center;
       margin-top: 1.25rem;
-      letter-spacing: 0.5px;
     }
 
     /* PRICING */
@@ -520,6 +514,14 @@
       margin-bottom: 0.5rem;
     }
 
+    .form-label .optional-tag {
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #2a6460;
+      margin-left: 8px;
+      text-transform: uppercase;
+    }
+
     .form-input {
       width: 100%;
       background: transparent;
@@ -536,38 +538,11 @@
 
     .form-input:focus { border-bottom-color: #c9a84c; }
     .form-input::placeholder { color: #3a5a57; }
-
-    /* Validation error states */
     .form-input.error { border-bottom-color: #c0392b !important; }
-    .form-select.error { border-bottom-color: #c0392b !important; }
-
-    .field-error {
-      display: none;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #c0392b;
-      margin-top: 5px;
-      background: #2a0808;
-      padding: 4px 8px;
-      border-left: 2px solid #c0392b;
-    }
-
-    .field-error.visible { display: block; }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20% { transform: translateX(-6px); }
-      40% { transform: translateX(6px); }
-      60% { transform: translateX(-4px); }
-      80% { transform: translateX(4px); }
-    }
-
-    .shake { animation: shake 0.4s ease; }
 
     .form-select {
       width: 100%;
-      background: #0a1a1a;
+      background: #050f0f;
       border: none;
       border-bottom: 1px solid #c9a84c40;
       padding: 10px 0;
@@ -580,6 +555,31 @@
       cursor: pointer;
       transition: border-color 0.2s;
     }
+
+    .form-select.error { border-bottom-color: #c0392b !important; }
+
+    .field-error {
+      display: none;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e07070;
+      margin-top: 6px;
+      padding: 5px 10px;
+      background: #2a0808;
+      border-left: 2px solid #c0392b;
+    }
+
+    .field-error.visible { display: block; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    .shake { animation: shake 0.4s ease; }
 
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
@@ -653,7 +653,6 @@
       font-style: italic;
       color: #3a6460;
       margin-top: 4px;
-      letter-spacing: 1px;
     }
 
     /* SCROLL NAV */
@@ -665,7 +664,6 @@
       border-bottom: 1px solid #c9a84c20;
       display: flex;
       justify-content: center;
-      gap: 0;
     }
 
     .scroll-nav a {
@@ -682,25 +680,31 @@
     .scroll-nav a:hover { color: #c9a84c; background: #c9a84c08; }
 
     /* RESPONSIVE */
+    @media (max-width: 820px) {
+      .promo-cards-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 680px) {
       .process-steps { grid-template-columns: 1fr 1fr; }
       .process-steps::before { display: none; }
-      .promo-layout { grid-template-columns: 1fr; }
+      .promo-cards-grid { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .hero-frame { padding: 2rem 1.5rem; }
       .form-grid { grid-template-columns: 1fr; }
       .scroll-nav a { padding: 12px 10px; font-size: 7px; }
+    }
+    @media (max-width: 440px) {
+      .promo-cards-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <nav class="scroll-nav">
-    <a href="#problem">The Problem</a>
-    <a href="#process">The Process</a>
-    <a href="#promotions">Promotions</a>
-    <a href="#pricing">Service Plans</a>
-    <a href="#booking">Book Now</a>
+    <a href="#problem"     onclick="smoothTo(event,'problem')">The Problem</a>
+    <a href="#process"     onclick="smoothTo(event,'process')">The Process</a>
+    <a href="#promotions"  onclick="smoothTo(event,'promotions')">Promotions</a>
+    <a href="#pricing"     onclick="smoothTo(event,'pricing')">Service Plans</a>
+    <a href="#booking"     onclick="smoothTo(event,'booking')">Book Now</a>
   </nav>
 
   <!-- HERO -->
@@ -719,8 +723,8 @@
       <p class="hero-desc">
         Every home in every street deserves to feel absolute cleanliness — even in its most overlooked corners.
       </p>
-      <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Schedule Your Clean</button>
-      <button class="btn-ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">How We Do It</button>
+      <button class="btn-primary" onclick="smoothTo(event,'booking')">Schedule Your Clean</button>
+      <button class="btn-ghost"   onclick="smoothTo(event,'process')">How We Do It</button>
     </div>
   </section>
 
@@ -803,67 +807,55 @@
   <!-- PROMOTIONS & RELIEF -->
   <section class="section promo-bg" id="promotions">
     <div class="section-inner">
+
       <p class="section-label">For the homeowner</p>
       <h2 class="section-title serif">One Less Thing to <span class="gold">Worry About</span></h2>
-      <p class="section-lead">We know your plate is full. Let this be the one task that simply handles itself.</p>
 
-      <div class="promo-layout">
-
-        <!-- Relief / empathy block -->
-        <div class="relief-block">
-          <h2 class="serif">You've got enough on your hands.</h2>
-          <p>Between work, errands, the kids, the yard, and everything else life stacks on your schedule — cleaning the trash cans sits at the very bottom of the list. We know that. That's the whole reason Lustrum Bin Works exists.</p>
-          <p>Hand this one off. Completely. We show up, we do the job right, and you never have to think about it again. One less thing on the list. One small but real measure of relief in your week.</p>
-          <ul class="relief-checklist">
-            <li>No equipment to buy or store</li>
-            <li>No mess, no smell, no effort from you</li>
-            <li>Flexible scheduling around your life</li>
-            <li>We come to you — no drop-off needed</li>
-            <li>Cancel or pause anytime, no questions asked</li>
-          </ul>
+      <!-- Empathy copy — centred, full width -->
+      <div class="relief-center">
+        <p>Between work, errands, the kids, the yard, and everything else life stacks on your schedule — cleaning the trash cans sits at the very bottom of the list. We know that. That's the whole reason Lustrum Bin Works exists.</p>
+        <p>Hand this one off. Completely. We show up, we do the job right, and you never have to think about it again. One small but real measure of relief in your week.</p>
+        <div class="relief-pills">
+          <div class="relief-pill">No equipment to buy</div>
+          <div class="relief-pill">No mess or effort from you</div>
+          <div class="relief-pill">Flexible scheduling</div>
+          <div class="relief-pill">We come to you</div>
+          <div class="relief-pill">Cancel anytime</div>
         </div>
-
-        <!-- Promotions panel -->
-        <div class="promo-panel">
-          <div class="promo-ticker">
-            <span class="promo-ticker-inner">
-              ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;
-            </span>
-          </div>
-          <div class="promo-cards">
-            <div class="promo-card">
-              <div class="promo-badge">20%<br>OFF</div>
-              <div class="promo-card-body">
-                <h4>First Visit Discount</h4>
-                <p>New to Lustrum? Your first clean is 20% off — no code needed, applied automatically at booking.</p>
-              </div>
-            </div>
-            <div class="promo-card">
-              <div class="promo-badge">FREE<br>VISIT</div>
-              <div class="promo-card-body">
-                <h4>Referral Reward</h4>
-                <p>Refer a neighbor who books with us, and your next visit is completely free. Good neighbors deserve good deals.</p>
-              </div>
-            </div>
-            <div class="promo-card">
-              <div class="promo-badge">3+<br>BINS</div>
-              <div class="promo-card-body">
-                <h4>Bundle &amp; Save</h4>
-                <p>Book three or more bins in one visit and receive a reduced per-bin rate. The more you bundle, the more you save.</p>
-              </div>
-            </div>
-            <div class="promo-card">
-              <div class="promo-badge">★</div>
-              <div class="promo-card-body">
-                <h4>Seasonal Specials</h4>
-                <p>We run rotating promotions throughout the year — summer deep-cleans, holiday discounts, and more. Ask us what's on right now.</p>
-              </div>
-            </div>
-          </div>
-          <p class="promo-note">Promotions may be combined. Ask at booking or mention this page.</p>
-        </div>
-
       </div>
+
+      <!-- Full-width scrolling ticker -->
+      <div class="promo-ticker">
+        <span class="promo-ticker-inner">
+          ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;
+        </span>
+      </div>
+
+      <!-- 4-column promo cards -->
+      <div class="promo-cards-grid">
+        <div class="promo-card">
+          <div class="promo-badge">20%<br>OFF</div>
+          <h4>First Visit Discount</h4>
+          <p>New to Lustrum? Your first clean is 20% off — applied automatically at booking, no code needed.</p>
+        </div>
+        <div class="promo-card">
+          <div class="promo-badge">FREE<br>VISIT</div>
+          <h4>Referral Reward</h4>
+          <p>Refer a neighbor who books with us and your next visit is completely free. Good neighbors deserve good deals.</p>
+        </div>
+        <div class="promo-card">
+          <div class="promo-badge">3+<br>BINS</div>
+          <h4>Bundle &amp; Save</h4>
+          <p>Book three or more bins in one visit and receive a reduced per-bin rate. The more you bundle, the more you save.</p>
+        </div>
+        <div class="promo-card">
+          <div class="promo-badge">★</div>
+          <h4>Seasonal Specials</h4>
+          <p>Rotating promotions throughout the year — summer deep-cleans, holiday discounts, and more. Ask what's on now.</p>
+        </div>
+      </div>
+      <p class="promo-note">Promotions may be combined. Mention this page or ask at booking.</p>
+
     </div>
   </section>
 
@@ -887,7 +879,8 @@
             <li>On-request scheduling</li>
             <li>Discounted rate for multiple bins</li>
           </ul>
-          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
+          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;"
+            onclick="selectPlan(event, 'One and Done — Per Bin · $12 per trash can')">Select</button>
         </div>
         <div class="price-card featured">
           <p class="price-tier" style="color:#2a9d8f;">Keep It Clean</p>
@@ -898,7 +891,8 @@
             <li>Monthly subscription</li>
             <li>Book up to 3 months ahead</li>
           </ul>
-          <button class="btn-primary" style="display:block; width:100%; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
+          <button class="btn-primary" style="display:block; width:100%; font-size:9px;"
+            onclick="selectPlan(event, 'Keep It Clean — Bi-Weekly · $29 per visit')">Select</button>
         </div>
         <div class="price-card">
           <p class="price-tier">Premium Plan</p>
@@ -909,7 +903,8 @@
             <li>Priority rescheduling</li>
             <li>Monthly subscription</li>
           </ul>
-          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
+          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;"
+            onclick="selectPlan(event, 'Premium Plan — Weekly · $27 per visit')">Select</button>
         </div>
       </div>
     </div>
@@ -926,12 +921,21 @@
       <h2 class="section-title serif">Schedule Your <span class="gold">Clean</span></h2>
       <p class="section-lead">A few details, and we will arrange the rest.</p>
 
-      <form
-        id="bookingForm"
-        action="https://formspree.io/f/mojpoobo"
-        method="POST"
-        novalidate
-      >
+      <!--
+        ============================================================
+        EMAIL SETUP INSTRUCTIONS:
+        This form uses Formspree (free) to email ENMT303@gmail.com.
+
+        TO ACTIVATE:
+        1. Go to https://formspree.io — sign up with ENMT303@gmail.com
+        2. Create a new form — you'll get a URL like:
+           https://formspree.io/f/xyzabcde
+        3. Replace YOUR_FORM_ID in the action below with that ID
+        4. Done — every booking arrives in your Gmail inbox
+        ============================================================
+      -->
+
+      <form id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
         <div class="booking-form">
           <div class="form-corner-bl"></div>
           <div class="form-corner-br"></div>
@@ -951,36 +955,36 @@
 
           <div class="form-row">
             <label class="form-label" for="address">Address</label>
-            <input class="form-input" id="address" name="address" type="text" placeholder="123 Maple Street, San Jose" />
-            <div class="field-error" id="err-address">Please enter your address</div>
+            <input class="form-input" id="address" name="address" type="text" placeholder="123 Maple Street, San Jose, CA" />
+            <div class="field-error" id="err-address">Please enter a full street address (e.g. 123 Main St, City, CA)</div>
           </div>
 
           <div class="form-grid">
             <div class="form-row">
               <label class="form-label" for="zipcode">ZIP Code</label>
-              <input class="form-input" id="zipcode" name="zipcode" type="text" placeholder="95101" />
-              <div class="field-error" id="err-zipcode">Please enter your ZIP code</div>
+              <input class="form-input" id="zipcode" name="zipcode" type="text" placeholder="95101" maxlength="10" />
+              <div class="field-error" id="err-zipcode">Please enter a valid 5-digit ZIP code</div>
             </div>
             <div class="form-row">
-              <label class="form-label" for="phone">Telephone</label>
+              <label class="form-label" for="phone">Telephone <span class="optional-tag">Optional</span></label>
               <input class="form-input" id="phone" name="phone" type="tel" placeholder="(669) 555-0123" />
-              <div class="field-error" id="err-phone">Please enter your phone number</div>
+              <!-- no error div for phone — it's optional -->
             </div>
           </div>
 
           <div class="form-row">
             <label class="form-label" for="email">Email address</label>
             <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" />
-            <div class="field-error" id="err-email">Please enter a valid email address</div>
+            <div class="field-error" id="err-email">Please enter a valid email address (e.g. name@domain.com)</div>
           </div>
 
           <div class="form-row">
             <label class="form-label" for="plan">Service plan</label>
             <select class="form-select" id="plan" name="plan">
               <option value="">— Select a plan —</option>
-              <option>One and Done — Per Bin · $12 per trash can</option>
-              <option>Keep It Clean — Bi-Weekly · $29 per visit</option>
-              <option>Premium Plan — Weekly · $27 per visit</option>
+              <option value="One and Done — Per Bin · $12 per trash can">One and Done — Per Bin · $12 per trash can</option>
+              <option value="Keep It Clean — Bi-Weekly · $29 per visit">Keep It Clean — Bi-Weekly · $29 per visit</option>
+              <option value="Premium Plan — Weekly · $27 per visit">Premium Plan — Weekly · $27 per visit</option>
             </select>
             <div class="field-error" id="err-plan">Please select a service plan</div>
           </div>
@@ -989,18 +993,18 @@
             <label class="form-label" for="bins">Number of bins</label>
             <select class="form-select" id="bins" name="bins">
               <option value="">— Select number of bins —</option>
-              <option>One bin</option>
-              <option>Two bins</option>
-              <option>Three bins</option>
+              <option value="One bin">One bin</option>
+              <option value="Two bins">Two bins</option>
+              <option value="Three bins">Three bins</option>
             </select>
-            <div class="field-error" id="err-bins">Please select number of bins</div>
+            <div class="field-error" id="err-bins">Please select the number of bins</div>
           </div>
 
-          <!-- Success message (shown after submit) -->
+          <!-- Success state -->
           <div class="booking-success" id="bookingSuccess">
             <div class="success-seal"><span>◇</span></div>
             <h3 class="serif">Booking Received</h3>
-            <p>Thank you — we'll be in touch within one business day to confirm your appointment. Check your email for a confirmation.</p>
+            <p>Thank you — we'll be in touch within one business day to confirm your appointment. Check your email for confirmation.</p>
           </div>
 
           <div style="margin-top:2.5rem;" id="submitRow">
@@ -1028,60 +1032,104 @@
   </footer>
 
   <script>
+    /* ── Smooth scroll with easing ── */
+    function smoothTo(e, id) {
+      if (e) e.preventDefault();
+      const target = document.getElementById(id);
+      if (!target) return;
+      const navH = document.querySelector('.scroll-nav').offsetHeight;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+
+    /* ── Select plan from pricing section ── */
+    function selectPlan(e, planValue) {
+      e.preventDefault();
+      const sel = document.getElementById('plan');
+      sel.value = planValue;
+      // Clear any error on the plan field
+      sel.classList.remove('error');
+      const err = document.getElementById('err-plan');
+      if (err) err.classList.remove('visible');
+      smoothTo(null, 'booking');
+    }
+
+    /* ── Validation rules ──
+       phone is excluded from required fields (optional)
+    */
     const fields = [
-      { id: 'firstName',  validate: v => v.trim().length > 0 },
-      { id: 'lastName',   validate: v => v.trim().length > 0 },
-      { id: 'address',    validate: v => v.trim().length > 0 },
-      { id: 'zipcode',    validate: v => v.trim().length > 0 },
-      { id: 'phone',      validate: v => v.trim().length > 0 },
-      { id: 'email',      validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
-      { id: 'plan',       validate: v => v !== '' },
-      { id: 'bins',       validate: v => v !== '' },
+      {
+        id: 'firstName',
+        validate: v => v.trim().length >= 1
+      },
+      {
+        id: 'lastName',
+        validate: v => v.trim().length >= 1
+      },
+      {
+        id: 'address',
+        // Must contain a number AND at least two words (street + city)
+        validate: v => {
+          const t = v.trim();
+          return t.length >= 6 && /\d/.test(t) && t.split(/\s+/).length >= 3;
+        }
+      },
+      {
+        id: 'zipcode',
+        // US ZIP: 5 digits, or ZIP+4 (12345-6789)
+        validate: v => /^\d{5}(-\d{4})?$/.test(v.trim())
+      },
+      {
+        id: 'email',
+        validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
+      },
+      {
+        id: 'plan',
+        validate: v => v !== ''
+      },
+      {
+        id: 'bins',
+        validate: v => v !== ''
+      },
     ];
 
     function validateField(field) {
-      const el = document.getElementById(field.id);
+      const el  = document.getElementById(field.id);
       const err = document.getElementById('err-' + field.id);
-      const valid = field.validate(el.value);
-      if (!valid) {
+      const ok  = field.validate(el.value);
+      if (!ok) {
         el.classList.add('error');
-        err.classList.add('visible');
+        if (err) err.classList.add('visible');
         el.classList.remove('shake');
-        void el.offsetWidth; // reflow to restart animation
+        void el.offsetWidth;
         el.classList.add('shake');
       } else {
         el.classList.remove('error');
-        err.classList.remove('visible');
+        if (err) err.classList.remove('visible');
       }
-      return valid;
+      return ok;
     }
 
-    // Live clear on input
+    // Live-clear errors as user types / changes
     fields.forEach(field => {
       const el = document.getElementById(field.id);
-      el.addEventListener('input', () => {
-        if (field.validate(el.value)) {
-          el.classList.remove('error');
-          document.getElementById('err-' + field.id).classList.remove('visible');
-        }
-      });
-      el.addEventListener('change', () => {
-        if (field.validate(el.value)) {
-          el.classList.remove('error');
-          document.getElementById('err-' + field.id).classList.remove('visible');
-        }
+      if (!el) return;
+      ['input', 'change'].forEach(evt => {
+        el.addEventListener(evt, () => {
+          if (field.validate(el.value)) {
+            el.classList.remove('error');
+            const err = document.getElementById('err-' + field.id);
+            if (err) err.classList.remove('visible');
+          }
+        });
       });
     });
 
     document.getElementById('submitBtn').addEventListener('click', async function () {
       let allValid = true;
-      fields.forEach(field => {
-        if (!validateField(field)) allValid = false;
-      });
-
+      fields.forEach(f => { if (!validateField(f)) allValid = false; });
       if (!allValid) return;
 
-      // Submit via Formspree
       const form = document.getElementById('bookingForm');
       const data = new FormData(form);
 
@@ -1098,7 +1146,6 @@
         if (res.ok) {
           document.getElementById('submitRow').style.display = 'none';
           document.getElementById('bookingSuccess').style.display = 'block';
-          // Clear form fields
           form.reset();
         } else {
           this.textContent = 'Something went wrong — please try again';
