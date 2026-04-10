@@ -15,7 +15,6 @@
     .gold { color: #c9a84c; }
     .teal { color: #2a9d8f; }
     .serif { font-family: 'Playfair Display', serif; }
-    .cormorant { font-family: 'Cormorant Garamond', serif; }
 
     /* TILE DIVIDER */
     .tile-row { display: flex; height: 8px; overflow: hidden; }
@@ -33,7 +32,6 @@
       text-align: center;
       padding: 4rem 2rem;
       background: #0a1a1a;
-      position: relative;
     }
 
     .hero-frame {
@@ -45,7 +43,7 @@
     }
 
     .hero-frame::before, .hero-frame::after,
-    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    .corner-bl, .corner-br {
       content: '';
       position: absolute;
       width: 20px;
@@ -287,141 +285,155 @@
       line-height: 1.5;
     }
 
-    /* TRANSFORMATION */
-    .transform-bg { background: #0d1f1e; }
+    /* ============================
+       PROMOTIONS & RELIEF SECTION
+       ============================ */
+    .promo-bg { background: #0a1a1a; }
 
-    .transform-grid {
+    .promo-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
-      align-items: center;
+      align-items: start;
     }
 
-    .before-after {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3px;
+    /* Relief / empathy copy block */
+    .relief-block {
+      border-left: 2px solid #c9a84c40;
+      padding-left: 2rem;
     }
 
-    .ba-panel { padding: 2rem 1.5rem; text-align: center; }
-    .ba-before { background: #1a0e0e; border: 1px solid #4a2020; }
-    .ba-after  { background: #0e1f1a; border: 1px solid #1a4a3a; }
-
-    .ba-label {
-      font-size: 9px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    .ba-before .ba-label { color: #8a4444; }
-    .ba-after  .ba-label { color: #2a9d8f; }
-
-    .ba-visual {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .relief-block h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 28px;
-    }
-
-    .ba-before .ba-visual { border: 2px solid #4a2020; color: #6a3030; }
-    .ba-after  .ba-visual { border: 2px solid #2a9d8f; color: #2a9d8f; }
-
-    .ba-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      font-style: italic;
-      line-height: 1.4;
-    }
-    .ba-before .ba-text { color: #7a5050; }
-    .ba-after  .ba-text { color: #5ab0a8; }
-
-    .transform-copy h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
       font-weight: 700;
       color: #e8dfc0;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
     }
 
-    .transform-copy p {
+    .relief-block p {
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
       font-style: italic;
       color: #8ab5b0;
-      line-height: 1.7;
+      line-height: 1.8;
       margin-bottom: 1rem;
     }
 
-    /* GUARANTEE */
-    .guarantee-bg { background: #081414; }
-
-    .guarantee-center {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto;
+    .relief-checklist {
+      list-style: none;
+      margin-top: 1.5rem;
     }
 
-    .guarantee-seal {
-      width: 100px;
-      height: 100px;
-      border: 2px solid #c9a84c;
+    .relief-checklist li {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #5ab0a8;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #c9a84c15;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .relief-checklist li::before {
+      content: '◇';
+      color: #c9a84c;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Promotions ticker + cards */
+    .promo-panel {}
+
+    .promo-ticker {
+      background: #c9a84c;
+      color: #0a1a1a;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-bottom: 1px;
+    }
+
+    .promo-ticker-inner {
+      display: inline-block;
+      animation: ticker 18s linear infinite;
+    }
+
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .promo-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: #c9a84c20;
+      border: 1px solid #c9a84c20;
+      border-top: none;
+    }
+
+    .promo-card {
+      background: #0d1f1e;
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .promo-badge {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border: 1px solid #c9a84c50;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 2rem;
-      position: relative;
-      transform: rotate(45deg);
-    }
-
-    .guarantee-seal::before {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 1px solid #c9a84c50;
-    }
-
-    .guarantee-seal-inner { transform: rotate(-45deg); text-align: center; }
-
-    .guarantee-seal-inner .num {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
+      font-size: 13px;
       font-weight: 700;
       color: #c9a84c;
-      display: block;
-      line-height: 1;
+      line-height: 1.1;
+      text-align: center;
     }
 
-    .guarantee-seal-inner .unit {
-      font-size: 8px;
+    .promo-card-body h4 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: #c9a84c80;
-      display: block;
-    }
-
-    .guarantee-center h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
       color: #e8dfc0;
-      margin-bottom: 1rem;
+      margin-bottom: 0.4rem;
     }
 
-    .guarantee-center p {
+    .promo-card-body p {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
+      font-size: 15px;
       font-style: italic;
-      color: #7a9e9b;
-      line-height: 1.7;
-      margin-bottom: 2rem;
+      color: #6a9490;
+      line-height: 1.5;
+    }
+
+    .promo-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: #2a6460;
+      text-align: center;
+      margin-top: 1.25rem;
+      letter-spacing: 0.5px;
     }
 
     /* PRICING */
-    .pricing-bg { background: #0a1a1a; }
+    .pricing-bg { background: #0d1f1e; }
 
     .pricing-grid {
       display: grid;
@@ -434,14 +446,13 @@
     }
 
     .price-card {
-      background: #0a1a1a;
+      background: #0d1f1e;
       padding: 2.5rem 1.5rem;
       text-align: center;
-      position: relative;
     }
 
     .price-card.featured {
-      background: #0d2020;
+      background: #0a2020;
       border-left: 1px solid #c9a84c40;
       border-right: 1px solid #c9a84c40;
     }
@@ -498,7 +509,7 @@
     .form-corner-bl { position: absolute; bottom: -1px; left: -1px; width: 20px; height: 20px; border-bottom: 2px solid #c9a84c; border-left: 2px solid #c9a84c; }
     .form-corner-br { position: absolute; bottom: -1px; right: -1px; width: 20px; height: 20px; border-bottom: 2px solid #c9a84c; border-right: 2px solid #c9a84c; }
 
-    .form-row { margin-bottom: 1.5rem; }
+    .form-row { margin-bottom: 1.5rem; position: relative; }
 
     .form-label {
       display: block;
@@ -526,6 +537,34 @@
     .form-input:focus { border-bottom-color: #c9a84c; }
     .form-input::placeholder { color: #3a5a57; }
 
+    /* Validation error states */
+    .form-input.error { border-bottom-color: #c0392b !important; }
+    .form-select.error { border-bottom-color: #c0392b !important; }
+
+    .field-error {
+      display: none;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c0392b;
+      margin-top: 5px;
+      background: #2a0808;
+      padding: 4px 8px;
+      border-left: 2px solid #c0392b;
+    }
+
+    .field-error.visible { display: block; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .shake { animation: shake 0.4s ease; }
+
     .form-select {
       width: 100%;
       background: #0a1a1a;
@@ -539,9 +578,50 @@
       outline: none;
       -webkit-appearance: none;
       cursor: pointer;
+      transition: border-color 0.2s;
     }
 
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    /* Success state */
+    .booking-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .booking-success .success-seal {
+      width: 70px;
+      height: 70px;
+      border: 2px solid #2a9d8f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      transform: rotate(45deg);
+    }
+
+    .booking-success .success-seal span {
+      transform: rotate(-45deg);
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #2a9d8f;
+    }
+
+    .booking-success h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #e8dfc0;
+      margin-bottom: 0.75rem;
+    }
+
+    .booking-success p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #5ab0a8;
+      line-height: 1.6;
+    }
 
     /* FOOTER */
     .footer {
@@ -576,18 +656,6 @@
       letter-spacing: 1px;
     }
 
-    .footer-nav { display: flex; gap: 2rem; list-style: none; }
-
-    .footer-nav a {
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #4a7a77;
-      text-decoration: none;
-    }
-
-    .footer-nav a:hover { color: #c9a84c; }
-
     /* SCROLL NAV */
     .scroll-nav {
       position: sticky;
@@ -617,7 +685,7 @@
     @media (max-width: 680px) {
       .process-steps { grid-template-columns: 1fr 1fr; }
       .process-steps::before { display: none; }
-      .transform-grid { grid-template-columns: 1fr; }
+      .promo-layout { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .hero-frame { padding: 2rem 1.5rem; }
       .form-grid { grid-template-columns: 1fr; }
@@ -630,6 +698,7 @@
   <nav class="scroll-nav">
     <a href="#problem">The Problem</a>
     <a href="#process">The Process</a>
+    <a href="#promotions">Promotions</a>
     <a href="#pricing">Service Plans</a>
     <a href="#booking">Book Now</a>
   </nav>
@@ -646,12 +715,12 @@
         <em>Clean and Mystique</em>
         <span></span>
       </div>
-      <p class="hero-sub">Premium Residential bin cleaning · California</p>
+      <p class="hero-sub">Premium Residential Bin Cleaning · California</p>
       <p class="hero-desc">
         Every home in every street deserves to feel absolute cleanliness — even in its most overlooked corners.
       </p>
       <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Schedule Your Clean</button>
-      <button class="btn-ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">How we do it</button>
+      <button class="btn-ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">How We Do It</button>
     </div>
   </section>
 
@@ -662,27 +731,28 @@
   <!-- PROBLEM -->
   <section class="section problem-bg" id="problem">
     <div class="section-inner">
-      <h2 class="section-title serif">The Problem with <span class="gold">Dirty Trashcans</span></h2>
+      <h2 class="section-title serif">The Problem with <span class="gold">Dirty Trash Cans</span></h2>
+      <p class="section-lead">Four reasons your bins deserve professional attention — not just a rinse.</p>
       <div class="problem-grid">
         <div class="problem-cell">
           <div class="problem-icon">I</div>
           <h3>Persistent Odour</h3>
-          <p>A lingering smell that won't go away unless you hire us to make it. </p>
+          <p>A lingering smell that won't go away unless someone tackles it properly — and that someone is us.</p>
         </div>
         <div class="problem-cell">
           <div class="problem-icon">II</div>
           <h3>Bacterial Growth</h3>
-          <p>Bacteria not visible to the eye thrive in the damp warmth, causing the spread of pathogens like E. coli, Salmonella, and Listeria</p>
+          <p>Bacteria invisible to the eye thrive in the damp warmth, spreading pathogens like E. coli, Salmonella, and Listeria.</p>
         </div>
         <div class="problem-cell">
           <div class="problem-icon">III</div>
           <h3>The Time Dilemma</h3>
-          <p>Everyone knows their trash can needs cleaning, but they don't have the time to be the ones to do it. We're here to help</p>
+          <p>Everyone knows their trash can needs cleaning — but between work, family, and life, nobody has the time. That's exactly why we exist.</p>
         </div>
         <div class="problem-cell">
           <div class="problem-icon">IV</div>
           <h3>Pest Problems</h3>
-          <p> The scent from trash cans attracts maggots and rodents.</p>
+          <p>The scent from neglected cans draws maggots, flies, and rodents. A clean bin is a closed invitation.</p>
         </div>
       </div>
     </div>
@@ -697,31 +767,102 @@
     <div class="section-inner">
       <p class="section-label">Our Process</p>
       <h2 class="section-title serif">Four Acts of <span class="gold">Restoration</span></h2>
-      <p class="section-lead">We go through a similar sequence every time, but adjust it for every home's specific needs</p>
+      <p class="section-lead">We follow the same disciplined sequence every visit — refined to leave nothing unaddressed.</p>
       <div class="process-steps">
         <div class="step">
           <div class="step-num">I</div>
           <h3>Arrival</h3>
-          <p>Our team of trash cleaners arrive with our equipment, ready to begin.</p>
+          <p>Our team arrives at the scheduled hour with all equipment, ready to begin without delay.</p>
         </div>
         <div class="step">
           <div class="step-num">II</div>
           <h3>The Purge</h3>
-          <p> Our power washers strip the disposal bins inside and out of residue, odour, and pests.</p>
+          <p>Our power washers strip bins inside and out — residue, odour, and pests removed completely.</p>
         </div>
         <div class="step">
           <div class="step-num">III</div>
           <h3>Sanitation</h3>
-          <p>Soap is applied and the surfaces are scrubbed to clinically remove disease.</p>
+          <p>Soap is applied and surfaces are scrubbed to clinically remove harmful bacteria and disease.</p>
         </div>
         <div class="step">
           <div class="step-num">IV</div>
           <h3>Departure</h3>
-          <p>We leave nothing except for your clean trash-cans behind. Your bins that we cleaned are restored to a state of exemplary order.</p>
+          <p>We leave nothing except clean, restored bins behind. Your property is exactly as we found it — just fresher.</p>
         </div>
       </div>
       <div style="text-align:center; margin-top:1rem;">
         <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:#3a7070; letter-spacing:1px;">All waste water is responsibly contained and removed from your property.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-row">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- PROMOTIONS & RELIEF -->
+  <section class="section promo-bg" id="promotions">
+    <div class="section-inner">
+      <p class="section-label">For the homeowner</p>
+      <h2 class="section-title serif">One Less Thing to <span class="gold">Worry About</span></h2>
+      <p class="section-lead">We know your plate is full. Let this be the one task that simply handles itself.</p>
+
+      <div class="promo-layout">
+
+        <!-- Relief / empathy block -->
+        <div class="relief-block">
+          <h2 class="serif">You've got enough on your hands.</h2>
+          <p>Between work, errands, the kids, the yard, and everything else life stacks on your schedule — cleaning the trash cans sits at the very bottom of the list. We know that. That's the whole reason Lustrum Bin Works exists.</p>
+          <p>Hand this one off. Completely. We show up, we do the job right, and you never have to think about it again. One less thing on the list. One small but real measure of relief in your week.</p>
+          <ul class="relief-checklist">
+            <li>No equipment to buy or store</li>
+            <li>No mess, no smell, no effort from you</li>
+            <li>Flexible scheduling around your life</li>
+            <li>We come to you — no drop-off needed</li>
+            <li>Cancel or pause anytime, no questions asked</li>
+          </ul>
+        </div>
+
+        <!-- Promotions panel -->
+        <div class="promo-panel">
+          <div class="promo-ticker">
+            <span class="promo-ticker-inner">
+              ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;
+            </span>
+          </div>
+          <div class="promo-cards">
+            <div class="promo-card">
+              <div class="promo-badge">20%<br>OFF</div>
+              <div class="promo-card-body">
+                <h4>First Visit Discount</h4>
+                <p>New to Lustrum? Your first clean is 20% off — no code needed, applied automatically at booking.</p>
+              </div>
+            </div>
+            <div class="promo-card">
+              <div class="promo-badge">FREE<br>VISIT</div>
+              <div class="promo-card-body">
+                <h4>Referral Reward</h4>
+                <p>Refer a neighbor who books with us, and your next visit is completely free. Good neighbors deserve good deals.</p>
+              </div>
+            </div>
+            <div class="promo-card">
+              <div class="promo-badge">3+<br>BINS</div>
+              <div class="promo-card-body">
+                <h4>Bundle &amp; Save</h4>
+                <p>Book three or more bins in one visit and receive a reduced per-bin rate. The more you bundle, the more you save.</p>
+              </div>
+            </div>
+            <div class="promo-card">
+              <div class="promo-badge">★</div>
+              <div class="promo-card-body">
+                <h4>Seasonal Specials</h4>
+                <p>We run rotating promotions throughout the year — summer deep-cleans, holiday discounts, and more. Ask us what's on right now.</p>
+              </div>
+            </div>
+          </div>
+          <p class="promo-note">Promotions may be combined. Ask at booking or mention this page.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -735,37 +876,36 @@
     <div class="section-inner">
       <p class="section-label">Service plans</p>
       <h2 class="section-title serif">Choose Your <span class="gold">Arrangement</span></h2>
-      <p class="section-lead">Every plan includes our best treatment to clean, deodorise, and give your bins a standard of immaculate result.</p>
+      <p class="section-lead">Every plan includes our full treatment — power wash, scrub, deodorise, and restore.</p>
       <div class="pricing-grid">
         <div class="price-card">
           <p class="price-tier">One and Done</p>
           <div class="price-amount">$12</div>
-          <p class="price-period">Per Bin Cleaned</p>
+          <p class="price-period">Per bin cleaned</p>
           <ul class="price-features">
             <li>Single bin</li>
             <li>On-request scheduling</li>
-            <li>Discounted offer if you order multiple at once</li>
+            <li>Discounted rate for multiple bins</li>
           </ul>
           <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
         </div>
         <div class="price-card featured">
-          <p class="price-tier" style="color:#2a9d8f;">Keep it clean</p>
+          <p class="price-tier" style="color:#2a9d8f;">Keep It Clean</p>
           <div class="price-amount">$29</div>
           <p class="price-period">Per visit · bi-weekly</p>
           <ul class="price-features">
-            <li>Up to THREE bins</li>
+            <li>Up to three bins</li>
             <li>Monthly subscription</li>
-            <li>Can order up to 3 months in advance</li>
-
+            <li>Book up to 3 months ahead</li>
           </ul>
           <button class="btn-primary" style="display:block; width:100%; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
         </div>
         <div class="price-card">
           <p class="price-tier">Premium Plan</p>
           <div class="price-amount">$27</div>
-          <p class="price-period">Per visit · Weekly </p>
+          <p class="price-period">Per visit · weekly</p>
           <ul class="price-features">
-            <li>Up to THREE bins</li>
+            <li>Up to three bins</li>
             <li>Priority rescheduling</li>
             <li>Monthly subscription</li>
           </ul>
@@ -783,58 +923,98 @@
   <section class="section booking-bg" id="booking">
     <div class="section-inner">
       <p class="section-label">Arrange your visit</p>
-      <h2 class="section-title serif">Schedule Your <span class="gold">Restoration</span></h2>
+      <h2 class="section-title serif">Schedule Your <span class="gold">Clean</span></h2>
       <p class="section-lead">A few details, and we will arrange the rest.</p>
-      <div class="booking-form">
-        <div class="form-corner-bl"></div>
-        <div class="form-corner-br"></div>
-        <div class="form-grid">
-          <div class="form-row">
-            <label class="form-label">Given name</label>
-            <input class="form-input" type="text" placeholder="Eleanor" />
+
+      <form
+        id="bookingForm"
+        action="https://formspree.io/f/mojpoobo"
+        method="POST"
+        novalidate
+      >
+        <div class="booking-form">
+          <div class="form-corner-bl"></div>
+          <div class="form-corner-br"></div>
+
+          <div class="form-grid">
+            <div class="form-row">
+              <label class="form-label" for="firstName">Given name</label>
+              <input class="form-input" id="firstName" name="firstName" type="text" placeholder="Eleanor" />
+              <div class="field-error" id="err-firstName">Please enter your first name</div>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="lastName">Surname</label>
+              <input class="form-input" id="lastName" name="lastName" type="text" placeholder="Hartley" />
+              <div class="field-error" id="err-lastName">Please enter your last name</div>
+            </div>
           </div>
+
           <div class="form-row">
-            <label class="form-label">Surname</label>
-            <input class="form-input" type="text" placeholder="Hartley" />
+            <label class="form-label" for="address">Address</label>
+            <input class="form-input" id="address" name="address" type="text" placeholder="123 Maple Street, San Jose" />
+            <div class="field-error" id="err-address">Please enter your address</div>
           </div>
-        </div>
-        <div class="form-row">
-          <label class="form-label">Address</label>
-          <input class="form-input" type="text" placeholder="14 Ashworth Crescent, London" />
-        </div>
-        <div class="form-grid">
+
+          <div class="form-grid">
+            <div class="form-row">
+              <label class="form-label" for="zipcode">ZIP Code</label>
+              <input class="form-input" id="zipcode" name="zipcode" type="text" placeholder="95101" />
+              <div class="field-error" id="err-zipcode">Please enter your ZIP code</div>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="phone">Telephone</label>
+              <input class="form-input" id="phone" name="phone" type="tel" placeholder="(669) 555-0123" />
+              <div class="field-error" id="err-phone">Please enter your phone number</div>
+            </div>
+          </div>
+
           <div class="form-row">
-            <label class="form-label">Postcode</label>
-            <input class="form-input" type="text" placeholder="SW3 4AL" />
+            <label class="form-label" for="email">Email address</label>
+            <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" />
+            <div class="field-error" id="err-email">Please enter a valid email address</div>
           </div>
+
           <div class="form-row">
-            <label class="form-label">Telephone</label>
-            <input class="form-input" type="tel" placeholder="07700 900 xxx" />
+            <label class="form-label" for="plan">Service plan</label>
+            <select class="form-select" id="plan" name="plan">
+              <option value="">— Select a plan —</option>
+              <option>One and Done — Per Bin · $12 per trash can</option>
+              <option>Keep It Clean — Bi-Weekly · $29 per visit</option>
+              <option>Premium Plan — Weekly · $27 per visit</option>
+            </select>
+            <div class="field-error" id="err-plan">Please select a service plan</div>
           </div>
+
+          <div class="form-row">
+            <label class="form-label" for="bins">Number of bins</label>
+            <select class="form-select" id="bins" name="bins">
+              <option value="">— Select number of bins —</option>
+              <option>One bin</option>
+              <option>Two bins</option>
+              <option>Three bins</option>
+            </select>
+            <div class="field-error" id="err-bins">Please select number of bins</div>
+          </div>
+
+          <!-- Success message (shown after submit) -->
+          <div class="booking-success" id="bookingSuccess">
+            <div class="success-seal"><span>◇</span></div>
+            <h3 class="serif">Booking Received</h3>
+            <p>Thank you — we'll be in touch within one business day to confirm your appointment. Check your email for a confirmation.</p>
+          </div>
+
+          <div style="margin-top:2.5rem;" id="submitRow">
+            <button type="button" id="submitBtn" class="btn-primary" style="width:100%; text-align:center; display:block; font-size:10px; letter-spacing:5px;">
+              Confirm Booking Request
+            </button>
+          </div>
+
+          <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:#2a5550; text-align:center; margin-top:1.5rem; line-height:1.5;">
+            We respond to every enquiry within one business day. No account required.
+          </p>
         </div>
-        <div class="form-row">
-          <label class="form-label">Service plan</label>
-          <select class="form-select">
-            <option>One and Done — Per Bin · $12 per trash can</option>
-            <option>Keep it Clean — Per Bi-Weekly Visit · $29 per visit</option>
-            <option>Premium Plan — Per Weekly Visit · $27 per visit</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label class="form-label">Number of bins</label>
-          <select class="form-select">
-            <option>One bin</option>
-            <option>Two bins</option>
-            <option>Three bins</option>
-          </select>
-        </div>
-        <div style="margin-top:2.5rem;">
-          <button class="btn-primary" style="width:100%; text-align:center; display:block; font-size:10px; letter-spacing:5px;" onclick="this.textContent='Request Received — We Will Be In Touch'">Confirm Booking Request</button>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:#2a5550; text-align:center; margin-top:1.5rem; line-height:1.5;">
-          We respond to your questions within a week. No account required.
-        </p>
-      </div>
+      </form>
+
     </div>
   </section>
 
@@ -842,11 +1022,94 @@
     <div class="footer-inner">
       <div>
         <div class="footer-brand serif">Lustrum Bin Works</div>
-        <div class="footer-tagline">Contact us at ENMT303@gmail.com, 669 500-6548‬</div>
+        <div class="footer-tagline">Contact us at ENMT303@gmail.com &nbsp;·&nbsp; 669 500-6548</div>
       </div>
-      </ul>
     </div>
   </footer>
+
+  <script>
+    const fields = [
+      { id: 'firstName',  validate: v => v.trim().length > 0 },
+      { id: 'lastName',   validate: v => v.trim().length > 0 },
+      { id: 'address',    validate: v => v.trim().length > 0 },
+      { id: 'zipcode',    validate: v => v.trim().length > 0 },
+      { id: 'phone',      validate: v => v.trim().length > 0 },
+      { id: 'email',      validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+      { id: 'plan',       validate: v => v !== '' },
+      { id: 'bins',       validate: v => v !== '' },
+    ];
+
+    function validateField(field) {
+      const el = document.getElementById(field.id);
+      const err = document.getElementById('err-' + field.id);
+      const valid = field.validate(el.value);
+      if (!valid) {
+        el.classList.add('error');
+        err.classList.add('visible');
+        el.classList.remove('shake');
+        void el.offsetWidth; // reflow to restart animation
+        el.classList.add('shake');
+      } else {
+        el.classList.remove('error');
+        err.classList.remove('visible');
+      }
+      return valid;
+    }
+
+    // Live clear on input
+    fields.forEach(field => {
+      const el = document.getElementById(field.id);
+      el.addEventListener('input', () => {
+        if (field.validate(el.value)) {
+          el.classList.remove('error');
+          document.getElementById('err-' + field.id).classList.remove('visible');
+        }
+      });
+      el.addEventListener('change', () => {
+        if (field.validate(el.value)) {
+          el.classList.remove('error');
+          document.getElementById('err-' + field.id).classList.remove('visible');
+        }
+      });
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', async function () {
+      let allValid = true;
+      fields.forEach(field => {
+        if (!validateField(field)) allValid = false;
+      });
+
+      if (!allValid) return;
+
+      // Submit via Formspree
+      const form = document.getElementById('bookingForm');
+      const data = new FormData(form);
+
+      this.textContent = 'Sending…';
+      this.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          document.getElementById('submitRow').style.display = 'none';
+          document.getElementById('bookingSuccess').style.display = 'block';
+          // Clear form fields
+          form.reset();
+        } else {
+          this.textContent = 'Something went wrong — please try again';
+          this.disabled = false;
+        }
+      } catch (e) {
+        this.textContent = 'Network error — please try again';
+        this.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>
