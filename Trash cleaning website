@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lustrum Bin Works — Hygiene as Ceremony</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: 'Josefin Sans', sans-serif; background: #0a1a1a; color: #e8dfc0; overflow-x: hidden; }
+
+    .gold { color: #c9a84c; }
+    .teal { color: #2a9d8f; }
+    .serif { font-family: 'Playfair Display', serif; }
+    .cormorant { font-family: 'Cormorant Garamond', serif; }
+
+    /* TILE DIVIDER */
+    .tile-row { display: flex; height: 8px; overflow: hidden; }
+    .tile-row span { flex: 1; background: #c9a84c; margin: 0 1px; }
+    .tile-row span:nth-child(even) { background: #2a9d8f; }
+    .tile-row span:nth-child(3n) { background: #0a1a1a; border: 1px solid #c9a84c; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: #0a1a1a;
+      position: relative;
+    }
+
+    .hero-frame {
+      border: 1px solid #c9a84c40;
+      padding: 3rem 4rem;
+      position: relative;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .hero-frame::before, .hero-frame::after,
+    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: #c9a84c;
+      border-style: solid;
+    }
+    .hero-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .hero-frame::after  { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    .monogram {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      letter-spacing: 6px;
+      color: #c9a84c;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #e8dfc0;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 1.5rem auto;
+      max-width: 360px;
+    }
+    .hero-rule span { flex: 1; height: 1px; background: #c9a84c60; }
+    .hero-rule em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: #c9a84c;
+      white-space: nowrap;
+    }
+
+    .hero-sub {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #7ab8b0;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #c8bfa0;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #0a1a1a;
+      background: #c9a84c;
+      padding: 14px 36px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #e8c56a; }
+
+    .btn-ghost {
+      display: inline-block;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c9a84c;
+      background: transparent;
+      padding: 13px 36px;
+      border: 1px solid #c9a84c;
+      cursor: pointer;
+      margin-left: 16px;
+      transition: background 0.2s;
+    }
+    .btn-ghost:hover { background: #c9a84c18; }
+
+    /* SECTION */
+    .section { padding: 5rem 2rem; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #e8dfc0;
+      text-align: center;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      font-style: italic;
+      color: #9ab5b2;
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.6;
+    }
+
+    /* PROBLEM */
+    .problem-bg { background: #0d1f1e; }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: #c9a84c30;
+      border: 1px solid #c9a84c30;
+    }
+
+    .problem-cell {
+      background: #0d1f1e;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .problem-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid #c9a84c40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 20px;
+      color: #c9a84c;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    .problem-cell h3 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e8dfc0;
+      margin-bottom: 0.75rem;
+    }
+
+    .problem-cell p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: #7a9e9b;
+      line-height: 1.5;
+    }
+
+    /* PROCESS */
+    .process-bg { background: #081414; }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 12.5%;
+      width: 75%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a84c60, #c9a84c60, #c9a84c60, transparent);
+    }
+
+    .step { text-align: center; padding: 0 1rem; }
+
+    .step-num {
+      width: 64px;
+      height: 64px;
+      background: #081414;
+      border: 1px solid #c9a84c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #c9a84c;
+      position: relative;
+    }
+
+    .step-num::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px solid #c9a84c30;
+    }
+
+    .step h3 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e8dfc0;
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #6a9490;
+      line-height: 1.5;
+    }
+
+    /* TRANSFORMATION */
+    .transform-bg { background: #0d1f1e; }
+
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+    }
+
+    .ba-panel { padding: 2rem 1.5rem; text-align: center; }
+    .ba-before { background: #1a0e0e; border: 1px solid #4a2020; }
+    .ba-after  { background: #0e1f1a; border: 1px solid #1a4a3a; }
+
+    .ba-label {
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .ba-before .ba-label { color: #8a4444; }
+    .ba-after  .ba-label { color: #2a9d8f; }
+
+    .ba-visual {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+    }
+
+    .ba-before .ba-visual { border: 2px solid #4a2020; color: #6a3030; }
+    .ba-after  .ba-visual { border: 2px solid #2a9d8f; color: #2a9d8f; }
+
+    .ba-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .ba-before .ba-text { color: #7a5050; }
+    .ba-after  .ba-text { color: #5ab0a8; }
+
+    .transform-copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #e8dfc0;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .transform-copy p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: #8ab5b0;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    /* GUARANTEE */
+    .guarantee-bg { background: #081414; }
+
+    .guarantee-center {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .guarantee-seal {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #c9a84c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      position: relative;
+      transform: rotate(45deg);
+    }
+
+    .guarantee-seal::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid #c9a84c50;
+    }
+
+    .guarantee-seal-inner { transform: rotate(-45deg); text-align: center; }
+
+    .guarantee-seal-inner .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #c9a84c;
+      display: block;
+      line-height: 1;
+    }
+
+    .guarantee-seal-inner .unit {
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9a84c80;
+      display: block;
+    }
+
+    .guarantee-center h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #e8dfc0;
+      margin-bottom: 1rem;
+    }
+
+    .guarantee-center p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: #7a9e9b;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* PRICING */
+    .pricing-bg { background: #0a1a1a; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #c9a84c20;
+      border: 1px solid #c9a84c20;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: #0a1a1a;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .price-card.featured {
+      background: #0d2020;
+      border-left: 1px solid #c9a84c40;
+      border-right: 1px solid #c9a84c40;
+    }
+
+    .price-tier {
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 1rem;
+    }
+
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #e8dfc0;
+      margin-bottom: 0.25rem;
+    }
+
+    .price-period {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #5a8a87;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .price-features { list-style: none; margin-bottom: 2rem; }
+
+    .price-features li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #7a9e9b;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #c9a84c10;
+    }
+
+    .price-features li:last-child { border-bottom: none; }
+
+    /* BOOKING */
+    .booking-bg { background: #050f0f; }
+
+    .booking-form {
+      max-width: 540px;
+      margin: 0 auto;
+      border: 1px solid #c9a84c30;
+      padding: 3rem;
+      position: relative;
+    }
+
+    .booking-form::before { content: ''; position: absolute; top: -1px; left: -1px; width: 20px; height: 20px; border-top: 2px solid #c9a84c; border-left: 2px solid #c9a84c; }
+    .booking-form::after  { content: ''; position: absolute; top: -1px; right: -1px; width: 20px; height: 20px; border-top: 2px solid #c9a84c; border-right: 2px solid #c9a84c; }
+    .form-corner-bl { position: absolute; bottom: -1px; left: -1px; width: 20px; height: 20px; border-bottom: 2px solid #c9a84c; border-left: 2px solid #c9a84c; }
+    .form-corner-br { position: absolute; bottom: -1px; right: -1px; width: 20px; height: 20px; border-bottom: 2px solid #c9a84c; border-right: 2px solid #c9a84c; }
+
+    .form-row { margin-bottom: 1.5rem; }
+
+    .form-label {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c9a84c80;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #c9a84c40;
+      padding: 10px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: #e8dfc0;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus { border-bottom-color: #c9a84c; }
+    .form-input::placeholder { color: #3a5a57; }
+
+    .form-select {
+      width: 100%;
+      background: #0a1a1a;
+      border: none;
+      border-bottom: 1px solid #c9a84c40;
+      padding: 10px 0;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #8ab5b0;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    /* FOOTER */
+    .footer {
+      background: #050f0f;
+      padding: 3rem 2rem;
+      border-top: 1px solid #c9a84c20;
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9a84c;
+      letter-spacing: 2px;
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: #3a6460;
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    .footer-nav { display: flex; gap: 2rem; list-style: none; }
+
+    .footer-nav a {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #4a7a77;
+      text-decoration: none;
+    }
+
+    .footer-nav a:hover { color: #c9a84c; }
+
+    /* SCROLL NAV */
+    .scroll-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #050f0f;
+      border-bottom: 1px solid #c9a84c20;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .scroll-nav a {
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3a6460;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-right: 1px solid #c9a84c10;
+      transition: color 0.2s, background 0.2s;
+    }
+    .scroll-nav a:first-child { border-left: 1px solid #c9a84c10; }
+    .scroll-nav a:hover { color: #c9a84c; background: #c9a84c08; }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .transform-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .hero-frame { padding: 2rem 1.5rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .scroll-nav a { padding: 12px 10px; font-size: 7px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="scroll-nav">
+    <a href="#problem">The Problem</a>
+    <a href="#process">The Ritual</a>
+    <a href="#transformation">The Result</a>
+    <a href="#guarantee">The Pledge</a>
+    <a href="#pricing">Service Plans</a>
+    <a href="#booking">Book Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-frame">
+      <div class="corner-bl"></div>
+      <div class="corner-br"></div>
+      <p class="monogram">Est. — The Pristine Standard — MMXXIV</p>
+      <h1 class="hero-title serif">Lustrum<br><span class="gold">Bin</span> Works</h1>
+      <div class="hero-rule">
+        <span></span>
+        <em>Hygiene as ceremony</em>
+        <span></span>
+      </div>
+      <p class="hero-sub">Premium residential bin cleaning · London</p>
+      <p class="hero-desc">
+        Every home deserves the quiet authority of absolute cleanliness — even in its most overlooked corners.
+      </p>
+      <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Schedule Your Restoration</button>
+      <button class="btn-ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">Discover the Ritual</button>
+    </div>
+  </section>
+
+  <div class="tile-row">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="section problem-bg" id="problem">
+    <div class="section-inner">
+      <p class="section-label">The situation</p>
+      <h2 class="section-title serif">Neglected by Everyone. <span class="gold">Until Now.</span></h2>
+      <p class="section-lead">The wheelie bin: treated as an afterthought, yet no home is free from its quiet indignity.</p>
+      <div class="problem-grid">
+        <div class="problem-cell">
+          <div class="problem-icon">I</div>
+          <h3>Persistent Odour</h3>
+          <p>A residue that lingers through seasons, greeting you each morning with wordless reproach.</p>
+        </div>
+        <div class="problem-cell">
+          <div class="problem-icon">II</div>
+          <h3>Bacterial Growth</h3>
+          <p>Invisible colonies thrive in the damp warmth — a biological affront beneath your nose.</p>
+        </div>
+        <div class="problem-cell">
+          <div class="problem-icon">III</div>
+          <h3>The DIY Dilemma</h3>
+          <p>Garden hose and dread. You know it needs doing. You know you won't be the one to do it.</p>
+        </div>
+        <div class="problem-cell">
+          <div class="problem-icon">IV</div>
+          <h3>Pest Invitation</h3>
+          <p>Every neglected lid is an open door. We close it — thoroughly, and with finality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-row">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="section process-bg" id="process">
+    <div class="section-inner">
+      <p class="section-label">The method</p>
+      <h2 class="section-title serif">Four Acts of <span class="gold">Restoration</span></h2>
+      <p class="section-lead">Every visit unfolds according to the same unhurried discipline — a sequence refined by craft.</p>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">I</div>
+          <h3>Arrival</h3>
+          <p>Our specialist presents at the appointed hour, equipped and unhurried, ready to begin.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">II</div>
+          <h3>The Purge</h3>
+          <p>High-temperature pressurised water strips every surface of residue, odour, and evidence.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">III</div>
+          <h3>Sanitation</h3>
+          <p>Bactericidal treatment is applied — the same standard as clinical and civic environments.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">IV</div>
+          <h3>Departure</h3>
+          <p>We leave nothing behind but the gleam. Your bin is restored to a state of exemplary order.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:1rem;">
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:#3a7070; letter-spacing:1px;">All waste water is responsibly contained and removed from your property.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-row">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- TRANSFORMATION -->
+  <section class="section transform-bg" id="transformation">
+    <div class="section-inner">
+      <div class="transform-grid">
+        <div class="before-after">
+          <div class="ba-panel ba-before">
+            <div class="ba-label">Before</div>
+            <div class="ba-visual">✕</div>
+            <p class="ba-text">Residue. Odour. The quiet embarrassment of a job deferred.</p>
+          </div>
+          <div class="ba-panel ba-after">
+            <div class="ba-label">After</div>
+            <div class="ba-visual">◇</div>
+            <p class="ba-text">Gleam. Order. The deep satisfaction of a thing properly done.</p>
+          </div>
+        </div>
+        <div class="transform-copy">
+          <h2 class="serif">The Feeling of <em class="gold">Properly Done</em></h2>
+          <p>There is a particular relief that comes when something you have long avoided is handled — thoroughly, professionally, and without drama.</p>
+          <p>Lustrum Bin Works restores that sense of order to even the most overlooked corner of your home's exterior. Not merely cleaned: transformed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-row">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- GUARANTEE -->
+  <section class="section guarantee-bg" id="guarantee">
+    <div class="section-inner">
+      <div class="guarantee-center">
+        <div class="guarantee-seal">
+          <div class="guarantee-seal-inner">
+            <span class="num">100</span>
+            <span class="unit">%</span>
+          </div>
+        </div>
+        <p class="section-label">The pledge</p>
+        <h2 class="serif">Our Unconditional <span class="gold">Standard</span></h2>
+        <p>If upon inspection a result does not meet the standard you were promised — and we hold that standard extremely high — we return. Without debate, without delay, and without charge.</p>
+        <p>This is not a marketing gesture. It is the only operating principle a serious service can offer.</p>
+        <div style="display:flex; gap:2rem; justify-content:center; margin-top:2.5rem; flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="font-family:'Playfair Display',serif; font-size:2rem; color:#c9a84c;">98%</div>
+            <div style="font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#3a7070; margin-top:4px;">Satisfaction rate</div>
+          </div>
+          <div style="width:1px; background:#c9a84c20;"></div>
+          <div style="text-align:center;">
+            <div style="font-family:'Playfair Display',serif; font-size:2rem; color:#c9a84c;">4,800+</div>
+            <div style="font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#3a7070; margin-top:4px;">Bins restored</div>
+          </div>
+          <div style="width:1px; background:#c9a84c20;"></div>
+          <div style="text-align:center;">
+            <div style="font-family:'Playfair Display',serif; font-size:2rem; color:#c9a84c;">6 yrs</div>
+            <div style="font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#3a7070; margin-top:4px;">In service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-row">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- PRICING -->
+  <section class="section pricing-bg" id="pricing">
+    <div class="section-inner">
+      <p class="section-label">Service plans</p>
+      <h2 class="section-title serif">Choose Your <span class="gold">Arrangement</span></h2>
+      <p class="section-lead">Every plan includes full removal of waste water, deodorisation, and our standard of immaculate result.</p>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <p class="price-tier">Occasional</p>
+          <div class="price-amount">£14</div>
+          <p class="price-period">Per visit</p>
+          <ul class="price-features">
+            <li>Single bin</li>
+            <li>High-pressure wash</li>
+            <li>Deodorisation</li>
+            <li>On-request scheduling</li>
+          </ul>
+          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
+        </div>
+        <div class="price-card featured">
+          <p class="price-tier" style="color:#2a9d8f;">Regular</p>
+          <div class="price-amount">£9</div>
+          <p class="price-period">Per visit · monthly</p>
+          <ul class="price-features">
+            <li>Up to three bins</li>
+            <li>High-pressure wash</li>
+            <li>Bactericidal treatment</li>
+            <li>Monthly schedule</li>
+            <li>Priority rescheduling</li>
+          </ul>
+          <button class="btn-primary" style="display:block; width:100%; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
+        </div>
+        <div class="price-card">
+          <p class="price-tier">Quarterly</p>
+          <div class="price-amount">£11</div>
+          <p class="price-period">Per visit · quarterly</p>
+          <ul class="price-features">
+            <li>Up to three bins</li>
+            <li>High-pressure wash</li>
+            <li>Deep deodorisation</li>
+            <li>Seasonal scheduling</li>
+          </ul>
+          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Select</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-row">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- BOOKING -->
+  <section class="section booking-bg" id="booking">
+    <div class="section-inner">
+      <p class="section-label">Arrange your visit</p>
+      <h2 class="section-title serif">Schedule Your <span class="gold">Restoration</span></h2>
+      <p class="section-lead">A few details, and we will arrange the rest.</p>
+      <div class="booking-form">
+        <div class="form-corner-bl"></div>
+        <div class="form-corner-br"></div>
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label">Given name</label>
+            <input class="form-input" type="text" placeholder="Eleanor" />
+          </div>
+          <div class="form-row">
+            <label class="form-label">Surname</label>
+            <input class="form-input" type="text" placeholder="Hartley" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Address</label>
+          <input class="form-input" type="text" placeholder="14 Ashworth Crescent, London" />
+        </div>
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label">Postcode</label>
+            <input class="form-input" type="text" placeholder="SW3 4AL" />
+          </div>
+          <div class="form-row">
+            <label class="form-label">Telephone</label>
+            <input class="form-input" type="tel" placeholder="07700 900 xxx" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Service plan</label>
+          <select class="form-select">
+            <option>Regular — Monthly · £9 per visit</option>
+            <option>Quarterly — Seasonal · £11 per visit</option>
+            <option>Occasional — On request · £14 per visit</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Number of bins</label>
+          <select class="form-select">
+            <option>One bin</option>
+            <option>Two bins</option>
+            <option>Three bins</option>
+          </select>
+        </div>
+        <div style="margin-top:2.5rem;">
+          <button class="btn-primary" style="width:100%; text-align:center; display:block; font-size:10px; letter-spacing:5px;" onclick="this.textContent='Request Received — We Will Be In Touch'">Confirm Booking Request</button>
+        </div>
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:#2a5550; text-align:center; margin-top:1.5rem; line-height:1.5;">
+          We respond to every enquiry within one working day. No account required.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand serif">Lustrum Bin Works</div>
+        <div class="footer-tagline">Hygiene as ceremony · London</div>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="#">Service Areas</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
