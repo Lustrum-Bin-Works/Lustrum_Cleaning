@@ -90,6 +90,69 @@
 
     .bin-scene svg { width: 100%; height: 100%; }
 
+    .bin-photo {
+      position: absolute;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+    .bin-shadow {
+      position: absolute;
+      left: 70px;
+      top: 179px;
+      width: 116px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(21, 60, 62, 0.14);
+      filter: blur(0.5px);
+    }
+    #closed-bin-group {
+      left: 64px;
+      top: 28px;
+      width: 132px;
+      height: 181px;
+    }
+    #open-bin-group {
+      left: 66px;
+      top: 25px;
+      width: 134px;
+      height: 174px;
+    }
+    #bin-lid-group {
+      left: 60px;
+      top: 18px;
+      width: 148px;
+      height: 123px;
+      transform-origin: 115px 69px;
+    }
+    #bin-effects {
+      position: absolute;
+      inset: 0;
+    }
+    .dirt-mark {
+      position: absolute;
+      border-radius: 50%;
+      background: #6b4f2a;
+      filter: blur(0.4px);
+      mix-blend-mode: multiply;
+    }
+    .dirt-1 { left: 97px; top: 79px; width: 26px; height: 14px; opacity: 0.45; }
+    .dirt-2 { left: 118px; top: 102px; width: 36px; height: 16px; background: #5b4122; opacity: 0.42; }
+    .dirt-3 { left: 106px; top: 139px; width: 32px; height: 14px; background: #6f5230; opacity: 0.36; }
+    .dirt-4 { left: 84px; top: 151px; width: 16px; height: 9px; background: #7a5a30; opacity: 0.4; }
+    .dirt-5 { left: 154px; top: 145px; width: 20px; height: 11px; background: #7a5a30; opacity: 0.34; }
+    .dirt-6 {
+      left: 146px; top: 86px; width: 22px; height: 12px;
+      background: #6b4f2a; opacity: 0.36;
+      clip-path: polygon(0 58%, 32% 0, 100% 12%, 72% 100%, 14% 92%);
+    }
+    .dirt-7 {
+      left: 100px; top: 118px; width: 24px; height: 13px;
+      background: #5a4020; opacity: 0.32;
+      clip-path: polygon(0 60%, 28% 0, 100% 10%, 76% 100%, 15% 90%);
+    }
+    
     /* Real-bin image choreography */
     #closed-bin-group { animation: closedBinFade 6s ease-in-out infinite; }
     @keyframes closedBinFade {
@@ -107,8 +170,6 @@
 
     /* LID rotation — pivots from right edge of lid */
     #bin-lid-group {
-      transform-origin: 175px 87px;
-      transform-box: fill-box;
       animation: lidSwing 6s ease-in-out infinite, lidReveal 6s ease-in-out infinite;
     }
     @keyframes lidSwing {
@@ -489,36 +550,21 @@
 
       <!-- ══ REALISTIC TRASH CAN SVG ANIMATION ══ -->
       <div class="bin-scene">
-        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
 
-          <!-- ── REAL CART IMAGES ── -->
-          <g id="bin-main">
-            <ellipse cx="128" cy="188" rx="58" ry="9" fill="#153c3e" opacity="0.14"/>
-
-            <g id="closed-bin-group">
-              <image href="image-removebg-preview-2.png" x="64" y="28" width="132" height="181" preserveAspectRatio="xMidYMid meet"/>
-            </g>
-            <g id="open-bin-group">
-              <image href="image-removebg-preview-4.png" x="66" y="25" width="134" height="174" preserveAspectRatio="xMidYMid meet"/>
-            </g>
-            <!-- DIRT STAINS -->
-            <g id="dirt-group">
-              <ellipse cx="110" cy="86" rx="13" ry="7" fill="#6b4f2a" opacity="0.45"/>
-              <ellipse cx="136" cy="110" rx="18" ry="8" fill="#5b4122" opacity="0.42"/>
-              <ellipse cx="122" cy="146" rx="16" ry="7" fill="#6f5230" opacity="0.36"/>
-              <ellipse cx="92" cy="156" rx="8" ry="4.5" fill="#7a5a30" opacity="0.4"/>
-              <ellipse cx="164" cy="150" rx="10" ry="5.5" fill="#7a5a30" opacity="0.34"/>
-              <path d="M147 92q11-9 22 1q-13 10-22-1Z" fill="#6b4f2a" opacity="0.36"/>
-              <path d="M101 123q13-11 24 1q-16 12-24-1Z" fill="#5a4020" opacity="0.32"/>
-            </g>
-          </g>
-
-          <!-- ── REAL LID (pivots open) ── -->
-          <g id="bin-lid-group">
-            <image href="image-removebg-preview-5.png" x="60" y="18" width="148" height="123" preserveAspectRatio="xMidYMid meet"/>
-
-          </g>
-          
+        <div class="bin-shadow"></div>
+        <img class="bin-photo" id="closed-bin-group" src="image-removebg-preview-2.png" alt="Closed trash cart"/>
+        <img class="bin-photo" id="open-bin-group" src="image-removebg-preview-4.png" alt="Open trash cart"/>
+        <img class="bin-photo" id="bin-lid-group" src="image-removebg-preview-5.png" alt="Trash cart lid"/>
+        <div id="dirt-group" aria-hidden="true">
+          <span class="dirt-mark dirt-1"></span>
+          <span class="dirt-mark dirt-2"></span>
+          <span class="dirt-mark dirt-3"></span>
+          <span class="dirt-mark dirt-4"></span>
+          <span class="dirt-mark dirt-5"></span>
+          <span class="dirt-mark dirt-6"></span>
+          <span class="dirt-mark dirt-7"></span>
+        </div>
+        <svg id="bin-effects" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
           <!-- ── SPRAY BOTTLE ── -->
           <g id="spray-bottle">
             <!-- Bottle body -->
