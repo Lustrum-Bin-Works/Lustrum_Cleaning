@@ -6,705 +6,470 @@
   <title>Lustrum Bin Works — Clean and Mystique</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* Smooth scroll for the whole page */
     html { scroll-behavior: smooth; }
 
-    body { font-family: 'Josefin Sans', sans-serif; background: #0a1a1a; color: #e8dfc0; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: #f0f8ff; color: #1a3a3a; overflow-x: hidden; }
 
-    .gold { color: #c9a84c; }
-    .serif { font-family: 'Playfair Display', serif; }
+    .accent { color: #2a9d8f; }
+    .sky    { color: #48cae4; }
+    .serif  { font-family: 'Playfair Display', serif; }
 
     /* TILE DIVIDER */
     .tile-row { display: flex; height: 8px; overflow: hidden; }
-    .tile-row span { flex: 1; background: #c9a84c; margin: 0 1px; }
+    .tile-row span { flex: 1; background: #48cae4; margin: 0 1px; }
     .tile-row span:nth-child(even) { background: #2a9d8f; }
-    .tile-row span:nth-child(3n) { background: #0a1a1a; border: 1px solid #c9a84c; }
+    .tile-row span:nth-child(3n)   { background: #f0f8ff; border: 1px solid #48cae4; }
+
+    /* SCROLL NAV */
+    .scroll-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #ffffff;
+      border-bottom: 2px solid #d0edf5;
+      display: flex; justify-content: center;
+      box-shadow: 0 2px 12px rgba(42,157,143,0.08);
+    }
+    .scroll-nav a {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #4a8fa8; text-decoration: none;
+      padding: 20px 28px;
+      border-right: 1px solid #d0edf5;
+      transition: color 0.2s, background 0.2s;
+    }
+    .scroll-nav a:first-child { border-left: 1px solid #d0edf5; }
+    .scroll-nav a:hover { color: #2a9d8f; background: #e8f5f0; }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      background: #0a1a1a;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 4rem 2rem;
+      background: linear-gradient(160deg, #e8f5f0 0%, #f0f8ff 50%, #e0f4fb 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, #48cae420 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, #2a9d8f18 0%, transparent 70%);
+      bottom: -80px; left: -80px; pointer-events: none;
     }
 
     .hero-frame {
-      border: 1px solid #c9a84c40;
-      padding: 3rem 4rem;
+      border: 1px solid #b0dcea; padding: 3rem 4rem;
+      position: relative; max-width: 760px; width: 100%;
+      background: rgba(255,255,255,0.75);
+    }
+    .hero-frame::before, .hero-frame::after, .corner-bl, .corner-br {
+      content: ''; position: absolute; width: 22px; height: 22px;
+      border-color: #2a9d8f; border-style: solid;
+    }
+    .hero-frame::before { top:-1px; left:-1px; border-width:2px 0 0 2px; }
+    .hero-frame::after  { top:-1px; right:-1px; border-width:2px 2px 0 0; }
+    .corner-bl { bottom:-1px; left:-1px; border-width:0 0 2px 2px; }
+    .corner-br { bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+
+    /* ══════════════════════════════════════
+       REALISTIC TRASH CAN SVG ANIMATION
+       Phase 0-33%: dirty bin, closed
+       Phase 33-66%: lid opens, spray bottle appears, cleaning
+       Phase 66-85%: cloud puffs over bin
+       Phase 85-100%: sparkles, clean bin
+       ══════════════════════════════════════ */
+    .bin-scene {
+      width: 240px; height: 200px;
+      margin: 0 auto 1.5rem;
       position: relative;
-      max-width: 720px;
-      width: 100%;
     }
 
-    .hero-frame::before, .hero-frame::after,
-    .corner-bl, .corner-br {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-color: #c9a84c;
-      border-style: solid;
+    .bin-scene svg { width: 100%; height: 100%; }
+
+    /* LID rotation — pivots from right edge of lid */
+    #bin-lid-group {
+      transform-origin: 160px 68px;
+      animation: lidSwing 6s ease-in-out infinite;
     }
-    .hero-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-    .hero-frame::after  { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-    .corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-    .corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+    @keyframes lidSwing {
+      0%, 25%   { transform: rotate(0deg); }
+      35%, 70%  { transform: rotate(-42deg); }
+      82%, 100% { transform: rotate(0deg); }
+    }
+
+    /* DIRT STAINS on bin — fade out mid-animation */
+    #dirt-group { animation: dirtFade 6s ease-in-out infinite; }
+    @keyframes dirtFade {
+      0%, 28%  { opacity: 1; }
+      50%, 90% { opacity: 0; }
+      100%     { opacity: 1; }
+    }
+
+    /* SPRAY BOTTLE — slides in from right, then out */
+    #spray-bottle {
+      animation: spraySlide 6s ease-in-out infinite;
+    }
+    @keyframes spraySlide {
+      0%, 28%  { transform: translateX(80px); opacity: 0; }
+      38%, 62% { transform: translateX(0px);  opacity: 1; }
+      72%, 100%{ transform: translateX(80px); opacity: 0; }
+    }
+
+    /* SPRAY MIST droplets */
+    #spray-mist { animation: mistAnim 6s ease-in-out infinite; }
+    @keyframes mistAnim {
+      0%, 36%  { opacity: 0; }
+      42%, 60% { opacity: 1; }
+      68%, 100%{ opacity: 0; }
+    }
+
+    /* CLOUD — appears during cleaning, fades */
+    #cloud-group { animation: cloudAnim 6s ease-in-out infinite; }
+    @keyframes cloudAnim {
+      0%, 58%  { opacity: 0; transform: scale(0.7) translateY(10px); }
+      68%, 80% { opacity: 1; transform: scale(1) translateY(0px); }
+      90%, 100%{ opacity: 0; transform: scale(1.1) translateY(-8px); }
+    }
+
+    /* SPARKLES — appear when clean */
+    #sparkle-group { animation: sparkleAnim 6s ease-in-out infinite; }
+    @keyframes sparkleAnim {
+      0%, 82%  { opacity: 0; transform: scale(0.5); }
+      90%      { opacity: 1; transform: scale(1.1); }
+      95%      { opacity: 0.9; transform: scale(1); }
+      100%     { opacity: 0; }
+    }
+
+    /* Bin body color shift — dirty to clean */
+    #bin-body-fill { animation: binColor 6s ease-in-out infinite; }
+    @keyframes binColor {
+      0%, 30%  { fill: #3a3a3a; }
+      65%, 100%{ fill: #2a5a50; }
+    }
+    #bin-lid-fill  { animation: lidColor 6s ease-in-out infinite; }
+    @keyframes lidColor {
+      0%, 30%  { fill: #2a2a2a; }
+      65%, 100%{ fill: #1d4a40; }
+    }
 
     .monogram {
       font-family: 'Playfair Display', serif;
-      font-size: 11px;
-      letter-spacing: 6px;
-      color: #c9a84c;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      font-size: 11px; letter-spacing: 6px; color: #2a9d8f;
+      text-transform: uppercase; margin-bottom: 1.5rem;
     }
-
     .hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.2rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      color: #e8dfc0;
-      margin-bottom: 0.5rem;
+      font-weight: 700; line-height: 1.1; color: #1a3a3a; margin-bottom: 0.5rem;
     }
-
     .hero-rule {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 1.5rem auto;
-      max-width: 360px;
+      display: flex; align-items: center; gap: 12px; margin: 1.5rem auto; max-width: 360px;
     }
-    .hero-rule span { flex: 1; height: 1px; background: #c9a84c60; }
+    .hero-rule span { flex: 1; height: 1px; background: #b0dcea; }
     .hero-rule em {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 14px;
-      color: #c9a84c;
-      white-space: nowrap;
+      font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px;
+      color: #2a9d8f; white-space: nowrap;
     }
-
     .hero-sub {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #7ab8b0;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
+      font-size: 11px; letter-spacing: 4px; color: #48cae4;
+      text-transform: uppercase; margin-bottom: 2rem;
     }
-
     .hero-desc {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: #c8bfa0;
-      margin-bottom: 2.5rem;
-      font-style: italic;
+      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 300;
+      line-height: 1.7; color: #3a6a6a; margin-bottom: 2.5rem;
     }
 
     .btn-primary {
-      display: inline-block;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #0a1a1a;
-      background: #c9a84c;
-      padding: 14px 36px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
+      display: inline-block; font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: #ffffff; background: #2a9d8f; padding: 14px 36px;
+      border: none; cursor: pointer; transition: background 0.2s;
     }
-    .btn-primary:hover { background: #e8c56a; }
-
+    .btn-primary:hover { background: #1d7a6e; }
     .btn-ghost {
-      display: inline-block;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #c9a84c;
-      background: transparent;
-      padding: 13px 36px;
-      border: 1px solid #c9a84c;
-      cursor: pointer;
-      margin-left: 16px;
-      transition: background 0.2s;
+      display: inline-block; font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: #2a9d8f; background: transparent; padding: 13px 36px;
+      border: 1px solid #2a9d8f; cursor: pointer; margin-left: 16px; transition: background 0.2s;
     }
-    .btn-ghost:hover { background: #c9a84c18; }
+    .btn-ghost:hover { background: #2a9d8f18; }
 
     /* SECTION */
     .section { padding: 5rem 2rem; }
     .section-inner { max-width: 960px; margin: 0 auto; }
-
     .section-label {
-      font-size: 10px;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: #c9a84c;
-      margin-bottom: 1rem;
-      text-align: center;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; letter-spacing: 6px; text-transform: uppercase;
+      color: #2a9d8f; margin-bottom: 1rem; text-align: center;
     }
-
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 700;
-      color: #e8dfc0;
-      text-align: center;
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700;
+      color: #1a3a3a; text-align: center; margin-bottom: 1rem; line-height: 1.2;
     }
-
     .section-lead {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 300;
-      font-style: italic;
-      color: #9ab5b2;
-      text-align: center;
-      max-width: 580px;
-      margin: 0 auto 3.5rem;
-      line-height: 1.6;
+      font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 300;
+      color: #4a8fa8; text-align: center; max-width: 580px;
+      margin: 0 auto 3.5rem; line-height: 1.7;
     }
 
     /* PROBLEM */
-    .problem-bg { background: #0d1f1e; }
-
+    .problem-bg { background: #e8f5f0; }
     .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1px;
-      background: #c9a84c30;
-      border: 1px solid #c9a84c30;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px; background: #b0dcea; border: 1px solid #b0dcea;
     }
-
-    .problem-cell {
-      background: #0d1f1e;
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-
+    .problem-cell { background: #e8f5f0; padding: 2rem 1.5rem; text-align: center; }
     .problem-icon {
-      width: 48px;
-      height: 48px;
-      border: 1px solid #c9a84c40;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      font-size: 20px;
-      color: #c9a84c;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
+      width: 48px; height: 48px; border: 1px solid #48cae460;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; font-size: 20px; color: #2a9d8f;
+      font-family: 'Playfair Display', serif; font-weight: 700;
     }
-
     .problem-cell h3 {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #e8dfc0;
-      margin-bottom: 0.75rem;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: #1a3a3a; margin-bottom: 0.75rem;
     }
-
-    .problem-cell p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-style: italic;
-      color: #7a9e9b;
-      line-height: 1.5;
-    }
+    .problem-cell p { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: #4a7a8a; line-height: 1.6; }
 
     /* PROCESS */
-    .process-bg { background: #081414; }
-
+    .process-bg { background: #f0f8ff; }
     .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      position: relative;
-      margin-bottom: 3rem;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; position: relative; margin-bottom: 3rem;
     }
-
     .process-steps::before {
-      content: '';
-      position: absolute;
-      top: 32px;
-      left: 12.5%;
-      width: 75%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #c9a84c60, #c9a84c60, #c9a84c60, transparent);
+      content: ''; position: absolute; top: 32px; left: 12.5%; width: 75%; height: 1px;
+      background: linear-gradient(90deg, transparent, #48cae4, #48cae4, transparent);
     }
 
-    .step { text-align: center; padding: 0 1rem; }
+    /* ── STEP HOVER POP ── */
+    .step {
+      text-align: center; padding: 1.5rem 1rem;
+      background: #ffffff; border: 1px solid #d0edf5;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.25s ease,
+                  border-color 0.25s ease;
+      cursor: default;
+    }
+    .step:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 16px 40px rgba(42,157,143,0.15);
+      border-color: #2a9d8f;
+    }
 
     .step-num {
-      width: 64px;
-      height: 64px;
-      background: #081414;
-      border: 1px solid #c9a84c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 64px; height: 64px; background: #f0f8ff;
+      border: 2px solid #2a9d8f;
+      display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1.5rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      color: #c9a84c;
-      position: relative;
+      font-family: 'Playfair Display', serif; font-size: 22px; color: #2a9d8f;
+      position: relative; transition: background 0.25s, color 0.25s;
     }
-
-    .step-num::before {
-      content: '';
-      position: absolute;
-      inset: 4px;
-      border: 1px solid #c9a84c30;
-    }
+    .step:hover .step-num { background: #2a9d8f; color: #ffffff; }
+    .step-num::before { content: ''; position: absolute; inset: 4px; border: 1px solid #48cae450; }
 
     .step h3 {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #e8dfc0;
-      margin-bottom: 0.5rem;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #1a3a3a; margin-bottom: 0.5rem;
     }
+    .step p { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: #4a8fa8; line-height: 1.6; }
 
-    .step p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      font-style: italic;
-      color: #6a9490;
-      line-height: 1.5;
-    }
-
-    /* =====================================================
-       PROMOTIONS & RELIEF — redesigned as stacked layout
-       ===================================================== */
-    .promo-bg { background: #0a1a1a; }
-
-    /* Scrolling ticker across full width */
+    /* PROMOTIONS */
+    .promo-bg { background: #ffffff; }
     .promo-ticker {
-      background: #c9a84c;
-      color: #0a1a1a;
+      background: #2a9d8f; color: #ffffff;
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      padding: 10px 0;
-      overflow: hidden;
-      white-space: nowrap;
-      margin-bottom: 4rem;
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      padding: 10px 0; overflow: hidden; white-space: nowrap; margin-bottom: 4rem;
     }
+    .promo-ticker-inner { display: inline-block; animation: ticker 22s linear infinite; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    .promo-ticker-inner {
-      display: inline-block;
-      animation: ticker 22s linear infinite;
-    }
-
-    @keyframes ticker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Empathy copy — full width centred */
-    .relief-center {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 3.5rem;
-    }
-
+    .relief-center { text-align: center; max-width: 680px; margin: 0 auto 3.5rem; }
     .relief-center h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 700;
-      color: #e8dfc0;
-      line-height: 1.25;
-      margin-bottom: 1.25rem;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700;
+      color: #1a3a3a; line-height: 1.25; margin-bottom: 1.25rem;
     }
-
-    .relief-center p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-style: italic;
-      color: #8ab5b0;
-      line-height: 1.8;
-      margin-bottom: 0.75rem;
-    }
-
-    /* Checklist — horizontal row of pills */
-    .relief-pills {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 1.75rem;
-    }
-
+    .relief-center p { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 300; color: #4a8fa8; line-height: 1.8; margin-bottom: 0.75rem; }
+    .relief-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 1.75rem; }
     .relief-pill {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #5ab0a8;
-      border: 1px solid #2a6460;
-      padding: 7px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: #2a9d8f; border: 1px solid #b0dcea; padding: 7px 14px;
+      background: #e8f5f0; display: flex; align-items: center; gap: 8px;
     }
+    .relief-pill::before { content: '◇'; color: #48cae4; font-size: 9px; }
 
-    .relief-pill::before {
-      content: '◇';
-      color: #c9a84c;
-      font-size: 9px;
-    }
-
-    /* Promo cards — horizontal 4-column grid */
     .promo-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: #c9a84c20;
-      border: 1px solid #c9a84c20;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: #b0dcea; border: 1px solid #b0dcea;
     }
-
-    .promo-card {
-      background: #0d1f1e;
-      padding: 1.75rem 1.25rem;
-      text-align: center;
-    }
-
+    .promo-card { background: #f0f8ff; padding: 1.75rem 1.25rem; text-align: center; }
     .promo-badge {
-      width: 52px;
-      height: 52px;
-      border: 1px solid #c9a84c50;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 52px; height: 52px; border: 1px solid #48cae4;
+      display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: #c9a84c;
-      line-height: 1.1;
-      text-align: center;
+      font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700;
+      color: #2a9d8f; line-height: 1.1; text-align: center;
     }
-
     .promo-card h4 {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #e8dfc0;
-      margin-bottom: 0.6rem;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #1a3a3a; margin-bottom: 0.6rem;
     }
-
-    .promo-card p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      font-style: italic;
-      color: #6a9490;
-      line-height: 1.5;
-    }
-
-    .promo-note {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      font-style: italic;
-      color: #2a6460;
-      text-align: center;
-      margin-top: 1.25rem;
-    }
+    .promo-card p { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: #4a8fa8; line-height: 1.5; }
+    .promo-note { font-family: 'Inter', sans-serif; font-size: 13px; color: #7abac8; text-align: center; margin-top: 1.25rem; }
 
     /* PRICING */
-    .pricing-bg { background: #0d1f1e; }
-
+    .pricing-bg { background: #e8f5f0; }
     .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: #c9a84c20;
-      border: 1px solid #c9a84c20;
-      max-width: 800px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; max-width: 860px; margin: 0 auto;
     }
 
+    /* ── PRICING CARD HOVER POP ── */
     .price-card {
-      background: #0d1f1e;
-      padding: 2.5rem 1.5rem;
-      text-align: center;
+      background: #ffffff; padding: 2.5rem 1.5rem; text-align: center;
+      border: 1px solid #d0edf5;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.25s ease,
+                  border-color 0.25s ease;
+      cursor: default;
     }
-
+    .price-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 48px rgba(42,157,143,0.18);
+      border-color: #2a9d8f;
+    }
     .price-card.featured {
-      background: #0a2020;
-      border-left: 1px solid #c9a84c40;
-      border-right: 1px solid #c9a84c40;
+      background: #e8f5f0;
+      border-color: #48cae4; border-width: 2px;
     }
+    .price-card.featured:hover { border-color: #2a9d8f; }
 
     .price-tier {
-      font-size: 9px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: #c9a84c;
-      margin-bottom: 1rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; letter-spacing: 5px; text-transform: uppercase;
+      color: #2a9d8f; margin-bottom: 1rem;
     }
-
     .price-amount {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #e8dfc0;
-      margin-bottom: 0.25rem;
+      font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #1a3a3a; margin-bottom: 0.25rem;
     }
-
     .price-period {
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: #5a8a87;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; letter-spacing: 3px; color: #48cae4; text-transform: uppercase; margin-bottom: 2rem;
     }
-
     .price-features { list-style: none; margin-bottom: 2rem; }
-
     .price-features li {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      font-style: italic;
-      color: #7a9e9b;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #c9a84c10;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300;
+      color: #4a7a8a; padding: 0.5rem 0; border-bottom: 1px solid #d0edf5;
     }
-
     .price-features li:last-child { border-bottom: none; }
 
     /* BOOKING */
-    .booking-bg { background: #050f0f; }
-
+    .booking-bg { background: #f0f8ff; }
     .booking-form {
-      max-width: 540px;
-      margin: 0 auto;
-      border: 1px solid #c9a84c30;
-      padding: 3rem;
-      position: relative;
+      max-width: 540px; margin: 0 auto;
+      border: 1px solid #b0dcea; padding: 3rem; position: relative; background: #ffffff;
     }
-
-    .booking-form::before { content: ''; position: absolute; top: -1px; left: -1px; width: 20px; height: 20px; border-top: 2px solid #c9a84c; border-left: 2px solid #c9a84c; }
-    .booking-form::after  { content: ''; position: absolute; top: -1px; right: -1px; width: 20px; height: 20px; border-top: 2px solid #c9a84c; border-right: 2px solid #c9a84c; }
-    .form-corner-bl { position: absolute; bottom: -1px; left: -1px; width: 20px; height: 20px; border-bottom: 2px solid #c9a84c; border-left: 2px solid #c9a84c; }
-    .form-corner-br { position: absolute; bottom: -1px; right: -1px; width: 20px; height: 20px; border-bottom: 2px solid #c9a84c; border-right: 2px solid #c9a84c; }
+    .booking-form::before { content:''; position:absolute; top:-1px; left:-1px; width:20px; height:20px; border-top:2px solid #2a9d8f; border-left:2px solid #2a9d8f; }
+    .booking-form::after  { content:''; position:absolute; top:-1px; right:-1px; width:20px; height:20px; border-top:2px solid #2a9d8f; border-right:2px solid #2a9d8f; }
+    .form-corner-bl { position:absolute; bottom:-1px; left:-1px; width:20px; height:20px; border-bottom:2px solid #2a9d8f; border-left:2px solid #2a9d8f; }
+    .form-corner-br { position:absolute; bottom:-1px; right:-1px; width:20px; height:20px; border-bottom:2px solid #2a9d8f; border-right:2px solid #2a9d8f; }
 
     .form-row { margin-bottom: 1.5rem; position: relative; }
-
     .form-label {
-      display: block;
-      font-size: 9px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #c9a84c80;
-      margin-bottom: 0.5rem;
+      display: block; font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+      color: #4a8fa8; margin-bottom: 0.5rem;
     }
-
-    .form-label .optional-tag {
-      font-size: 8px;
-      letter-spacing: 2px;
-      color: #2a6460;
-      margin-left: 8px;
-      text-transform: uppercase;
-    }
-
+    .form-label .optional-tag { font-size: 8px; letter-spacing: 2px; color: #7abac8; margin-left: 8px; }
     .form-input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid #c9a84c40;
-      padding: 10px 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-style: italic;
-      color: #e8dfc0;
-      outline: none;
-      transition: border-color 0.2s;
+      width: 100%; background: transparent; border: none;
+      border-bottom: 1px solid #b0dcea; padding: 10px 0;
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #1a3a3a;
+      outline: none; transition: border-color 0.2s;
     }
-
-    .form-input:focus { border-bottom-color: #c9a84c; }
-    .form-input::placeholder { color: #3a5a57; }
+    .form-input:focus { border-bottom-color: #2a9d8f; }
+    .form-input::placeholder { color: #a0c8d8; }
     .form-input.error { border-bottom-color: #c0392b !important; }
-
     .form-select {
-      width: 100%;
-      background: #050f0f;
-      border: none;
-      border-bottom: 1px solid #c9a84c40;
-      padding: 10px 0;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 12px;
-      letter-spacing: 2px;
-      color: #8ab5b0;
-      outline: none;
-      -webkit-appearance: none;
-      cursor: pointer;
-      transition: border-color 0.2s;
+      width: 100%; background: #ffffff; border: none;
+      border-bottom: 1px solid #b0dcea; padding: 10px 0;
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: #2a9d8f; outline: none; -webkit-appearance: none; cursor: pointer; transition: border-color 0.2s;
     }
-
     .form-select.error { border-bottom-color: #c0392b !important; }
-
     .field-error {
-      display: none;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #e07070;
-      margin-top: 6px;
-      padding: 5px 10px;
-      background: #2a0808;
-      border-left: 2px solid #c0392b;
+      display: none; font-family: 'Inter', sans-serif;
+      font-size: 11px; color: #c0392b; margin-top: 6px;
+      padding: 5px 10px; background: #fff0f0; border-left: 2px solid #c0392b;
     }
-
     .field-error.visible { display: block; }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
+      0%,100% { transform: translateX(0); }
       20% { transform: translateX(-6px); }
       40% { transform: translateX(6px); }
       60% { transform: translateX(-4px); }
       80% { transform: translateX(4px); }
     }
     .shake { animation: shake 0.4s ease; }
-
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
-    /* Success state */
-    .booking-success {
-      display: none;
-      text-align: center;
-      padding: 2rem 0;
-    }
-
+    .booking-success { display: none; text-align: center; padding: 2rem 0; }
     .booking-success .success-seal {
-      width: 70px;
-      height: 70px;
-      border: 2px solid #2a9d8f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      transform: rotate(45deg);
+      width: 70px; height: 70px; border: 2px solid #2a9d8f;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; transform: rotate(45deg);
     }
-
     .booking-success .success-seal span {
-      transform: rotate(-45deg);
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      color: #2a9d8f;
+      transform: rotate(-45deg); font-family: 'Playfair Display', serif;
+      font-size: 24px; color: #2a9d8f;
     }
-
-    .booking-success h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: #e8dfc0;
-      margin-bottom: 0.75rem;
-    }
-
-    .booking-success p {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 16px;
-      color: #5ab0a8;
-      line-height: 1.6;
-    }
+    .booking-success h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #1a3a3a; margin-bottom: 0.75rem; }
+    .booking-success p { font-family: 'Inter', sans-serif; font-size: 15px; color: #2a9d8f; line-height: 1.6; }
 
     /* FOOTER */
-    .footer {
-      background: #050f0f;
-      padding: 3rem 2rem;
-      border-top: 1px solid #c9a84c20;
-    }
-
+    .footer { background: #1a3a3a; padding: 3rem 2rem; border-top: 2px solid #2a9d8f; }
     .footer-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     }
-
-    .footer-brand {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      color: #c9a84c;
-      letter-spacing: 2px;
-    }
-
-    .footer-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      font-style: italic;
-      color: #3a6460;
-      margin-top: 4px;
-    }
-
-    /* SCROLL NAV */
-    .scroll-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #050f0f;
-      border-bottom: 1px solid #c9a84c20;
-      display: flex;
-      justify-content: center;
-    }
-
-    .scroll-nav a {
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #3a6460;
-      text-decoration: none;
-      padding: 14px 20px;
-      border-right: 1px solid #c9a84c10;
-      transition: color 0.2s, background 0.2s;
-    }
-    .scroll-nav a:first-child { border-left: 1px solid #c9a84c10; }
-    .scroll-nav a:hover { color: #c9a84c; background: #c9a84c08; }
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 18px; color: #48cae4; letter-spacing: 2px; }
+    .footer-tagline { font-family: 'Inter', sans-serif; font-size: 13px; color: #7abac8; margin-top: 4px; }
 
     /* RESPONSIVE */
-    @media (max-width: 820px) {
-      .promo-cards-grid { grid-template-columns: 1fr 1fr; }
-    }
+    @media (max-width: 820px) { .promo-cards-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 680px) {
       .process-steps { grid-template-columns: 1fr 1fr; }
       .process-steps::before { display: none; }
-      .promo-cards-grid { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .hero-frame { padding: 2rem 1.5rem; }
       .form-grid { grid-template-columns: 1fr; }
-      .scroll-nav a { padding: 12px 10px; font-size: 7px; }
+      .scroll-nav a { padding: 16px 12px; font-size: 8px; }
+      .bin-scene { width: 180px; height: 150px; }
     }
-    @media (max-width: 440px) {
-      .promo-cards-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 440px) { .promo-cards-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
   <nav class="scroll-nav">
-    <a href="#problem"     onclick="smoothTo(event,'problem')">The Problem</a>
-    <a href="#process"     onclick="smoothTo(event,'process')">The Process</a>
-    <a href="#promotions"  onclick="smoothTo(event,'promotions')">Promotions</a>
-    <a href="#pricing"     onclick="smoothTo(event,'pricing')">Service Plans</a>
-    <a href="#booking"     onclick="smoothTo(event,'booking')">Book Now</a>
+    <a href="#problem"    onclick="smoothTo(event,'problem')">The Problem</a>
+    <a href="#process"    onclick="smoothTo(event,'process')">The Process</a>
+    <a href="#promotions" onclick="smoothTo(event,'promotions')">Promotions</a>
+    <a href="#pricing"    onclick="smoothTo(event,'pricing')">Service Plans</a>
+    <a href="#booking"    onclick="smoothTo(event,'booking')">Book Now</a>
   </nav>
 
   <!-- HERO -->
@@ -712,30 +477,157 @@
     <div class="hero-frame">
       <div class="corner-bl"></div>
       <div class="corner-br"></div>
+
+      <!-- ══ REALISTIC TRASH CAN SVG ANIMATION ══ -->
+      <div class="bin-scene">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- ── BIN BODY ── -->
+          <g id="bin-main">
+            <!-- Wheels -->
+            <ellipse cx="88" cy="185" rx="10" ry="10" fill="#1a1a1a" stroke="#444" stroke-width="1.5"/>
+            <ellipse cx="88" cy="185" rx="4"  ry="4"  fill="#555"/>
+            <ellipse cx="156" cy="185" rx="10" ry="10" fill="#1a1a1a" stroke="#444" stroke-width="1.5"/>
+            <ellipse cx="156" cy="185" rx="4"  ry="4"  fill="#555"/>
+            <!-- Axle bar -->
+            <rect x="88" y="182" width="68" height="4" rx="2" fill="#1a1a1a"/>
+
+            <!-- Body fill (color-animated) -->
+            <rect id="bin-body-fill" x="72" y="75" width="116" height="108" rx="8" fill="#3a3a3a"/>
+
+            <!-- Body highlights / ridges -->
+            <rect x="72" y="75" width="116" height="108" rx="8" fill="none" stroke="#555" stroke-width="1.5"/>
+            <line x1="72" y1="100" x2="188" y2="100" stroke="#4a4a4a" stroke-width="1"/>
+            <line x1="72" y1="120" x2="188" y2="120" stroke="#4a4a4a" stroke-width="1"/>
+            <line x1="72" y1="140" x2="188" y2="140" stroke="#4a4a4a" stroke-width="1"/>
+            <line x1="72" y1="160" x2="188" y2="160" stroke="#4a4a4a" stroke-width="1"/>
+
+            <!-- Vertical rib lines -->
+            <line x1="105" y1="75" x2="102" y2="183" stroke="#4a4a4a" stroke-width="1"/>
+            <line x1="130" y1="75" x2="130" y2="183" stroke="#4a4a4a" stroke-width="1"/>
+            <line x1="155" y1="75" x2="158" y2="183" stroke="#4a4a4a" stroke-width="1"/>
+
+            <!-- Handle bar -->
+            <rect x="110" y="79" width="40" height="7" rx="3.5" fill="#222" stroke="#555" stroke-width="1"/>
+
+            <!-- Label area -->
+            <rect x="86" y="108" width="88" height="36" rx="3" fill="#2a2a2a" stroke="#555" stroke-width="1"/>
+
+            <!-- DIRT STAINS -->
+            <g id="dirt-group">
+              <ellipse cx="100" cy="130" rx="7" ry="5"  fill="#6b4f2a" opacity="0.7"/>
+              <ellipse cx="155" cy="118" rx="5" ry="4"  fill="#7a5a30" opacity="0.6"/>
+              <ellipse cx="135" cy="155" rx="8" ry="4"  fill="#5a4020" opacity="0.5"/>
+              <ellipse cx="82"  cy="160" rx="4" ry="3"  fill="#6b4f2a" opacity="0.6"/>
+              <ellipse cx="170" cy="148" rx="6" ry="3.5" fill="#7a5a30" opacity="0.5"/>
+              <path d="M90 100 Q95 95 100 100 Q95 105 90 100Z" fill="#5a4020" opacity="0.5"/>
+              <path d="M162 128 Q168 122 172 130 Q166 134 162 128Z" fill="#6b4f2a" opacity="0.5"/>
+            </g>
+          </g>
+
+          <!-- ── LID (pivots open) ── -->
+          <g id="bin-lid-group">
+            <!-- Lid fill (color-animated) -->
+            <rect id="bin-lid-fill" x="68" y="62" width="124" height="18" rx="5" fill="#2a2a2a"/>
+            <!-- Lid highlight -->
+            <rect x="68" y="62" width="124" height="18" rx="5" fill="none" stroke="#555" stroke-width="1.5"/>
+            <!-- Lid ridge -->
+            <rect x="76" y="66" width="108" height="4" rx="2" fill="#1a1a1a" opacity="0.5"/>
+            <!-- Lid handle top -->
+            <rect x="112" y="54" width="36" height="12" rx="6" fill="#2a2a2a" stroke="#555" stroke-width="1.5"/>
+            <rect x="116" y="57" width="28" height="6" rx="3" fill="#1a1a1a" opacity="0.4"/>
+          </g>
+
+          <!-- ── SPRAY BOTTLE ── -->
+          <g id="spray-bottle">
+            <!-- Bottle body -->
+            <rect x="190" y="90" width="22" height="46" rx="5" fill="#48cae4" stroke="#2a9d8f" stroke-width="1.5"/>
+            <!-- Bottle label -->
+            <rect x="193" y="100" width="16" height="20" rx="2" fill="#ffffff" opacity="0.7"/>
+            <line x1="195" y1="105" x2="207" y2="105" stroke="#2a9d8f" stroke-width="1"/>
+            <line x1="195" y1="109" x2="207" y2="109" stroke="#2a9d8f" stroke-width="1"/>
+            <line x1="195" y1="113" x2="207" y2="113" stroke="#2a9d8f" stroke-width="1"/>
+            <!-- Trigger -->
+            <path d="M190 95 Q182 92 180 100 Q182 104 190 103Z" fill="#2a9d8f"/>
+            <!-- Nozzle -->
+            <rect x="177" y="88" width="14" height="7" rx="3" fill="#1d7a6e"/>
+            <!-- Spray tip -->
+            <line x1="177" y1="91.5" x2="165" y2="91.5" stroke="#1d7a6e" stroke-width="2.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- ── SPRAY MIST ── -->
+          <g id="spray-mist">
+            <circle cx="158" cy="88" r="3"   fill="#48cae4" opacity="0.8"/>
+            <circle cx="151" cy="83" r="2.5" fill="#48cae4" opacity="0.7"/>
+            <circle cx="145" cy="91" r="2"   fill="#48cae4" opacity="0.6"/>
+            <circle cx="155" cy="96" r="2.5" fill="#48cae4" opacity="0.7"/>
+            <circle cx="148" cy="78" r="2"   fill="#90e0ef" opacity="0.6"/>
+            <circle cx="162" cy="95" r="1.5" fill="#90e0ef" opacity="0.5"/>
+            <circle cx="140" cy="85" r="1.5" fill="#caf0f8" opacity="0.6"/>
+          </g>
+
+          <!-- ── CLOUD ── -->
+          <g id="cloud-group">
+            <ellipse cx="130" cy="52" rx="38" ry="22" fill="#e8f5f0" stroke="#b0dcea" stroke-width="1.5"/>
+            <ellipse cx="108" cy="58" rx="22" ry="16" fill="#e8f5f0" stroke="#b0dcea" stroke-width="1.5"/>
+            <ellipse cx="152" cy="58" rx="22" ry="16" fill="#e8f5f0" stroke="#b0dcea" stroke-width="1.5"/>
+            <ellipse cx="130" cy="64" rx="42" ry="14" fill="#e8f5f0"/>
+            <!-- Cleaning bubbles in cloud -->
+            <circle cx="118" cy="50" r="4" fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.8"/>
+            <circle cx="130" cy="44" r="3" fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="142" cy="50" r="4" fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.8"/>
+            <text x="130" y="62" text-anchor="middle" font-size="9" fill="#2a9d8f" font-family="Inter,sans-serif" font-weight="500">cleaning...</text>
+          </g>
+
+          <!-- ── SPARKLES (clean phase) ── -->
+          <g id="sparkle-group">
+            <!-- Star 1 -->
+            <g transform="translate(68,58)">
+              <line x1="0" y1="-10" x2="0"   y2="10"  stroke="#48cae4" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-10" y1="0" x2="10"  y2="0"   stroke="#48cae4" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-7" y1="-7" x2="7"   y2="7"   stroke="#48cae4" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7"  y1="-7" x2="-7"  y2="7"   stroke="#48cae4" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+            <!-- Star 2 -->
+            <g transform="translate(196,58) scale(0.75)">
+              <line x1="0" y1="-10" x2="0"   y2="10"  stroke="#2a9d8f" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-10" y1="0" x2="10"  y2="0"   stroke="#2a9d8f" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-7" y1="-7" x2="7"   y2="7"   stroke="#2a9d8f" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7"  y1="-7" x2="-7"  y2="7"   stroke="#2a9d8f" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+            <!-- Star 3 (small, top center) -->
+            <g transform="translate(130,28) scale(0.6)">
+              <line x1="0" y1="-10" x2="0"   y2="10"  stroke="#90e0ef" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-10" y1="0" x2="10"  y2="0"   stroke="#90e0ef" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <!-- Shine streaks on bin -->
+            <line x1="85"  y1="88"  x2="92"  y2="82"  stroke="#90e0ef" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+            <line x1="170" y1="92"  x2="176" y2="86"  stroke="#90e0ef" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+            <line x1="100" y1="145" x2="106" y2="139" stroke="#90e0ef" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          </g>
+
+        </svg>
+      </div>
+      <!-- end bin-scene -->
+
       <p class="monogram">Est. — The Pristine Standard — MMXXIV</p>
-      <h1 class="hero-title serif">Lustrum<br><span class="gold">Bin</span> Works</h1>
+      <h1 class="hero-title serif">Lustrum<br><span class="accent">Bin</span> Works</h1>
       <div class="hero-rule">
-        <span></span>
-        <em>Clean and Mystique</em>
-        <span></span>
+        <span></span><em>Clean and Mystique</em><span></span>
       </div>
       <p class="hero-sub">Premium Residential Bin Cleaning · California</p>
-      <p class="hero-desc">
-        Every home in every street deserves to feel absolute cleanliness — even in its most overlooked corners.
-      </p>
+      <p class="hero-desc">Every home in every street deserves to feel absolute cleanliness — even in its most overlooked corners.</p>
       <button class="btn-primary" onclick="smoothTo(event,'booking')">Schedule Your Clean</button>
       <button class="btn-ghost"   onclick="smoothTo(event,'process')">How We Do It</button>
     </div>
   </section>
 
-  <div class="tile-row">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="tile-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
   <!-- PROBLEM -->
   <section class="section problem-bg" id="problem">
     <div class="section-inner">
-      <h2 class="section-title serif">The Problem with <span class="gold">Dirty Trash Cans</span></h2>
+      <h2 class="section-title serif">The Problem with <span class="accent">Dirty Trash Cans</span></h2>
       <p class="section-lead">Four reasons your bins deserve professional attention — not just a rinse.</p>
       <div class="problem-grid">
         <div class="problem-cell">
@@ -751,7 +643,7 @@
         <div class="problem-cell">
           <div class="problem-icon">III</div>
           <h3>The Time Dilemma</h3>
-          <p>Everyone knows their trash can needs cleaning — but between work, family, and life, nobody has the time. That's exactly why we exist.</p>
+          <p>Everyone knows their trash can needs cleaning — but between work, family, and life, nobody has time. That's exactly why we exist.</p>
         </div>
         <div class="problem-cell">
           <div class="problem-icon">IV</div>
@@ -762,15 +654,13 @@
     </div>
   </section>
 
-  <div class="tile-row">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="tile-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
   <!-- PROCESS -->
   <section class="section process-bg" id="process">
     <div class="section-inner">
       <p class="section-label">Our Process</p>
-      <h2 class="section-title serif">Four Acts of <span class="gold">Restoration</span></h2>
+      <h2 class="section-title serif">Four Acts of <span class="accent">Restoration</span></h2>
       <p class="section-lead">We follow the same disciplined sequence every visit — refined to leave nothing unaddressed.</p>
       <div class="process-steps">
         <div class="step">
@@ -795,23 +685,18 @@
         </div>
       </div>
       <div style="text-align:center; margin-top:1rem;">
-        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:#3a7070; letter-spacing:1px;">All waste water is responsibly contained and removed from your property.</p>
+        <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:#7abac8; letter-spacing:0.5px;">All waste water is responsibly contained and removed from your property.</p>
       </div>
     </div>
   </section>
 
-  <div class="tile-row">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="tile-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
   <!-- PROMOTIONS & RELIEF -->
   <section class="section promo-bg" id="promotions">
     <div class="section-inner">
-
       <p class="section-label">For the homeowner</p>
-      <h2 class="section-title serif">One Less Thing to <span class="gold">Worry About</span></h2>
-
-      <!-- Empathy copy — centred, full width -->
+      <h2 class="section-title serif">One Less Thing to <span class="accent">Worry About</span></h2>
       <div class="relief-center">
         <p>Between work, errands, the kids, the yard, and everything else life stacks on your schedule — cleaning the trash cans sits at the very bottom of the list. We know that. That's the whole reason Lustrum Bin Works exists.</p>
         <p>Hand this one off. Completely. We show up, we do the job right, and you never have to think about it again. One small but real measure of relief in your week.</p>
@@ -823,25 +708,21 @@
           <div class="relief-pill">Cancel anytime</div>
         </div>
       </div>
-
-      <!-- Full-width scrolling ticker -->
       <div class="promo-ticker">
         <span class="promo-ticker-inner">
-          ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 16% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor for a - Buy One and Done Get One and Done Free  &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 16% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor for a - Buy One and Done Get One and Done Free  &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;
+          ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor, get one visit free &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;
         </span>
       </div>
-
-      <!-- 4-column promo cards -->
       <div class="promo-cards-grid">
         <div class="promo-card">
-          <div class="promo-badge">16%<br>OFF</div>
+          <div class="promo-badge">20%<br>OFF</div>
           <h4>First Visit Discount</h4>
-          <p>New to Lustrum? Your first clean is 16% off — applied automatically at booking, no code needed.</p>
+          <p>New to Lustrum? Your first clean is 20% off — applied automatically at booking, no code needed.</p>
         </div>
         <div class="promo-card">
           <div class="promo-badge">FREE<br>VISIT</div>
           <h4>Referral Reward</h4>
-          <p>Refer a neighbor and if they book with us, you get a Buy One and Done Get One and Done Free deal. Good neighbors deserve good deals.</p>
+          <p>Refer a neighbor who books with us and your next visit is completely free. Good neighbors deserve good deals.</p>
         </div>
         <div class="promo-card">
           <div class="promo-badge">3+<br>BINS</div>
@@ -854,20 +735,17 @@
           <p>Rotating promotions throughout the year — summer deep-cleans, holiday discounts, and more. Ask what's on now.</p>
         </div>
       </div>
-      <p class="promo-note">Some promotions may be combined. Mention this page or ask at booking.</p>
-
+      <p class="promo-note">Promotions may be combined. Mention this page or ask at booking.</p>
     </div>
   </section>
 
-  <div class="tile-row">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="tile-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
   <!-- PRICING -->
   <section class="section pricing-bg" id="pricing">
     <div class="section-inner">
       <p class="section-label">Service plans</p>
-      <h2 class="section-title serif">Choose Your <span class="gold">Arrangement</span></h2>
+      <h2 class="section-title serif">Choose Your <span class="accent">Arrangement</span></h2>
       <p class="section-lead">Every plan includes our full treatment — power wash, scrub, deodorise, and restore.</p>
       <div class="pricing-grid">
         <div class="price-card">
@@ -879,11 +757,11 @@
             <li>On-request scheduling</li>
             <li>Discounted rate for multiple bins</li>
           </ul>
-          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;"
-            onclick="selectPlan(event, 'One and Done — Per Bin · $12 per trash can')">Select</button>
+          <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;"
+            onclick="selectPlan(event,'One and Done — Per Bin · $12 per trash can')">Select</button>
         </div>
         <div class="price-card featured">
-          <p class="price-tier" style="color:#2a9d8f;">Keep It Clean</p>
+          <p class="price-tier" style="color:#48cae4;">Keep It Clean</p>
           <div class="price-amount">$29</div>
           <p class="price-period">Per visit · bi-weekly</p>
           <ul class="price-features">
@@ -891,8 +769,8 @@
             <li>Monthly subscription</li>
             <li>Book up to 3 months ahead</li>
           </ul>
-          <button class="btn-primary" style="display:block; width:100%; font-size:9px;"
-            onclick="selectPlan(event, 'Keep It Clean — Bi-Weekly · $29 per visit')">Select</button>
+          <button class="btn-primary" style="display:block;width:100%;font-size:9px;"
+            onclick="selectPlan(event,'Keep It Clean — Bi-Weekly · $29 per visit')">Select</button>
         </div>
         <div class="price-card">
           <p class="price-tier">Premium Plan</p>
@@ -903,81 +781,66 @@
             <li>Priority rescheduling</li>
             <li>Monthly subscription</li>
           </ul>
-          <button class="btn-ghost" style="display:block; width:100%; margin-left:0; font-size:9px;"
-            onclick="selectPlan(event, 'Premium Plan — Weekly · $27 per visit')">Select</button>
+          <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;"
+            onclick="selectPlan(event,'Premium Plan — Weekly · $27 per visit')">Select</button>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="tile-row">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="tile-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
   <!-- BOOKING -->
   <section class="section booking-bg" id="booking">
     <div class="section-inner">
       <p class="section-label">Arrange your visit</p>
-      <h2 class="section-title serif">Schedule Your <span class="gold">Clean</span></h2>
+      <h2 class="section-title serif">Schedule Your <span class="accent">Clean</span></h2>
       <p class="section-lead">A few details, and we will arrange the rest.</p>
 
       <!--
         ============================================================
-        EMAIL SETUP INSTRUCTIONS:
-        This form uses Formspree (free) to email ENMT303@gmail.com.
-
-        TO ACTIVATE:
-        1. Go to https://formspree.io — sign up with ENMT303@gmail.com
-        2. Create a new form — you'll get a URL like:
-           https://formspree.io/f/xyzabcde
-        3. Replace YOUR_FORM_ID in the action below with that ID
-        4. Done — every booking arrives in your Gmail inbox
+        REPLACE YOUR_FORM_ID below with your Formspree form ID.
+        Sign up free at formspree.io using ENMT303@gmail.com,
+        create a form, and paste the ID (e.g. "xyzabcde") here.
         ============================================================
       -->
-
-      <form id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+      <div id="formWrap">
         <div class="booking-form">
           <div class="form-corner-bl"></div>
           <div class="form-corner-br"></div>
-
           <div class="form-grid">
             <div class="form-row">
               <label class="form-label" for="firstName">Given name</label>
-              <input class="form-input" id="firstName" name="firstName" type="text" placeholder="Eleanor" />
+              <input class="form-input" id="firstName" name="firstName" type="text" placeholder="Eleanor" autocomplete="given-name"/>
               <div class="field-error" id="err-firstName">Please enter your first name</div>
             </div>
             <div class="form-row">
               <label class="form-label" for="lastName">Surname</label>
-              <input class="form-input" id="lastName" name="lastName" type="text" placeholder="Hartley" />
+              <input class="form-input" id="lastName" name="lastName" type="text" placeholder="Hartley" autocomplete="family-name"/>
               <div class="field-error" id="err-lastName">Please enter your last name</div>
             </div>
           </div>
-
           <div class="form-row">
             <label class="form-label" for="address">Address</label>
-            <input class="form-input" id="address" name="address" type="text" placeholder="123 Maple Street, San Jose, CA" />
-            <div class="field-error" id="err-address">Please enter a full street address (e.g. 123 Main St, City, CA)</div>
+            <input class="form-input" id="address" name="address" type="text" placeholder="123 Maple Street, Gilroy, CA" autocomplete="street-address"/>
+            <div class="field-error" id="err-address">Please enter a full address including a street number and city</div>
           </div>
-
           <div class="form-grid">
             <div class="form-row">
               <label class="form-label" for="zipcode">ZIP Code</label>
-              <input class="form-input" id="zipcode" name="zipcode" type="text" placeholder="95101" maxlength="10" />
+              <input class="form-input" id="zipcode" name="zipcode" type="text" placeholder="95020" maxlength="10" autocomplete="postal-code"/>
               <div class="field-error" id="err-zipcode">Please enter a valid 5-digit ZIP code</div>
             </div>
             <div class="form-row">
               <label class="form-label" for="phone">Telephone <span class="optional-tag">Optional</span></label>
-              <input class="form-input" id="phone" name="phone" type="tel" placeholder="(669) 555-0123" />
-              <!-- no error div for phone — it's optional -->
+              <input class="form-input" id="phone" name="phone" type="tel" placeholder="(669) 555-0123" autocomplete="tel"/>
             </div>
           </div>
-
           <div class="form-row">
             <label class="form-label" for="email">Email address</label>
-            <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" />
+            <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email"/>
             <div class="field-error" id="err-email">Please enter a valid email address (e.g. name@domain.com)</div>
           </div>
-
           <div class="form-row">
             <label class="form-label" for="plan">Service plan</label>
             <select class="form-select" id="plan" name="plan">
@@ -988,7 +851,6 @@
             </select>
             <div class="field-error" id="err-plan">Please select a service plan</div>
           </div>
-
           <div class="form-row">
             <label class="form-label" for="bins">Number of bins</label>
             <select class="form-select" id="bins" name="bins">
@@ -1000,7 +862,6 @@
             <div class="field-error" id="err-bins">Please select the number of bins</div>
           </div>
 
-          <!-- Success state -->
           <div class="booking-success" id="bookingSuccess">
             <div class="success-seal"><span>◇</span></div>
             <h3 class="serif">Booking Received</h3>
@@ -1008,17 +869,15 @@
           </div>
 
           <div style="margin-top:2.5rem;" id="submitRow">
-            <button type="button" id="submitBtn" class="btn-primary" style="width:100%; text-align:center; display:block; font-size:10px; letter-spacing:5px;">
+            <button type="button" id="submitBtn" class="btn-primary" style="width:100%;text-align:center;display:block;font-size:10px;letter-spacing:5px;">
               Confirm Booking Request
             </button>
           </div>
-
-          <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:#2a5550; text-align:center; margin-top:1.5rem; line-height:1.5;">
+          <p style="font-family:'Inter',sans-serif;font-size:13px;color:#7abac8;text-align:center;margin-top:1.5rem;line-height:1.5;">
             We respond to every enquiry within one business day. No account required.
           </p>
         </div>
-      </form>
-
+      </div>
     </div>
   </section>
 
@@ -1032,71 +891,45 @@
   </footer>
 
   <script>
-    /* ── Smooth scroll with easing ── */
+    /* ── YOUR FORMSPREE ID — replace this ── */
+    const FORMSPREE_ID = 'YOUR_FORM_ID';
+
+    /* ── Smooth scroll ── */
     function smoothTo(e, id) {
       if (e) e.preventDefault();
       const target = document.getElementById(id);
       if (!target) return;
       const navH = document.querySelector('.scroll-nav').offsetHeight;
-      const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 12;
-      window.scrollTo({ top: top, behavior: 'smooth' });
+      const top  = target.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
 
-    /* ── Select plan from pricing section ── */
+    /* ── Select plan from pricing cards ── */
     function selectPlan(e, planValue) {
       e.preventDefault();
       const sel = document.getElementById('plan');
       sel.value = planValue;
-      // Clear any error on the plan field
       sel.classList.remove('error');
       const err = document.getElementById('err-plan');
       if (err) err.classList.remove('visible');
       smoothTo(null, 'booking');
     }
 
-    /* ── Validation rules ──
-       phone is excluded from required fields (optional)
-    */
+    /* ── Validation ── */
     const fields = [
-      {
-        id: 'firstName',
-        validate: v => v.trim().length >= 1
-      },
-      {
-        id: 'lastName',
-        validate: v => v.trim().length >= 1
-      },
-      {
-        id: 'address',
-        // Must contain a number AND at least two words (street + city)
-        validate: v => {
-          const t = v.trim();
-          return t.length >= 6 && /\d/.test(t) && t.split(/\s+/).length >= 3;
-        }
-      },
-      {
-        id: 'zipcode',
-        // US ZIP: 5 digits, or ZIP+4 (12345-6789)
-        validate: v => /^\d{5}(-\d{4})?$/.test(v.trim())
-      },
-      {
-        id: 'email',
-        validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
-      },
-      {
-        id: 'plan',
-        validate: v => v !== ''
-      },
-      {
-        id: 'bins',
-        validate: v => v !== ''
-      },
+      { id: 'firstName', validate: v => v.trim().length >= 1 },
+      { id: 'lastName',  validate: v => v.trim().length >= 1 },
+      { id: 'address',   validate: v => { const t=v.trim(); return t.length>=6 && /\d/.test(t) && t.split(/\s+/).length>=3; } },
+      { id: 'zipcode',   validate: v => /^\d{5}(-\d{4})?$/.test(v.trim()) },
+      { id: 'email',     validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) },
+      { id: 'plan',      validate: v => v !== '' },
+      { id: 'bins',      validate: v => v !== '' },
     ];
 
-    function validateField(field) {
-      const el  = document.getElementById(field.id);
-      const err = document.getElementById('err-' + field.id);
-      const ok  = field.validate(el.value);
+    function validateField(f) {
+      const el  = document.getElementById(f.id);
+      const err = document.getElementById('err-' + f.id);
+      const ok  = f.validate(el.value);
       if (!ok) {
         el.classList.add('error');
         if (err) err.classList.add('visible');
@@ -1110,51 +943,56 @@
       return ok;
     }
 
-    // Live-clear errors as user types / changes
-    fields.forEach(field => {
-      const el = document.getElementById(field.id);
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
       if (!el) return;
-      ['input', 'change'].forEach(evt => {
-        el.addEventListener(evt, () => {
-          if (field.validate(el.value)) {
-            el.classList.remove('error');
-            const err = document.getElementById('err-' + field.id);
-            if (err) err.classList.remove('visible');
-          }
-        });
-      });
+      ['input','change'].forEach(evt => el.addEventListener(evt, () => {
+        if (f.validate(el.value)) {
+          el.classList.remove('error');
+          const err = document.getElementById('err-'+f.id);
+          if (err) err.classList.remove('visible');
+        }
+      }));
     });
 
-    document.getElementById('submitBtn').addEventListener('click', async function () {
+    /* ── Submit via XHR (works from local files) ── */
+    document.getElementById('submitBtn').addEventListener('click', function () {
       let allValid = true;
       fields.forEach(f => { if (!validateField(f)) allValid = false; });
       if (!allValid) return;
 
-      const form = document.getElementById('bookingForm');
-      const data = new FormData(form);
+      const btn = this;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
 
-      this.textContent = 'Sending…';
-      this.disabled = true;
+      const payload = new FormData();
+      ['firstName','lastName','address','zipcode','phone','email','plan','bins'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) payload.append(id, el.value);
+      });
 
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://formspree.io/f/' + FORMSPREE_ID);
+      xhr.setRequestHeader('Accept', 'application/json');
 
-        if (res.ok) {
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
           document.getElementById('submitRow').style.display = 'none';
           document.getElementById('bookingSuccess').style.display = 'block';
-          form.reset();
+          fields.forEach(f => { const el=document.getElementById(f.id); if(el) el.value=''; });
+          document.getElementById('phone').value = '';
         } else {
-          this.textContent = 'Something went wrong — please try again';
-          this.disabled = false;
+          btn.textContent = 'Something went wrong — please try again';
+          btn.disabled = false;
         }
-      } catch (e) {
-        this.textContent = 'Network error — please try again';
-        this.disabled = false;
-      }
+      };
+
+      xhr.onerror = function () {
+        btn.textContent = 'Something went wrong — please try again';
+        btn.disabled = false;
+      };
+
+      xhr.send(payload);
     });
   </script>
 
