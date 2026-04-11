@@ -105,7 +105,7 @@
     #bin-lid-group    { animation:lidSwing 6s ease-in-out infinite, lidReveal 6s ease-in-out infinite; }
     @keyframes lidSwing  { 0%,25%{transform:rotate(0deg)} 35%,70%{transform:rotate(-54deg)} 82%,100%{transform:rotate(0deg)} }
     @keyframes lidReveal { 0%,28%{opacity:0} 35%,100%{opacity:1} }
-    #dirt-group  { animation:dirtFade 7s ease-in-out infinite; }
+    #dirt-group  { animation:dirtFade 6s ease-in-out infinite; }
     @keyframes dirtFade  { 0%,28%{opacity:1} 50%,90%{opacity:0} 100%{opacity:1} }
     #spray-bottle{ animation:spraySlide 6s ease-in-out infinite; }
     @keyframes spraySlide{ 0%,28%{transform:translateX(80px);opacity:0} 38%,62%{transform:translateX(0);opacity:1} 72%,100%{transform:translateX(80px);opacity:0} }
@@ -205,16 +205,16 @@
       content:'★'; margin:0 5px; font-size:7px;
     }
 
-    .price-tier { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:5px; text-transform:uppercase; color:#2a9d8f; margin-bottom:0.75rem; }
+    .price-tier { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:5px; text-transform:uppercase; color:#2a9d8f; margin-bottom:1rem; }
 
     /* Strikethrough old price */
     .price-was {
       font-family:'Inter',sans-serif; font-size:13px; font-weight:300;
-      color:#a0b8c0; text-decoration:line-through; margin-bottom:2px;
+      color:#a0b8c0; text-decoration:line-through; margin-bottom:6px;
     }
-    .price-amount { font-family:'Playfair Display',serif; font-size:2.5rem; color:#1a3a3a; line-height:1; margin-bottom:2px; }
-    .price-period { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; color:#48cae4; text-transform:uppercase; margin-bottom:4px; }
-    .price-monthly { font-family:'Inter',sans-serif; font-size:12px; font-weight:400; color:#7abac8; margin-bottom:1.5rem; }
+    .price-amount { font-family:'Playfair Display',serif; font-size:2.5rem; color:#1a3a3a; line-height:1.1; margin-bottom:10px; }
+    .price-period { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; color:#48cae4; text-transform:uppercase; margin-bottom:8px; }
+    .price-monthly { font-family:'Inter',sans-serif; font-size:12px; font-weight:400; color:#7abac8; margin-bottom:2rem; }
 
     .price-features { list-style:none; margin-bottom:2rem; }
     .price-features li { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#4a7a8a; padding:0.5rem 0; border-bottom:1px solid #d0edf5; }
@@ -323,6 +323,93 @@
 
     .detail-cta { text-align:center; padding:2rem 0; }
     .detail-cta p { font-family:'Inter',sans-serif; font-size:13px; color:#7abac8; margin-top:1rem; }
+
+    /* ════════════════════════════════
+       FREE QUOTE SIDE POPUP
+       Slides in from the left when booking section is in view.
+       Narrow enough to never overlap the centred form.
+       ════════════════════════════════ */
+    #quote-popup {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) translateX(-110%);
+      z-index: 150;
+      width: 220px;
+      background: #ffffff;
+      border: 1px solid #b0dcea;
+      border-left: none;
+      box-shadow: 6px 0 32px rgba(42,157,143,0.14);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow: hidden;
+    }
+
+    /* teal left accent stripe */
+    #quote-popup::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #2a9d8f, #48cae4);
+    }
+
+    #quote-popup.visible {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .qp-inner {
+      padding: 1.5rem 1.25rem 1.5rem 1.5rem;
+    }
+
+    .qp-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
+      color: #48cae4; margin-bottom: 0.6rem;
+    }
+
+    .qp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: #1a3a3a; line-height: 1.3; margin-bottom: 0.75rem;
+    }
+
+    .qp-services {
+      list-style: none; margin-bottom: 1rem;
+    }
+
+    .qp-services li {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 300; color: #4a7a8a;
+      padding: 5px 0;
+      border-bottom: 1px solid #e8f5f0;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .qp-services li:last-child { border-bottom: none; }
+    .qp-services li::before { content: '◇'; color: #48cae4; font-size: 8px; flex-shrink: 0; }
+
+    .qp-cta {
+      display: block; width: 100%;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: #ffffff; background: #2a9d8f;
+      border: none; padding: 11px 0;
+      cursor: pointer; text-align: center;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .qp-cta:hover { background: #1d7a6e; }
+
+    .qp-dismiss {
+      position: absolute; top: 8px; right: 8px;
+      background: none; border: none;
+      font-size: 14px; color: #b0dcea;
+      cursor: pointer; line-height: 1; padding: 2px 4px;
+      transition: color 0.2s;
+    }
+    .qp-dismiss:hover { color: #2a9d8f; }
+
+    /* hide popup on very narrow screens where it would clip */
+    @media (max-width: 760px) { #quote-popup { display: none; } }
 
     /* RESPONSIVE */
     @media (max-width:900px) { .pricing-grid { grid-template-columns:1fr 1fr; } }
@@ -619,7 +706,7 @@
           <div class="form-row">
             <label class="form-label" for="email">Email address</label>
             <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email"/>
-            <div class="field-error" id="err-email">Please enter a valid email address (e.g. name@domain.com)</div>
+            <div class="field-error" id="err-email">Please enter a valid email address (e.g. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="345a55595174505b59555d5a1a575b59">[email&#160;protected]</a>)</div>
           </div>
           <div class="form-row">
             <label class="form-label" for="plan">Service plan</label>
@@ -665,10 +752,28 @@
     <div class="footer-inner">
       <div>
         <div class="footer-brand serif">Lustrum Bin Works</div>
-        <div class="footer-tagline">Contact us at ENMT303@gmail.com &nbsp;·&nbsp; 806 451-9266</div>
+        <div class="footer-tagline">Contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8fdf6f5ec8b888bf8dfd5d9d1d496dbd7d5">[email&#160;protected]</a> &nbsp;·&nbsp; 806 451-9266</div>
       </div>
     </div>
   </footer>
+
+  <!-- ════════════════════════════════════════
+       FREE QUOTE SIDE POPUP
+       ════════════════════════════════════════ -->
+  <div id="quote-popup" role="complementary" aria-label="Free quote offer">
+    <button class="qp-dismiss" onclick="dismissPopup()" aria-label="Dismiss">✕</button>
+    <div class="qp-inner">
+      <p class="qp-label">Also available</p>
+      <h3 class="qp-title">Need more than bins cleaned?</h3>
+      <ul class="qp-services">
+        <li>Car washing</li>
+        <li>Driveway pressure washing</li>
+        <li>Patio &amp; deck cleaning</li>
+        <li>Any outdoor surface</li>
+      </ul>
+      <a class="qp-cta" href="mailto:ENMT303@gmail.com?subject=Free%20Quote%20Request">Get a Free Quote</a>
+    </div>
+  </div>
 
   <!-- ════════════════════════════════════════
        PLAN DETAIL OVERLAY
@@ -683,7 +788,7 @@
     </div>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     /* ── FORMSPREE ID ── */
     const FORMSPREE_ID = 'mojpoobo';
 
@@ -922,7 +1027,7 @@
           document.getElementById('bookingSuccess').style.display = 'block';
           fields.forEach(f => { const el=document.getElementById(f.id); if(el) el.value=''; });
           document.getElementById('phone').value = '';
-        } else {
+           } else {
           btn.textContent = 'Something went wrong — please try again';
           btn.disabled = false;
         }
@@ -935,6 +1040,45 @@
 
       xhr.send(payload);
     });
+
+    /* ── FREE QUOTE POPUP — appears when booking section scrolls into view ── */
+    (function () {
+      var popup = document.getElementById('quote-popup');
+      var dismissed = false;
+      var shown = false;
+
+      function showPopup() {
+        if (dismissed || shown) return;
+        shown = true;
+        popup.classList.add('visible');
+      }
+
+      function dismissPopup() {
+        dismissed = true;
+        popup.classList.remove('visible');
+      }
+
+      window.dismissPopup = dismissPopup;
+
+      var bookingSection = document.getElementById('booking');
+      if (!bookingSection || !popup) return;
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            setTimeout(showPopup, 600);
+          } else {
+            if (shown && !dismissed) {
+              popup.classList.remove('visible');
+              shown = false;
+            }
+          }
+        });
+      }, { threshold: 0.15 });
+
+      observer.observe(bookingSection);
+    })();
+
   </script>
 
 </body>
