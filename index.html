@@ -26,8 +26,7 @@
     /* SCROLL NAV */
     .scroll-nav {
       position: sticky; top: 0; z-index: 100;
-      background: #ffffff;
-      border-bottom: 2px solid #d0edf5;
+      background: #ffffff; border-bottom: 2px solid #d0edf5;
       display: flex; justify-content: center;
       box-shadow: 0 2px 12px rgba(42,157,143,0.08);
     }
@@ -35,8 +34,7 @@
       font-family: 'Josefin Sans', sans-serif;
       font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
       color: #4a8fa8; text-decoration: none;
-      padding: 20px 28px;
-      border-right: 1px solid #d0edf5;
+      padding: 20px 28px; border-right: 1px solid #d0edf5;
       transition: color 0.2s, background 0.2s;
     }
     .scroll-nav a:first-child { border-left: 1px solid #d0edf5; }
@@ -60,7 +58,6 @@
       background: radial-gradient(circle, #2a9d8f18 0%, transparent 70%);
       bottom: -80px; left: -80px; pointer-events: none;
     }
-
     .hero-frame {
       border: 1px solid #b0dcea; padding: 3rem 4rem;
       position: relative; max-width: 760px; width: 100%;
@@ -75,461 +72,272 @@
     .corner-bl { bottom:-1px; left:-1px; border-width:0 0 2px 2px; }
     .corner-br { bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
 
-    /* ══════════════════════════════════════
-       REALISTIC TRASH CAN SVG ANIMATION
-       Phase 0-33%: dirty bin, closed
-       Phase 33-66%: lid opens, spray bottle appears, cleaning
-       Phase 66-85%: cloud puffs over bin
-       Phase 85-100%: sparkles, clean bin
-       ══════════════════════════════════════ */
+    /* BIN SCENE */
     .bin-scene {
-      width: 240px; height: 200px;
-      margin: 0 auto 1.5rem;
-      position: relative;
+      width: 240px; height: 200px; margin: 0 auto 1.5rem; position: relative;
     }
-
     .bin-scene svg { width: 100%; height: 100%; }
-
     .bin-photo {
-      position: absolute;
-      display: block;
-      user-select: none;
-      pointer-events: none;
-      -webkit-user-drag: none;
+      position: absolute; display: block;
+      user-select: none; pointer-events: none; -webkit-user-drag: none;
     }
     .bin-shadow {
-      position: absolute;
-      left: 70px;
-      top: 179px;
-      width: 116px;
-      height: 16px;
-      border-radius: 50%;
-      background: rgba(21, 60, 62, 0.14);
-      filter: blur(0.5px);
+      position: absolute; left: 70px; top: 179px;
+      width: 116px; height: 16px; border-radius: 50%;
+      background: rgba(21,60,62,0.14); filter: blur(0.5px);
     }
-    #closed-bin-group {
-      left: 64px;
-      top: 28px;
-      width: 132px;
-      height: 181px;
-    }
-    #open-bin-group {
-      left: 66px;
-      top: 25px;
-      width: 134px;
-      height: 174px;
-    }
-    #bin-lid-group {
-      left: 60px;
-      top: 18px;
-      width: 148px;
-      height: 123px;
-      transform-origin: 115px 69px;
-    }
-    #bin-effects {
-      position: absolute;
-      inset: 0;
-    }
-    .dirt-mark {
-      position: absolute;
-      border-radius: 50%;
-      background: #6b4f2a;
-      filter: blur(0.4px);
-      mix-blend-mode: multiply;
-    }
-    .dirt-1 { left: 97px; top: 79px; width: 26px; height: 14px; opacity: 0.45; }
-    .dirt-2 { left: 118px; top: 102px; width: 36px; height: 16px; background: #5b4122; opacity: 0.42; }
-    .dirt-3 { left: 106px; top: 139px; width: 32px; height: 14px; background: #6f5230; opacity: 0.36; }
-    .dirt-4 { left: 84px; top: 151px; width: 16px; height: 9px; background: #7a5a30; opacity: 0.4; }
-    .dirt-5 { left: 154px; top: 145px; width: 20px; height: 11px; background: #7a5a30; opacity: 0.34; }
-    .dirt-6 {
-      left: 146px; top: 86px; width: 22px; height: 12px;
-      background: #6b4f2a; opacity: 0.36;
-      clip-path: polygon(0 58%, 32% 0, 100% 12%, 72% 100%, 14% 92%);
-    }
-    .dirt-7 {
-      left: 100px; top: 118px; width: 24px; height: 13px;
-      background: #5a4020; opacity: 0.32;
-      clip-path: polygon(0 60%, 28% 0, 100% 10%, 76% 100%, 15% 90%);
-    }
-    
-    /* Real-bin image choreography */
-    #closed-bin-group { animation: closedBinFade 6s ease-in-out infinite; }
-    @keyframes closedBinFade {
-      0%, 28%  { opacity: 1; }
-      38%, 100%{ opacity: 0; }
-    }
+    #closed-bin-group { left:64px; top:28px; width:132px; height:181px; }
+    #open-bin-group   { left:66px; top:25px; width:134px; height:174px; }
+    #bin-lid-group    { left:60px; top:18px; width:148px; height:123px; transform-origin:115px 69px; }
+    #bin-effects      { position:absolute; inset:0; }
+    .dirt-mark        { position:absolute; border-radius:50%; background:#6b4f2a; filter:blur(0.4px); mix-blend-mode:multiply; }
+    .dirt-1 { left:97px; top:79px; width:26px; height:14px; opacity:0.45; }
+    .dirt-2 { left:118px; top:102px; width:36px; height:16px; background:#5b4122; opacity:0.42; }
+    .dirt-3 { left:106px; top:139px; width:32px; height:14px; background:#6f5230; opacity:0.36; }
+    .dirt-4 { left:84px; top:151px; width:16px; height:9px; background:#7a5a30; opacity:0.4; }
+    .dirt-5 { left:154px; top:145px; width:20px; height:11px; background:#7a5a30; opacity:0.34; }
+    .dirt-6 { left:146px; top:86px; width:22px; height:12px; background:#6b4f2a; opacity:0.36; clip-path:polygon(0 58%,32% 0,100% 12%,72% 100%,14% 92%); }
+    .dirt-7 { left:100px; top:118px; width:24px; height:13px; background:#5a4020; opacity:0.32; clip-path:polygon(0 60%,28% 0,100% 10%,76% 100%,15% 90%); }
+    #closed-bin-group { animation:closedBinFade 6s ease-in-out infinite; }
+    @keyframes closedBinFade { 0%,28%{opacity:1} 38%,100%{opacity:0} }
+    #open-bin-group   { animation:openBinFade 6s ease-in-out infinite; }
+    @keyframes openBinFade   { 0%,28%{opacity:0} 38%,100%{opacity:1} }
+    #bin-lid-group    { animation:lidSwing 6s ease-in-out infinite, lidReveal 6s ease-in-out infinite; }
+    @keyframes lidSwing  { 0%,25%{transform:rotate(0deg)} 35%,70%{transform:rotate(-54deg)} 82%,100%{transform:rotate(0deg)} }
+    @keyframes lidReveal { 0%,28%{opacity:0} 35%,100%{opacity:1} }
+    #dirt-group  { animation:dirtFade 6s ease-in-out infinite; }
+    @keyframes dirtFade  { 0%,28%{opacity:1} 50%,90%{opacity:0} 100%{opacity:1} }
+    #spray-bottle{ animation:spraySlide 6s ease-in-out infinite; }
+    @keyframes spraySlide{ 0%,28%{transform:translateX(80px);opacity:0} 38%,62%{transform:translateX(0);opacity:1} 72%,100%{transform:translateX(80px);opacity:0} }
+    #spray-mist  { animation:mistAnim 6s ease-in-out infinite; }
+    @keyframes mistAnim  { 0%,36%{opacity:0} 42%,60%{opacity:1} 68%,100%{opacity:0} }
+    #cloud-group { animation:cloudAnim 6s ease-in-out infinite; }
+    @keyframes cloudAnim { 0%,58%{opacity:0;transform:scale(0.7) translateY(10px)} 68%,80%{opacity:1;transform:scale(1) translateY(0)} 90%,100%{opacity:0;transform:scale(1.1) translateY(-8px)} }
+    #sparkle-group { animation:sparkleAnim 6s ease-in-out infinite; }
+    @keyframes sparkleAnim { 0%,82%{opacity:0;transform:scale(0.5)} 90%{opacity:1;transform:scale(1.1)} 95%{opacity:0.9;transform:scale(1)} 100%{opacity:0} }
 
-    #open-bin-group { animation: openBinFade 6s ease-in-out infinite; }
-    @keyframes openBinFade {
-      0%, 28%  { opacity: 0; }
-      38%, 100%{ opacity: 1; }
-    }
+    .monogram { font-family:'Playfair Display',serif; font-size:11px; letter-spacing:6px; color:#2a9d8f; text-transform:uppercase; margin-bottom:1.5rem; }
+    .hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,6vw,4.5rem); font-weight:700; line-height:1.1; color:#1a3a3a; margin-bottom:0.5rem; }
+    .hero-rule { display:flex; align-items:center; gap:12px; margin:1.5rem auto; max-width:360px; }
+    .hero-rule span { flex:1; height:1px; background:#b0dcea; }
+    .hero-rule em { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:#2a9d8f; white-space:nowrap; }
+    .hero-sub { font-family:'Josefin Sans',sans-serif; font-size:11px; letter-spacing:4px; color:#48cae4; text-transform:uppercase; margin-bottom:2rem; }
+    .hero-desc { font-family:'Inter',sans-serif; font-size:16px; font-weight:300; line-height:1.7; color:#3a6a6a; margin-bottom:2.5rem; }
 
-
-
-    /* LID rotation — pivots from right edge of lid */
-    #bin-lid-group {
-      animation: lidSwing 6s ease-in-out infinite, lidReveal 6s ease-in-out infinite;
-    }
-    @keyframes lidSwing {
-      0%, 25%   { transform: rotate(0deg); }
-      35%, 70%  { transform: rotate(-54deg); }
-      82%, 100% { transform: rotate(0deg); }
-    }
-
-      @keyframes lidReveal {
-      0%, 28%  { opacity: 0; }
-      35%, 100%{ opacity: 1; }
-    }
-
-    /* DIRT STAINS on bin — fade out mid-animation */
-    #dirt-group { animation: dirtFade 6s ease-in-out infinite; }
-    @keyframes dirtFade {
-      0%, 28%  { opacity: 1; }
-      50%, 90% { opacity: 0; }
-      100%     { opacity: 1; }
-    }
-
-    /* SPRAY BOTTLE — slides in from right, then out */
-    #spray-bottle {
-      animation: spraySlide 6s ease-in-out infinite;
-    }
-    @keyframes spraySlide {
-      0%, 28%  { transform: translateX(80px); opacity: 0; }
-      38%, 62% { transform: translateX(0px);  opacity: 1; }
-      72%, 100%{ transform: translateX(80px); opacity: 0; }
-    }
-
-    /* SPRAY MIST droplets */
-    #spray-mist { animation: mistAnim 6s ease-in-out infinite; }
-    @keyframes mistAnim {
-      0%, 36%  { opacity: 0; }
-      42%, 60% { opacity: 1; }
-      68%, 100%{ opacity: 0; }
-    }
-
-    /* CLOUD — appears during cleaning, fades */
-    #cloud-group { animation: cloudAnim 6s ease-in-out infinite; }
-    @keyframes cloudAnim {
-      0%, 58%  { opacity: 0; transform: scale(0.7) translateY(10px); }
-      68%, 80% { opacity: 1; transform: scale(1) translateY(0px); }
-      90%, 100%{ opacity: 0; transform: scale(1.1) translateY(-8px); }
-    }
-
-    /* SPARKLES — appear when clean */
-    #sparkle-group { animation: sparkleAnim 6s ease-in-out infinite; }
-    @keyframes sparkleAnim {
-      0%, 82%  { opacity: 0; transform: scale(0.5); }
-      90%      { opacity: 1; transform: scale(1.1); }
-      95%      { opacity: 0.9; transform: scale(1); }
-      100%     { opacity: 0; }
-    }
-
-    .monogram {
-      font-family: 'Playfair Display', serif;
-      font-size: 11px; letter-spacing: 6px; color: #2a9d8f;
-      text-transform: uppercase; margin-bottom: 1.5rem;
-    }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 6vw, 4.5rem);
-      font-weight: 700; line-height: 1.1; color: #1a3a3a; margin-bottom: 0.5rem;
-    }
-    .hero-rule {
-      display: flex; align-items: center; gap: 12px; margin: 1.5rem auto; max-width: 360px;
-    }
-    .hero-rule span { flex: 1; height: 1px; background: #b0dcea; }
-    .hero-rule em {
-      font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px;
-      color: #2a9d8f; white-space: nowrap;
-    }
-    .hero-sub {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px; letter-spacing: 4px; color: #48cae4;
-      text-transform: uppercase; margin-bottom: 2rem;
-    }
-    .hero-desc {
-      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 300;
-      line-height: 1.7; color: #3a6a6a; margin-bottom: 2.5rem;
-    }
-
-    .btn-primary {
-      display: inline-block; font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-      color: #ffffff; background: #2a9d8f; padding: 14px 36px;
-      border: none; cursor: pointer; transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #1d7a6e; }
-    .btn-ghost {
-      display: inline-block; font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-      color: #2a9d8f; background: transparent; padding: 13px 36px;
-      border: 1px solid #2a9d8f; cursor: pointer; margin-left: 16px; transition: background 0.2s;
-    }
-    .btn-ghost:hover { background: #2a9d8f18; }
+    .btn-primary { display:inline-block; font-family:'Josefin Sans',sans-serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:#ffffff; background:#2a9d8f; padding:14px 36px; border:none; cursor:pointer; transition:background 0.2s; }
+    .btn-primary:hover { background:#1d7a6e; }
+    .btn-ghost { display:inline-block; font-family:'Josefin Sans',sans-serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:#2a9d8f; background:transparent; padding:13px 36px; border:1px solid #2a9d8f; cursor:pointer; margin-left:16px; transition:background 0.2s; }
+    .btn-ghost:hover { background:#2a9d8f18; }
 
     /* SECTION */
-    .section { padding: 5rem 2rem; }
-    .section-inner { max-width: 960px; margin: 0 auto; }
-    .section-label {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px; letter-spacing: 6px; text-transform: uppercase;
-      color: #2a9d8f; margin-bottom: 1rem; text-align: center;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700;
-      color: #1a3a3a; text-align: center; margin-bottom: 1rem; line-height: 1.2;
-    }
-    .section-lead {
-      font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 300;
-      color: #4a8fa8; text-align: center; max-width: 580px;
-      margin: 0 auto 3.5rem; line-height: 1.7;
-    }
+    .section { padding:5rem 2rem; }
+    .section-inner { max-width:960px; margin:0 auto; }
+    .section-label { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:6px; text-transform:uppercase; color:#2a9d8f; margin-bottom:1rem; text-align:center; }
+    .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,3rem); font-weight:700; color:#1a3a3a; text-align:center; margin-bottom:1rem; line-height:1.2; }
+    .section-lead { font-family:'Inter',sans-serif; font-size:17px; font-weight:300; color:#4a8fa8; text-align:center; max-width:580px; margin:0 auto 3.5rem; line-height:1.7; }
 
     /* PROBLEM */
-    .problem-bg { background: #e8f5f0; }
-    .problem-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1px; background: #b0dcea; border: 1px solid #b0dcea;
-    }
-    .problem-cell { background: #e8f5f0; padding: 2rem 1.5rem; text-align: center; }
-    .problem-icon {
-      width: 48px; height: 48px; border: 1px solid #48cae460;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem; font-size: 20px; color: #2a9d8f;
-      font-family: 'Playfair Display', serif; font-weight: 700;
-    }
-    .problem-cell h3 {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      color: #1a3a3a; margin-bottom: 0.75rem;
-    }
-    .problem-cell p { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: #4a7a8a; line-height: 1.6; }
+    .problem-bg { background:#e8f5f0; }
+    .problem-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:#b0dcea; border:1px solid #b0dcea; }
+    .problem-cell { background:#e8f5f0; padding:2rem 1.5rem; text-align:center; }
+    .problem-icon { width:48px; height:48px; border:1px solid #48cae460; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; font-size:20px; color:#2a9d8f; font-family:'Playfair Display',serif; font-weight:700; }
+    .problem-cell h3 { font-family:'Josefin Sans',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#1a3a3a; margin-bottom:0.75rem; }
+    .problem-cell p { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#4a7a8a; line-height:1.6; }
 
     /* PROCESS */
-    .process-bg { background: #f0f8ff; }
-    .process-steps {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1rem; position: relative; margin-bottom: 3rem;
-    }
-    .process-steps::before {
-      content: ''; position: absolute; top: 32px; left: 12.5%; width: 75%; height: 1px;
-      background: linear-gradient(90deg, transparent, #48cae4, #48cae4, transparent);
-    }
-
-    /* ── STEP HOVER POP ── */
-    .step {
-      text-align: center; padding: 1.5rem 1rem;
-      background: #ffffff; border: 1px solid #d0edf5;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
-                  box-shadow 0.25s ease,
-                  border-color 0.25s ease;
-      cursor: default;
-    }
-    .step:hover {
-      transform: translateY(-8px) scale(1.04);
-      box-shadow: 0 16px 40px rgba(42,157,143,0.15);
-      border-color: #2a9d8f;
-    }
-
-    .step-num {
-      width: 64px; height: 64px; background: #f0f8ff;
-      border: 2px solid #2a9d8f;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-family: 'Playfair Display', serif; font-size: 22px; color: #2a9d8f;
-      position: relative; transition: background 0.25s, color 0.25s;
-    }
-    .step:hover .step-num { background: #2a9d8f; color: #ffffff; }
-    .step-num::before { content: ''; position: absolute; inset: 4px; border: 1px solid #48cae450; }
-
-    .step h3 {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: #1a3a3a; margin-bottom: 0.5rem;
-    }
-    .step p { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: #4a8fa8; line-height: 1.6; }
+    .process-bg { background:#f0f8ff; }
+    .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; position:relative; margin-bottom:3rem; }
+    .process-steps::before { content:''; position:absolute; top:32px; left:12.5%; width:75%; height:1px; background:linear-gradient(90deg,transparent,#48cae4,#48cae4,transparent); }
+    .step { text-align:center; padding:1.5rem 1rem; background:#ffffff; border:1px solid #d0edf5; transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s ease,border-color 0.25s ease; cursor:default; }
+    .step:hover { transform:translateY(-8px) scale(1.04); box-shadow:0 16px 40px rgba(42,157,143,0.15); border-color:#2a9d8f; }
+    .step-num { width:64px; height:64px; background:#f0f8ff; border:2px solid #2a9d8f; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-family:'Playfair Display',serif; font-size:22px; color:#2a9d8f; position:relative; transition:background 0.25s,color 0.25s; }
+    .step:hover .step-num { background:#2a9d8f; color:#ffffff; }
+    .step-num::before { content:''; position:absolute; inset:4px; border:1px solid #48cae450; }
+    .step h3 { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#1a3a3a; margin-bottom:0.5rem; }
+    .step p { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:#4a8fa8; line-height:1.6; }
 
     /* PROMOTIONS */
-    .promo-bg { background: #ffffff; }
-    .promo-ticker {
-      background: #2a9d8f; color: #ffffff;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-      padding: 10px 0; overflow: hidden; white-space: nowrap; margin-bottom: 4rem;
-    }
-    .promo-ticker-inner { display: inline-block; animation: ticker 22s linear infinite; }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .promo-bg { background:#ffffff; }
+    .promo-ticker { background:#2a9d8f; color:#ffffff; font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; padding:10px 0; overflow:hidden; white-space:nowrap; margin-bottom:4rem; }
+    .promo-ticker-inner { display:inline-block; animation:ticker 22s linear infinite; }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .relief-center { text-align:center; max-width:680px; margin:0 auto 3.5rem; }
+    .relief-center h2 { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:700; color:#1a3a3a; line-height:1.25; margin-bottom:1.25rem; }
+    .relief-center p { font-family:'Inter',sans-serif; font-size:15px; font-weight:300; color:#4a8fa8; line-height:1.8; margin-bottom:0.75rem; }
+    .relief-pills { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:1.75rem; }
+    .relief-pill { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#2a9d8f; border:1px solid #b0dcea; padding:7px 14px; background:#e8f5f0; display:flex; align-items:center; gap:8px; }
+    .relief-pill::before { content:'◇'; color:#48cae4; font-size:9px; }
+    .promo-cards-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#b0dcea; border:1px solid #b0dcea; }
+    .promo-card { background:#f0f8ff; padding:1.75rem 1.25rem; text-align:center; }
+    .promo-badge { width:52px; height:52px; border:1px solid #48cae4; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; font-family:'Playfair Display',serif; font-size:13px; font-weight:700; color:#2a9d8f; line-height:1.1; text-align:center; }
+    .promo-card h4 { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#1a3a3a; margin-bottom:0.6rem; }
+    .promo-card p { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:#4a8fa8; line-height:1.5; }
+    .promo-note { font-family:'Inter',sans-serif; font-size:13px; color:#7abac8; text-align:center; margin-top:1.25rem; }
 
-    .relief-center { text-align: center; max-width: 680px; margin: 0 auto 3.5rem; }
-    .relief-center h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700;
-      color: #1a3a3a; line-height: 1.25; margin-bottom: 1.25rem;
-    }
-    .relief-center p { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 300; color: #4a8fa8; line-height: 1.8; margin-bottom: 0.75rem; }
-    .relief-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 1.75rem; }
-    .relief-pill {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-      color: #2a9d8f; border: 1px solid #b0dcea; padding: 7px 14px;
-      background: #e8f5f0; display: flex; align-items: center; gap: 8px;
-    }
-    .relief-pill::before { content: '◇'; color: #48cae4; font-size: 9px; }
+    /* ════════════════════════════════
+       PRICING SECTION
+       ════════════════════════════════ */
+    .pricing-bg { background:#e8f5f0; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:1060px; margin:0 auto; }
 
-    .promo-cards-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: #b0dcea; border: 1px solid #b0dcea;
-    }
-    .promo-card { background: #f0f8ff; padding: 1.75rem 1.25rem; text-align: center; }
-    .promo-badge {
-      width: 52px; height: 52px; border: 1px solid #48cae4;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem;
-      font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700;
-      color: #2a9d8f; line-height: 1.1; text-align: center;
-    }
-    .promo-card h4 {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: #1a3a3a; margin-bottom: 0.6rem;
-    }
-    .promo-card p { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: #4a8fa8; line-height: 1.5; }
-    .promo-note { font-family: 'Inter', sans-serif; font-size: 13px; color: #7abac8; text-align: center; margin-top: 1.25rem; }
-
-    /* PRICING */
-    .pricing-bg { background: #e8f5f0; }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; max-width: 860px; margin: 0 auto;
-    }
-
-    /* ── PRICING CARD HOVER POP ── */
+    /* Card is clickable — shows pointer */
     .price-card {
-      background: #ffffff; padding: 2.5rem 1.5rem; text-align: center;
-      border: 1px solid #d0edf5;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
-                  box-shadow 0.25s ease,
-                  border-color 0.25s ease;
-      cursor: default;
+      background:#ffffff; padding:2.5rem 1.5rem; text-align:center;
+      border:1px solid #d0edf5; position:relative;
+      transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s ease,border-color 0.25s ease;
+      cursor:pointer;
     }
-    .price-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 48px rgba(42,157,143,0.18);
-      border-color: #2a9d8f;
-    }
-    .price-card.featured {
-      background: #e8f5f0;
-      border-color: #48cae4; border-width: 2px;
-    }
-    .price-card.featured:hover { border-color: #2a9d8f; }
+    .price-card:hover { transform:translateY(-10px) scale(1.03); box-shadow:0 20px 48px rgba(42,157,143,0.18); border-color:#2a9d8f; }
+    .price-card.featured { background:#e8f5f0; border-color:#48cae4; border-width:2px; }
+    .price-card.featured:hover { border-color:#2a9d8f; }
+    .price-card.decoy { background:#fafeff; border-color:#b0dcea; opacity:0.92; }
 
-    .price-tier {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; letter-spacing: 5px; text-transform: uppercase;
-      color: #2a9d8f; margin-bottom: 1rem;
+    /* BEST SELLER badge */
+    .best-seller-badge {
+      position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+      background:linear-gradient(90deg,#2a9d8f,#48cae4);
+      color:#ffffff; font-family:'Josefin Sans',sans-serif;
+      font-size:8px; letter-spacing:3px; text-transform:uppercase;
+      padding:5px 16px; white-space:nowrap;
+      box-shadow:0 4px 12px rgba(42,157,143,0.35);
     }
-    .price-amount {
-      font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #1a3a3a; margin-bottom: 0.25rem;
+    .best-seller-badge::before, .best-seller-badge::after {
+      content:'★'; margin:0 5px; font-size:7px;
     }
-    .price-period {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px; letter-spacing: 3px; color: #48cae4; text-transform: uppercase; margin-bottom: 2rem;
+
+    .price-tier { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:5px; text-transform:uppercase; color:#2a9d8f; margin-bottom:0.75rem; }
+
+    /* Strikethrough old price */
+    .price-was {
+      font-family:'Inter',sans-serif; font-size:13px; font-weight:300;
+      color:#a0b8c0; text-decoration:line-through; margin-bottom:2px;
     }
-    .price-features { list-style: none; margin-bottom: 2rem; }
-    .price-features li {
-      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300;
-      color: #4a7a8a; padding: 0.5rem 0; border-bottom: 1px solid #d0edf5;
-    }
-    .price-features li:last-child { border-bottom: none; }
+    .price-amount { font-family:'Playfair Display',serif; font-size:2.5rem; color:#1a3a3a; line-height:1; margin-bottom:2px; }
+    .price-period { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; color:#48cae4; text-transform:uppercase; margin-bottom:4px; }
+    .price-monthly { font-family:'Inter',sans-serif; font-size:12px; font-weight:400; color:#7abac8; margin-bottom:1.5rem; }
+
+    .price-features { list-style:none; margin-bottom:2rem; }
+    .price-features li { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#4a7a8a; padding:0.5rem 0; border-bottom:1px solid #d0edf5; }
+    .price-features li:last-child { border-bottom:none; }
+
+    /* Select button — stops click from bubbling to card */
+    .price-card .btn-primary,
+    .price-card .btn-ghost { position:relative; z-index:2; }
 
     /* BOOKING */
-    .booking-bg { background: #f0f8ff; }
-    .booking-form {
-      max-width: 540px; margin: 0 auto;
-      border: 1px solid #b0dcea; padding: 3rem; position: relative; background: #ffffff;
-    }
+    .booking-bg { background:#f0f8ff; }
+    .booking-form { max-width:540px; margin:0 auto; border:1px solid #b0dcea; padding:3rem; position:relative; background:#ffffff; }
     .booking-form::before { content:''; position:absolute; top:-1px; left:-1px; width:20px; height:20px; border-top:2px solid #2a9d8f; border-left:2px solid #2a9d8f; }
     .booking-form::after  { content:''; position:absolute; top:-1px; right:-1px; width:20px; height:20px; border-top:2px solid #2a9d8f; border-right:2px solid #2a9d8f; }
     .form-corner-bl { position:absolute; bottom:-1px; left:-1px; width:20px; height:20px; border-bottom:2px solid #2a9d8f; border-left:2px solid #2a9d8f; }
     .form-corner-br { position:absolute; bottom:-1px; right:-1px; width:20px; height:20px; border-bottom:2px solid #2a9d8f; border-right:2px solid #2a9d8f; }
-
-    .form-row { margin-bottom: 1.5rem; position: relative; }
-    .form-label {
-      display: block; font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
-      color: #4a8fa8; margin-bottom: 0.5rem;
-    }
-    .form-label .optional-tag { font-size: 8px; letter-spacing: 2px; color: #7abac8; margin-left: 8px; }
-    .form-input {
-      width: 100%; background: transparent; border: none;
-      border-bottom: 1px solid #b0dcea; padding: 10px 0;
-      font-family: 'Inter', sans-serif; font-size: 15px; color: #1a3a3a;
-      outline: none; transition: border-color 0.2s;
-    }
-    .form-input:focus { border-bottom-color: #2a9d8f; }
-    .form-input::placeholder { color: #a0c8d8; }
-    .form-input.error { border-bottom-color: #c0392b !important; }
-    .form-select {
-      width: 100%; background: #ffffff; border: none;
-      border-bottom: 1px solid #b0dcea; padding: 10px 0;
-      font-family: 'Inter', sans-serif; font-size: 14px;
-      color: #2a9d8f; outline: none; -webkit-appearance: none; cursor: pointer; transition: border-color 0.2s;
-    }
-    .form-select.error { border-bottom-color: #c0392b !important; }
-    .field-error {
-      display: none; font-family: 'Inter', sans-serif;
-      font-size: 11px; color: #c0392b; margin-top: 6px;
-      padding: 5px 10px; background: #fff0f0; border-left: 2px solid #c0392b;
-    }
-    .field-error.visible { display: block; }
-
-    @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      20% { transform: translateX(-6px); }
-      40% { transform: translateX(6px); }
-      60% { transform: translateX(-4px); }
-      80% { transform: translateX(4px); }
-    }
-    .shake { animation: shake 0.4s ease; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-
-    .booking-success { display: none; text-align: center; padding: 2rem 0; }
-    .booking-success .success-seal {
-      width: 70px; height: 70px; border: 2px solid #2a9d8f;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem; transform: rotate(45deg);
-    }
-    .booking-success .success-seal span {
-      transform: rotate(-45deg); font-family: 'Playfair Display', serif;
-      font-size: 24px; color: #2a9d8f;
-    }
-    .booking-success h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #1a3a3a; margin-bottom: 0.75rem; }
-    .booking-success p { font-family: 'Inter', sans-serif; font-size: 15px; color: #2a9d8f; line-height: 1.6; }
+    .form-row { margin-bottom:1.5rem; position:relative; }
+    .form-label { display:block; font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#4a8fa8; margin-bottom:0.5rem; }
+    .form-label .optional-tag { font-size:8px; letter-spacing:2px; color:#7abac8; margin-left:8px; }
+    .form-input { width:100%; background:transparent; border:none; border-bottom:1px solid #b0dcea; padding:10px 0; font-family:'Inter',sans-serif; font-size:15px; color:#1a3a3a; outline:none; transition:border-color 0.2s; }
+    .form-input:focus { border-bottom-color:#2a9d8f; }
+    .form-input::placeholder { color:#a0c8d8; }
+    .form-input.error { border-bottom-color:#c0392b !important; }
+    .form-select { width:100%; background:#ffffff; border:none; border-bottom:1px solid #b0dcea; padding:10px 0; font-family:'Inter',sans-serif; font-size:14px; color:#2a9d8f; outline:none; -webkit-appearance:none; cursor:pointer; transition:border-color 0.2s; }
+    .form-select.error { border-bottom-color:#c0392b !important; }
+    .field-error { display:none; font-family:'Inter',sans-serif; font-size:11px; color:#c0392b; margin-top:6px; padding:5px 10px; background:#fff0f0; border-left:2px solid #c0392b; }
+    .field-error.visible { display:block; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+    .shake { animation:shake 0.4s ease; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .booking-success { display:none; text-align:center; padding:2rem 0; }
+    .booking-success .success-seal { width:70px; height:70px; border:2px solid #2a9d8f; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; transform:rotate(45deg); }
+    .booking-success .success-seal span { transform:rotate(-45deg); font-family:'Playfair Display',serif; font-size:24px; color:#2a9d8f; }
+    .booking-success h3 { font-family:'Playfair Display',serif; font-size:1.6rem; color:#1a3a3a; margin-bottom:0.75rem; }
+    .booking-success p { font-family:'Inter',sans-serif; font-size:15px; color:#2a9d8f; line-height:1.6; }
 
     /* FOOTER */
-    .footer { background: #1a3a3a; padding: 3rem 2rem; border-top: 2px solid #2a9d8f; }
-    .footer-inner {
-      max-width: 960px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    .footer { background:#1a3a3a; padding:3rem 2rem; border-top:2px solid #2a9d8f; }
+    .footer-inner { max-width:960px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .footer-brand { font-family:'Playfair Display',serif; font-size:18px; color:#48cae4; letter-spacing:2px; }
+    .footer-tagline { font-family:'Inter',sans-serif; font-size:13px; color:#7abac8; margin-top:4px; }
+
+    /* ════════════════════════════════
+       PLAN DETAIL OVERLAY PAGE
+       ════════════════════════════════ */
+    #plan-detail-overlay {
+      display:none;
+      position:fixed; inset:0; z-index:200;
+      background:#f0f8ff; overflow-y:auto;
+      animation:overlayIn 0.35s cubic-bezier(0.22,1,0.36,1);
     }
-    .footer-brand { font-family: 'Playfair Display', serif; font-size: 18px; color: #48cae4; letter-spacing: 2px; }
-    .footer-tagline { font-family: 'Inter', sans-serif; font-size: 13px; color: #7abac8; margin-top: 4px; }
+    @keyframes overlayIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+    .detail-nav {
+      background:#ffffff; border-bottom:2px solid #d0edf5;
+      padding:18px 2rem; display:flex; align-items:center;
+      justify-content:space-between; gap:1rem; flex-wrap:wrap;
+      box-shadow:0 2px 12px rgba(42,157,143,0.08);
+      position:sticky; top:0; z-index:10;
+    }
+    .detail-back {
+      font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px;
+      text-transform:uppercase; color:#4a8fa8; background:none; border:none;
+      cursor:pointer; display:flex; align-items:center; gap:8px; padding:8px 0;
+      transition:color 0.2s;
+    }
+    .detail-back:hover { color:#2a9d8f; }
+    .detail-back::before { content:'←'; font-size:14px; }
+
+    .detail-book-btn {
+      font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:4px;
+      text-transform:uppercase; color:#ffffff; background:#2a9d8f;
+      border:none; padding:13px 32px; cursor:pointer; transition:background 0.2s;
+    }
+    .detail-book-btn:hover { background:#1d7a6e; }
+
+    .detail-body { max-width:800px; margin:0 auto; padding:4rem 2rem 6rem; }
+
+    .detail-hero {
+      text-align:center; margin-bottom:4rem;
+      padding-bottom:3rem; border-bottom:1px solid #d0edf5;
+    }
+    .detail-plan-label { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:6px; text-transform:uppercase; color:#2a9d8f; margin-bottom:1rem; display:block; }
+    .detail-plan-name { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:700; color:#1a3a3a; margin-bottom:1rem; }
+    .detail-price-row { display:flex; align-items:baseline; justify-content:center; gap:12px; margin-bottom:0.5rem; }
+    .detail-was { font-family:'Inter',sans-serif; font-size:18px; color:#a0b8c0; text-decoration:line-through; }
+    .detail-now { font-family:'Playfair Display',serif; font-size:3.5rem; color:#2a9d8f; line-height:1; }
+    .detail-period { font-family:'Josefin Sans',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#48cae4; }
+    .detail-monthly-note { font-family:'Inter',sans-serif; font-size:14px; color:#7abac8; margin-top:6px; }
+    .detail-tagline { font-family:'Inter',sans-serif; font-size:16px; font-weight:300; color:#4a8fa8; line-height:1.7; max-width:540px; margin:1.5rem auto 0; }
+
+    .detail-features-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:3rem; }
+    .detail-feature {
+      background:#ffffff; border:1px solid #d0edf5; padding:1.5rem;
+      display:flex; gap:1rem; align-items:flex-start;
+      transition:box-shadow 0.2s, border-color 0.2s;
+    }
+    .detail-feature:hover { box-shadow:0 8px 24px rgba(42,157,143,0.1); border-color:#2a9d8f; }
+    .detail-feature-icon { font-size:22px; flex-shrink:0; margin-top:2px; }
+    .detail-feature h4 { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#1a3a3a; margin-bottom:0.4rem; }
+    .detail-feature p { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:#4a8fa8; line-height:1.5; }
+
+    .detail-ideal { background:#e8f5f0; border:1px solid #b0dcea; padding:2rem; margin-bottom:3rem; }
+    .detail-ideal h3 { font-family:'Playfair Display',serif; font-size:1.4rem; color:#1a3a3a; margin-bottom:1rem; }
+    .detail-ideal p { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#4a7a8a; line-height:1.7; }
+
+    .detail-cta { text-align:center; padding:2rem 0; }
+    .detail-cta p { font-family:'Inter',sans-serif; font-size:13px; color:#7abac8; margin-top:1rem; }
 
     /* RESPONSIVE */
-    @media (max-width: 820px) { .promo-cards-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 680px) {
-      .process-steps { grid-template-columns: 1fr 1fr; }
-      .process-steps::before { display: none; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .hero-frame { padding: 2rem 1.5rem; }
-      .form-grid { grid-template-columns: 1fr; }
-      .scroll-nav a { padding: 16px 12px; font-size: 8px; }
-      .bin-scene { width: 180px; height: 150px; }
+    @media (max-width:900px) { .pricing-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:820px) { .promo-cards-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:680px) {
+      .process-steps { grid-template-columns:1fr 1fr; }
+      .process-steps::before { display:none; }
+      .pricing-grid { grid-template-columns:1fr; }
+      .hero-frame { padding:2rem 1.5rem; }
+      .form-grid { grid-template-columns:1fr; }
+      .scroll-nav a { padding:16px 12px; font-size:8px; }
+      .bin-scene { width:180px; height:150px; }
+      .detail-features-grid { grid-template-columns:1fr; }
     }
-    @media (max-width: 440px) { .promo-cards-grid { grid-template-columns: 1fr; } }
+    @media (max-width:440px) { .promo-cards-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -545,44 +353,29 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-frame">
-      <div class="corner-bl"></div>
-      <div class="corner-br"></div>
-
-      <!-- ══ REALISTIC TRASH CAN SVG ANIMATION ══ -->
+      <div class="corner-bl"></div><div class="corner-br"></div>
       <div class="bin-scene">
-
         <div class="bin-shadow"></div>
         <img class="bin-photo" id="closed-bin-group" src="image-removebg-preview-2.png" alt="Closed trash cart"/>
-        <img class="bin-photo" id="open-bin-group" src="image-removebg-preview-4.png" alt="Open trash cart"/>
-        <img class="bin-photo" id="bin-lid-group" src="image-removebg-preview-5.png" alt="Trash cart lid"/>
+        <img class="bin-photo" id="open-bin-group"   src="image-removebg-preview-4.png" alt="Open trash cart"/>
+        <img class="bin-photo" id="bin-lid-group"    src="image-removebg-preview-5.png" alt="Trash cart lid"/>
         <div id="dirt-group" aria-hidden="true">
-          <span class="dirt-mark dirt-1"></span>
-          <span class="dirt-mark dirt-2"></span>
-          <span class="dirt-mark dirt-3"></span>
-          <span class="dirt-mark dirt-4"></span>
-          <span class="dirt-mark dirt-5"></span>
-          <span class="dirt-mark dirt-6"></span>
+          <span class="dirt-mark dirt-1"></span><span class="dirt-mark dirt-2"></span>
+          <span class="dirt-mark dirt-3"></span><span class="dirt-mark dirt-4"></span>
+          <span class="dirt-mark dirt-5"></span><span class="dirt-mark dirt-6"></span>
           <span class="dirt-mark dirt-7"></span>
         </div>
         <svg id="bin-effects" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
-          <!-- ── SPRAY BOTTLE ── -->
           <g id="spray-bottle">
-            <!-- Bottle body -->
             <rect x="190" y="90" width="22" height="46" rx="5" fill="#48cae4" stroke="#2a9d8f" stroke-width="1.5"/>
-            <!-- Bottle label -->
             <rect x="193" y="100" width="16" height="20" rx="2" fill="#ffffff" opacity="0.7"/>
             <line x1="195" y1="105" x2="207" y2="105" stroke="#2a9d8f" stroke-width="1"/>
             <line x1="195" y1="109" x2="207" y2="109" stroke="#2a9d8f" stroke-width="1"/>
             <line x1="195" y1="113" x2="207" y2="113" stroke="#2a9d8f" stroke-width="1"/>
-            <!-- Trigger -->
             <path d="M190 95 Q182 92 180 100 Q182 104 190 103Z" fill="#2a9d8f"/>
-            <!-- Nozzle -->
             <rect x="177" y="88" width="14" height="7" rx="3" fill="#1d7a6e"/>
-            <!-- Spray tip -->
             <line x1="177" y1="91.5" x2="165" y2="91.5" stroke="#1d7a6e" stroke-width="2.5" stroke-linecap="round"/>
           </g>
-
-          <!-- ── SPRAY MIST ── -->
           <g id="spray-mist">
             <circle cx="158" cy="88" r="3"   fill="#48cae4" opacity="0.8"/>
             <circle cx="151" cy="83" r="2.5" fill="#48cae4" opacity="0.7"/>
@@ -592,55 +385,42 @@
             <circle cx="162" cy="95" r="1.5" fill="#90e0ef" opacity="0.5"/>
             <circle cx="140" cy="85" r="1.5" fill="#caf0f8" opacity="0.6"/>
           </g>
-
-          <!-- ── CLOUD ── -->
           <g id="cloud-group">
             <ellipse cx="130" cy="52" rx="38" ry="22" fill="#e8f5f0" stroke="#b0dcea" stroke-width="1.5"/>
             <ellipse cx="108" cy="58" rx="22" ry="16" fill="#e8f5f0" stroke="#b0dcea" stroke-width="1.5"/>
             <ellipse cx="152" cy="58" rx="22" ry="16" fill="#e8f5f0" stroke="#b0dcea" stroke-width="1.5"/>
             <ellipse cx="130" cy="64" rx="42" ry="14" fill="#e8f5f0"/>
-            <!-- Cleaning bubbles in cloud -->
             <circle cx="118" cy="50" r="4" fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.8"/>
             <circle cx="130" cy="44" r="3" fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.7"/>
             <circle cx="142" cy="50" r="4" fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.8"/>
             <text x="130" y="62" text-anchor="middle" font-size="9" fill="#2a9d8f" font-family="Inter,sans-serif" font-weight="500">cleaning...</text>
           </g>
-
-          <!-- ── SPARKLES (clean phase) ── -->
           <g id="sparkle-group">
-            <!-- Star 1 -->
             <g transform="translate(68,58)">
-              <line x1="0" y1="-10" x2="0"   y2="10"  stroke="#48cae4" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-10" y1="0" x2="10"  y2="0"   stroke="#48cae4" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-7" y1="-7" x2="7"   y2="7"   stroke="#48cae4" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="7"  y1="-7" x2="-7"  y2="7"   stroke="#48cae4" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="0" y1="-10" x2="0" y2="10" stroke="#48cae4" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-10" y1="0" x2="10" y2="0" stroke="#48cae4" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-7" y1="-7" x2="7" y2="7" stroke="#48cae4" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7" y1="-7" x2="-7" y2="7" stroke="#48cae4" stroke-width="1.5" stroke-linecap="round"/>
             </g>
-            <!-- Star 2 -->
             <g transform="translate(196,58) scale(0.75)">
-              <line x1="0" y1="-10" x2="0"   y2="10"  stroke="#2a9d8f" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-10" y1="0" x2="10"  y2="0"   stroke="#2a9d8f" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-7" y1="-7" x2="7"   y2="7"   stroke="#2a9d8f" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="7"  y1="-7" x2="-7"  y2="7"   stroke="#2a9d8f" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="0" y1="-10" x2="0" y2="10" stroke="#2a9d8f" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-10" y1="0" x2="10" y2="0" stroke="#2a9d8f" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-7" y1="-7" x2="7" y2="7" stroke="#2a9d8f" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7" y1="-7" x2="-7" y2="7" stroke="#2a9d8f" stroke-width="1.5" stroke-linecap="round"/>
             </g>
-            <!-- Star 3 (small, top center) -->
             <g transform="translate(130,28) scale(0.6)">
-              <line x1="0" y1="-10" x2="0"   y2="10"  stroke="#90e0ef" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="-10" y1="0" x2="10"  y2="0"   stroke="#90e0ef" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="-10" x2="0" y2="10" stroke="#90e0ef" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="-10" y1="0" x2="10" y2="0" stroke="#90e0ef" stroke-width="2.5" stroke-linecap="round"/>
             </g>
-            <!-- Shine streaks on bin -->
             <line x1="85"  y1="88"  x2="92"  y2="82"  stroke="#90e0ef" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
             <line x1="170" y1="92"  x2="176" y2="86"  stroke="#90e0ef" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
             <line x1="100" y1="145" x2="106" y2="139" stroke="#90e0ef" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
           </g>
-
         </svg>
       </div>
-      <!-- end bin-scene -->
 
       <h1 class="hero-title serif">Lustrum<br><span class="accent">Bin</span> Works</h1>
-      <div class="hero-rule">
-        <span></span><em>Clean and Mystique</em><span></span>
-      </div>
+      <div class="hero-rule"><span></span><em>Clean and Mystique</em><span></span></div>
       <p class="hero-sub">Premium Residential Bin Cleaning · California</p>
       <p class="hero-desc">Every home in every street deserves to feel absolute cleanliness — even in its most overlooked corners.</p>
       <button class="btn-primary" onclick="smoothTo(event,'booking')">Schedule Your Clean</button>
@@ -656,26 +436,10 @@
       <h2 class="section-title serif">The Problem with <span class="accent">Dirty Trash Cans</span></h2>
       <p class="section-lead">Four reasons your bins deserve professional attention.</p>
       <div class="problem-grid">
-        <div class="problem-cell">
-          <div class="problem-icon">I</div>
-          <h3>Persistent Odour</h3>
-          <p>A lingering smell that won't go away unless someone tackles it properly — and that someone is us.</p>
-        </div>
-        <div class="problem-cell">
-          <div class="problem-icon">II</div>
-          <h3>Bacterial Growth</h3>
-          <p>Bacteria invisible to the eye thrive in the damp warmth, spreading pathogens like E. coli, Salmonella, and Listeria.</p>
-        </div>
-        <div class="problem-cell">
-          <div class="problem-icon">III</div>
-          <h3>The Time Dilemma</h3>
-          <p>Everyone knows their trash can needs cleaning — but between work, family, and life, nobody has time. That's exactly why we exist.</p>
-        </div>
-        <div class="problem-cell">
-          <div class="problem-icon">IV</div>
-          <h3>Pest Problems</h3>
-          <p>The scent from neglected cans draws maggots, flies, and rodents. A clean bin is a closed invitation.</p>
-        </div>
+        <div class="problem-cell"><div class="problem-icon">I</div><h3>Persistent Odour</h3><p>A lingering smell that won't go away unless someone tackles it properly — and that someone is us.</p></div>
+        <div class="problem-cell"><div class="problem-icon">II</div><h3>Bacterial Growth</h3><p>Bacteria invisible to the eye thrive in the damp warmth, spreading pathogens like E. coli, Salmonella, and Listeria.</p></div>
+        <div class="problem-cell"><div class="problem-icon">III</div><h3>The Time Dilemma</h3><p>Everyone knows their trash can needs cleaning — but between work, family, and life, nobody has time. That's exactly why we exist.</p></div>
+        <div class="problem-cell"><div class="problem-icon">IV</div><h3>Pest Problems</h3><p>The scent from neglected cans draws maggots, flies, and rodents. A clean bin is a closed invitation.</p></div>
       </div>
     </div>
   </section>
@@ -689,30 +453,12 @@
       <h2 class="section-title serif">Four Acts of <span class="accent">Restoration</span></h2>
       <p class="section-lead">We follow the same sequence every visit — refined to make your bins look the best.</p>
       <div class="process-steps">
-        <div class="step">
-          <div class="step-num">I</div>
-          <h3>Arrival</h3>
-          <p>Our team arrives at the scheduled hour with all equipment, ready to begin without delay.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">II</div>
-          <h3>The Purge</h3>
-          <p>Our power washers strip bins inside and out — residue, odour, and pests removed completely.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">III</div>
-          <h3>Sanitation</h3>
-          <p>Soap is applied and surfaces are scrubbed to clinically remove harmful bacteria and disease.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">IV</div>
-          <h3>Departure</h3>
-          <p>We leave nothing except clean, restored bins behind. Your property is exactly as we found it — just fresher.</p>
-        </div>
+        <div class="step"><div class="step-num">I</div><h3>Arrival</h3><p>Our team arrives at the scheduled hour with all equipment, ready to begin without delay.</p></div>
+        <div class="step"><div class="step-num">II</div><h3>The Purge</h3><p>Our power washers strip bins inside and out — residue, odour, and pests removed completely.</p></div>
+        <div class="step"><div class="step-num">III</div><h3>Sanitation</h3><p>Soap is applied and surfaces are scrubbed to clinically remove harmful bacteria and disease.</p></div>
+        <div class="step"><div class="step-num">IV</div><h3>Departure</h3><p>We leave nothing except clean, restored bins behind. Your property is exactly as we found it — just fresher.</p></div>
       </div>
-      <div style="text-align:center; margin-top:1rem;">
-        <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:#7abac8; letter-spacing:0.5px;">All waste water is responsibly contained and removed from your property.</p>
-      </div>
+      <div style="text-align:center;margin-top:1rem;"><p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:#7abac8;letter-spacing:0.5px;">All waste water is responsibly contained and removed from your property.</p></div>
     </div>
   </section>
 
@@ -740,26 +486,10 @@
         </span>
       </div>
       <div class="promo-cards-grid">
-        <div class="promo-card">
-          <div class="promo-badge">16%<br>OFF</div>
-          <h4>First Visit Discount</h4>
-          <p>New to Lustrum? Your first clean is 16% off — applied automatically at booking, no code needed.</p>
-        </div>
-        <div class="promo-card">
-          <div class="promo-badge">FREE<br>CLEAN</div>
-          <h4>Referral Reward</h4>
-          <p>Refer a neighbor who books with us for a Buy One and Done, Get One and Done free discount. Good neighbors deserve good deals.</p>
-        </div>
-        <div class="promo-card">
-          <div class="promo-badge">3+<br>BINS</div>
-          <h4>Bundle &amp; Save</h4>
-          <p>Book three or more bins in one visit and receive a reduced per-bin rate. The more you bundle, the more you save.</p>
-        </div>
-        <div class="promo-card">
-          <div class="promo-badge">★</div>
-          <h4>Seasonal Specials</h4>
-          <p>Rotating promotions throughout the year — summer deep-cleans, holiday discounts, and more. Ask what's on now.</p>
-        </div>
+        <div class="promo-card"><div class="promo-badge">16%<br>OFF</div><h4>First Visit Discount</h4><p>New to Lustrum? Your first clean is 16% off — applied automatically at booking, no code needed.</p></div>
+        <div class="promo-card"><div class="promo-badge">FREE<br>CLEAN</div><h4>Referral Reward</h4><p>Refer a neighbor who books with us for a Buy One and Done, Get One and Done free discount. Good neighbors deserve good deals.</p></div>
+        <div class="promo-card"><div class="promo-badge">3+<br>BINS</div><h4>Bundle &amp; Save</h4><p>Book three or more bins in one visit and receive a reduced per-bin rate. The more you bundle, the more you save.</p></div>
+        <div class="promo-card"><div class="promo-badge">★</div><h4>Seasonal Specials</h4><p>Rotating promotions throughout the year — summer deep-cleans, holiday discounts, and more. Ask what's on now.</p></div>
       </div>
       <p class="promo-note">Promotions may be combined. Mention this page or ask at booking.</p>
     </div>
@@ -772,12 +502,16 @@
     <div class="section-inner">
       <p class="section-label">Service plans</p>
       <h2 class="section-title serif">Choose Your <span class="accent">Arrangement</span></h2>
-      <p class="section-lead">Every plan includes our full treatment — power wash, scrub, deodorise, and restore.</p>
+      <p class="section-lead">Every plan includes our full treatment — power wash, scrub, deodorise, and restore. Click any plan to learn more.</p>
       <div class="pricing-grid">
-        <div class="price-card">
+
+        <!-- ONE AND DONE -->
+        <div class="price-card" onclick="openPlan('oneandone')">
           <p class="price-tier">One and Done</p>
+          <div class="price-was">$15 per bin</div>
           <div class="price-amount">$12</div>
           <p class="price-period">Per bin cleaned</p>
+          <p class="price-monthly">&nbsp;</p>
           <ul class="price-features">
             <li>Single bin</li>
             <li>On-request scheduling</li>
@@ -786,10 +520,15 @@
           <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;"
             onclick="selectPlan(event,'One and Done — Per Bin · $12 per trash can')">Select</button>
         </div>
-        <div class="price-card featured">
+
+        <!-- KEEP IT CLEAN — BEST SELLER -->
+        <div class="price-card featured" onclick="openPlan('keepitclean')">
+          <div class="best-seller-badge">Best Seller</div>
           <p class="price-tier" style="color:#48cae4;">Keep It Clean</p>
+          <div class="price-was">$38 per visit</div>
           <div class="price-amount">$29</div>
           <p class="price-period">Per visit · bi-weekly</p>
+          <p class="price-monthly">≈ $58 / month</p>
           <ul class="price-features">
             <li>Up to three bins</li>
             <li>Monthly subscription</li>
@@ -798,10 +537,14 @@
           <button class="btn-primary" style="display:block;width:100%;font-size:9px;"
             onclick="selectPlan(event,'Keep It Clean — Bi-Weekly · $29 per visit')">Select</button>
         </div>
-        <div class="price-card">
+
+        <!-- PREMIUM PLAN -->
+        <div class="price-card" onclick="openPlan('premium')">
           <p class="price-tier">Premium Plan</p>
+          <div class="price-was">$36 per visit</div>
           <div class="price-amount">$27</div>
           <p class="price-period">Per visit · weekly</p>
+          <p class="price-monthly">≈ $108 / month</p>
           <ul class="price-features">
             <li>Up to three bins</li>
             <li>Priority rescheduling</li>
@@ -810,7 +553,27 @@
           <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;"
             onclick="selectPlan(event,'Premium Plan — Weekly · $27 per visit')">Select</button>
         </div>
+
+        <!-- DECOY: THE COMPLETE PACKAGE -->
+        <!-- Psychology: priced high so Keep It Clean looks like obvious value -->
+        <div class="price-card decoy" onclick="openPlan('complete')">
+          <p class="price-tier" style="color:#7abac8;">The Complete Package</p>
+          <div class="price-was">$55 per visit</div>
+          <div class="price-amount">$45</div>
+          <p class="price-period">Per visit · weekly</p>
+          <p class="price-monthly">≈ $180 / month</p>
+          <ul class="price-features">
+            <li>Up to five bins</li>
+            <li>Weekly + one extra deep clean</li>
+            <li>Same-day priority booking</li>
+            <li>Odour treatment spray left behind</li>
+          </ul>
+          <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;color:#7abac8;border-color:#b0dcea;"
+            onclick="selectPlan(event,'The Complete Package — Weekly · $45 per visit')">Select</button>
+        </div>
+
       </div>
+      <p style="font-family:'Inter',sans-serif;font-size:12px;color:#a0c8d8;text-align:center;margin-top:1.25rem;">Click any plan card to see full details · Strike-through prices reflect standard market rate</p>
     </div>
   </section>
 
@@ -822,18 +585,9 @@
       <p class="section-label">Arrange your visit</p>
       <h2 class="section-title serif">Schedule Your <span class="accent">Clean</span></h2>
       <p class="section-lead">A few details, and we will arrange the rest.</p>
-
-      <!--
-        ============================================================
-        REPLACE YOUR_FORM_ID below with your Formspree form ID.
-        Sign up free at formspree.io using ENMT303@gmail.com,
-        create a form, and paste the ID (e.g. "xyzabcde") here.
-        ============================================================
-      -->
       <div id="formWrap">
         <div class="booking-form">
-          <div class="form-corner-bl"></div>
-          <div class="form-corner-br"></div>
+          <div class="form-corner-bl"></div><div class="form-corner-br"></div>
           <div class="form-grid">
             <div class="form-row">
               <label class="form-label" for="firstName">Given name</label>
@@ -874,6 +628,7 @@
               <option value="One and Done — Per Bin · $12 per trash can">One and Done — Per Bin · $12 per trash can</option>
               <option value="Keep It Clean — Bi-Weekly · $29 per visit">Keep It Clean — Bi-Weekly · $29 per visit</option>
               <option value="Premium Plan — Weekly · $27 per visit">Premium Plan — Weekly · $27 per visit</option>
+              <option value="The Complete Package — Weekly · $45 per visit">The Complete Package — Weekly · $45 per visit</option>
             </select>
             <div class="field-error" id="err-plan">Please select a service plan</div>
           </div>
@@ -885,17 +640,14 @@
               <option value="2 bins">2 bins</option>
               <option value="3 bins">3 bins</option>
               <option value="4+ bins">4+ bins</option>
-
             </select>
             <div class="field-error" id="err-bins">Please select the number of bins</div>
           </div>
-
           <div class="booking-success" id="bookingSuccess">
             <div class="success-seal"><span>◇</span></div>
             <h3 class="serif">Booking Received</h3>
             <p>Thank you — we'll be in touch within one business day to confirm your appointment.</p>
           </div>
-
           <div style="margin-top:2.5rem;" id="submitRow">
             <button type="button" id="submitBtn" class="btn-primary" style="width:100%;text-align:center;display:block;font-size:10px;letter-spacing:5px;">
               Confirm Booking Request
@@ -918,9 +670,170 @@
     </div>
   </footer>
 
+  <!-- ════════════════════════════════════════
+       PLAN DETAIL OVERLAY
+       ════════════════════════════════════════ -->
+  <div id="plan-detail-overlay">
+    <div class="detail-nav">
+      <button class="detail-back" onclick="closePlan()">Back to plans</button>
+      <button class="detail-book-btn" id="detailBookBtn" onclick="bookFromDetail()">Book This Plan</button>
+    </div>
+    <div class="detail-body" id="detail-body-content">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
   <script>
-    /* ── YOUR FORMSPREE ID — replace this ── */
+    /* ── FORMSPREE ID ── */
     const FORMSPREE_ID = 'mojpoobo';
+
+    /* ── Plan detail data ── */
+    const planData = {
+      oneandone: {
+        label: 'One and Done',
+        name: 'One and Done',
+        was: '$15 per bin',
+        now: '$12',
+        period: 'Per bin cleaned',
+        monthly: null,
+        tagline: 'The no-commitment option. Book when you need us, pay per bin, and enjoy a spotless result every time — no strings attached.',
+        bookValue: 'One and Done — Per Bin · $12 per trash can',
+        features: [
+          { icon: '🗑️', title: 'Single Bin Service', desc: 'Perfect for a one-off deep clean. One bin, one visit, done to our full standard.' },
+          { icon: '📅', title: 'On-Request Scheduling', desc: 'Book any time that suits you. No recurring commitment or subscription required.' },
+          { icon: '💧', title: 'Full Wash & Deodorise', desc: 'High-pressure wash plus deodorising treatment — same process as all our plans.' },
+          { icon: '💰', title: 'Multi-Bin Discount', desc: 'Booking more than one bin in the same visit? We reduce the per-bin rate automatically.' },
+          { icon: '🚛', title: 'Waste Water Removed', desc: 'We contain and remove all dirty water from your property. No mess left behind.' },
+          { icon: '✅', title: 'No Account Needed', desc: 'Book by filling out our form. Simple, quick, and hassle-free.' },
+        ],
+        ideal: 'Ideal for homeowners who want a one-time restoration, are trying us out for the first time, or simply prefer flexibility over commitment. Also great for post-collection-day deep cleans after a particularly messy week.',
+      },
+      keepitclean: {
+        label: 'Best Seller',
+        name: 'Keep It Clean',
+        was: '$38 per visit',
+        now: '$29',
+        period: 'Per visit · bi-weekly',
+        monthly: '≈ $58 / month',
+        tagline: 'Our most popular plan — bi-weekly visits that keep odour, bacteria, and pests permanently in check without breaking the bank.',
+        bookValue: 'Keep It Clean — Bi-Weekly · $29 per visit',
+        features: [
+          { icon: '🗑️', title: 'Up to Three Bins', desc: 'Cover all your household bins in a single visit — general waste, recycling, and green waste.' },
+          { icon: '🔄', title: 'Bi-Weekly Schedule', desc: 'We come every two weeks like clockwork. You never have to remember to book.' },
+          { icon: '🧫', title: 'Bactericidal Treatment', desc: 'Professional-grade sanitiser applied after every wash — kills 99.9% of bacteria.' },
+          { icon: '📆', title: 'Book Up to 3 Months Ahead', desc: 'Plan your schedule in advance. Lock in your preferred dates with no extra charge.' },
+          { icon: '🔁', title: 'Monthly Subscription', desc: 'Simple monthly billing. Cancel or pause any time — no penalties.' },
+          { icon: '💧', title: 'Full Wash & Deodorise', desc: 'High-pressure wash, scrub, deodorise, and sanitise. Every single visit.' },
+        ],
+        ideal: 'Ideal for families, households with weekly bin collections, and anyone who wants permanent relief from bin odour. The bi-weekly rhythm means your bins never get a chance to build up grime in the first place.',
+      },
+      premium: {
+        label: 'Premium Plan',
+        name: 'Premium Plan',
+        was: '$36 per visit',
+        now: '$27',
+        period: 'Per visit · weekly',
+        monthly: '≈ $108 / month',
+        tagline: 'Weekly visits for households that demand the highest standard of cleanliness — or have bins that fill and empty every single week.',
+        bookValue: 'Premium Plan — Weekly · $27 per visit',
+        features: [
+          { icon: '🗑️', title: 'Up to Three Bins', desc: 'All three household bins covered every week without exception.' },
+          { icon: '📅', title: 'Weekly Service', desc: 'Every week, every time. Perfectly synchronised with your bin collection day if needed.' },
+          { icon: '⚡', title: 'Priority Rescheduling', desc: 'Need to move an appointment? Premium customers jump to the front of the queue.' },
+          { icon: '🧫', title: 'Full Sanitisation', desc: 'High-pressure wash, deep scrub, bactericidal treatment, and deodorise — the complete process weekly.' },
+          { icon: '🔁', title: 'Monthly Subscription', desc: 'Straightforward monthly billing. Pause or cancel any time, no questions asked.' },
+          { icon: '💧', title: 'Waste Water Removed', desc: 'We contain every drop of dirty water and take it away. Your driveway stays clean.' },
+        ],
+        ideal: 'Ideal for large households with high bin usage, homes with frequent food waste, or customers who simply want the peace of mind of a weekly clean. Also perfect if you have bins near an entrance or patio where odour is especially noticeable.',
+      },
+      complete: {
+        label: 'The Complete Package',
+        name: 'The Complete Package',
+        was: '$55 per visit',
+        now: '$45',
+        period: 'Per visit · weekly',
+        monthly: '≈ $180 / month',
+        tagline: 'Our most comprehensive offering — for households that want absolute, uncompromising cleanliness with maximum convenience.',
+        bookValue: 'The Complete Package — Weekly · $45 per visit',
+        features: [
+          { icon: '🗑️', title: 'Up to Five Bins', desc: 'Covers every bin on your property — household, recycling, garden, and more.' },
+          { icon: '🧹', title: 'Weekly + Deep Clean', desc: 'Weekly standard service plus one dedicated deep-clean visit each month at no extra charge.' },
+          { icon: '⚡', title: 'Same-Day Priority Booking', desc: 'Need a clean today? Complete Package customers get same-day slots whenever available.' },
+          { icon: '🧴', title: 'Odour Spray Left Behind', desc: 'We leave a Lustrum-branded odour-neutralising spray so you can freshen between visits.' },
+          { icon: '🔁', title: 'Monthly Subscription', desc: 'All-inclusive monthly billing covering every visit, every bin, every treatment.' },
+          { icon: '🏅', title: 'White Glove Service', desc: 'Dedicated account contact, flexible scheduling, and the highest priority across all our service areas.' },
+        ],
+        ideal: 'Ideal for large properties, households with five or more bins, Airbnb hosts, or customers who simply want the maximum we offer with zero compromises. If the Keep It Clean plan makes your bins clean, the Complete Package makes them immaculate.',
+      },
+    };
+
+    /* ── Open plan detail overlay ── */
+    function openPlan(key) {
+      const p = planData[key];
+      if (!p) return;
+
+      const monthlyHtml = p.monthly
+        ? `<p class="detail-monthly-note">${p.monthly}</p>`
+        : `<p class="detail-monthly-note">&nbsp;</p>`;
+
+      const featuresHtml = p.features.map(f => `
+        <div class="detail-feature">
+          <div class="detail-feature-icon">${f.icon}</div>
+          <div>
+            <h4>${f.title}</h4>
+            <p>${f.desc}</p>
+          </div>
+        </div>`).join('');
+
+      document.getElementById('detail-body-content').innerHTML = `
+        <div class="detail-hero">
+          <span class="detail-plan-label">${p.label}</span>
+          <div class="detail-plan-name serif">${p.name}</div>
+          <div class="detail-price-row">
+            <span class="detail-was">${p.was}</span>
+            <span class="detail-now">${p.now}</span>
+          </div>
+          <p class="detail-period">${p.period}</p>
+          ${monthlyHtml}
+          <p class="detail-tagline">${p.tagline}</p>
+        </div>
+        <div class="detail-features-grid">${featuresHtml}</div>
+        <div class="detail-ideal">
+          <h3 class="serif">Who is this for?</h3>
+          <p>${p.ideal}</p>
+        </div>
+        <div class="detail-cta">
+          <button class="detail-book-btn" onclick="bookFromDetail()" style="font-size:11px;letter-spacing:5px;padding:16px 48px;">Book This Plan</button>
+          <p>No commitment required to enquire · We respond within one business day</p>
+        </div>`;
+
+      /* store plan value for booking button */
+      document.getElementById('detailBookBtn').dataset.planValue = p.bookValue;
+      document.getElementById('detail-body-content').dataset.planValue = p.bookValue;
+
+      const overlay = document.getElementById('plan-detail-overlay');
+      overlay.style.display = 'block';
+      overlay.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePlan() {
+      document.getElementById('plan-detail-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function bookFromDetail() {
+      const pv = document.getElementById('detail-body-content').dataset.planValue;
+      closePlan();
+      const sel = document.getElementById('plan');
+      if (sel && pv) {
+        sel.value = pv;
+        sel.classList.remove('error');
+        const err = document.getElementById('err-plan');
+        if (err) err.classList.remove('visible');
+      }
+      smoothTo(null, 'booking');
+    }
 
     /* ── Smooth scroll ── */
     function smoothTo(e, id) {
@@ -932,8 +845,9 @@
       window.scrollTo({ top, behavior: 'smooth' });
     }
 
-    /* ── Select plan from pricing cards ── */
+    /* ── Select plan (from Select button — stops card click) ── */
     function selectPlan(e, planValue) {
+      e.stopPropagation();
       e.preventDefault();
       const sel = document.getElementById('plan');
       sel.value = planValue;
@@ -945,13 +859,13 @@
 
     /* ── Validation ── */
     const fields = [
-      { id: 'firstName', validate: v => v.trim().length >= 1 },
-      { id: 'lastName',  validate: v => v.trim().length >= 1 },
-      { id: 'address',   validate: v => { const t=v.trim(); return t.length>=6 && /\d/.test(t) && t.split(/\s+/).length>=3; } },
-      { id: 'zipcode',   validate: v => /^\d{5}(-\d{4})?$/.test(v.trim()) },
-      { id: 'email',     validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) },
-      { id: 'plan',      validate: v => v !== '' },
-      { id: 'bins',      validate: v => v !== '' },
+      { id:'firstName', validate: v => v.trim().length >= 1 },
+      { id:'lastName',  validate: v => v.trim().length >= 1 },
+      { id:'address',   validate: v => { const t=v.trim(); return t.length>=6 && /\d/.test(t) && t.split(/\s+/).length>=3; } },
+      { id:'zipcode',   validate: v => /^\d{5}(-\d{4})?$/.test(v.trim()) },
+      { id:'email',     validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) },
+      { id:'plan',      validate: v => v !== '' },
+      { id:'bins',      validate: v => v !== '' },
     ];
 
     function validateField(f) {
@@ -983,7 +897,6 @@
       }));
     });
 
-    /* ── Submit via XHR (works from local files) ── */
     document.getElementById('submitBtn').addEventListener('click', function () {
       let allValid = true;
       fields.forEach(f => { if (!validateField(f)) allValid = false; });
