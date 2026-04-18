@@ -584,85 +584,34 @@
 
   <div class="tile-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
-  <!-- PRICING -->
-  <section class="section pricing-bg" id="pricing">
-    <div class="section-inner">
-      <p class="section-label">Service plans</p>
-      <h2 class="section-title serif">Choose Your <span class="accent">Arrangement</span></h2>
-      <p class="section-lead">Every plan includes our full treatment — power wash, scrub, deodorise, and restore. Click any plan to learn more.</p>
-      <div class="pricing-grid">
+ <!-- PRICING -->
+<section class="section pricing-bg" id="pricing">
+  <div class="section-inner">
+    <p class="section-label">Service pricing</p>
+    <h2 class="section-title serif">Simple <span class="accent">Per Bin Pricing</span></h2>
+    <p class="section-lead">No subscriptions. No monthly plans. Just one flat rate per bin.</p>
 
-        <!-- ONE AND DONE -->
-        <div class="price-card" onclick="openPlan('oneandone')">
-          <p class="price-tier">One and Done</p>
-          <div class="price-was">$25 per bin</div>
-          <div class="price-amount">$19.99</div>
-          <p class="price-period">Per bin cleaned</p>
-          <p class="price-monthly">&nbsp;</p>
-          <ul class="price-features">
-            <li>Single bin</li>
-            <li>On-request scheduling</li>
-            <li>Discounted rate for multiple bins</li>
-          </ul>
-          <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;"
-            onclick="selectPlan(event,'One and Done — Per Bin · 25 per trash can')">Select</button>
-        </div>
-
-        <!-- KEEP IT CLEAN — BEST SELLER -->
-        <div class="price-card featured" onclick="openPlan('keepitclean')">
-          <div class="best-seller-badge">Best Seller</div>
-          <p class="price-tier" style="color:#48cae4;">Keep It Clean</p>
-          <div class="price-was">$74.99 per visit</div>
-          <div class="price-amount">$49.99</div>
-          <p class="price-period">Per visit · bi-weekly</p>
-          <p class="price-monthly">≈ $99.98 / month</p>
-          <ul class="price-features">
-            <li>Up to THREE bins</li>
-            <li>Monthly subscription</li>
-            <li>Book up to 3 months ahead</li>
-          </ul>
-          <button class="btn-primary" style="display:block;width:100%;font-size:9px;"
-            onclick="selectPlan(event,'Keep It Clean — Bi-Weekly · $49.99 per visit')">Select</button>
-        </div>
-
-        <!-- PREMIUM PLAN -->
-        <div class="price-card" onclick="openPlan('premium')">
-          <p class="price-tier">Premium Plan</p>
-          <div class="price-was">$54.99 per visit</div>
-          <div class="price-amount">$44.99</div>
-          <p class="price-period">Per visit · weekly</p>
-          <p class="price-monthly">≈ $179.96 / month</p>
-          <ul class="price-features">
-            <li>Up to THREE bins</li>
-            <li>Priority rescheduling</li>
-            <li>Monthly subscription</li>
-          </ul>
-          <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;"
-            onclick="selectPlan(event,'Premium Plan — Weekly · $44.99 per visit')">Select</button>
-        </div>
-
-        <!-- DECOY: THE COMPLETE PACKAGE -->
-        <!-- Psychology: priced high so Keep It Clean looks like obvious value -->
-        <div class="price-card decoy" onclick="openPlan('complete')">
-          <p class="price-tier" style="color:#7abac8;">The Complete Package</p>
-          <div class="price-was">$89.99 per visit</div>
-          <div class="price-amount">$79.99</div>
-          <p class="price-period">Per visit · weekly</p>
-          <p class="price-monthly">≈ $319.96 / month</p>
-          <ul class="price-features">
-            <li>Up to five bins</li>
-            <li>Weekly + one extra deep clean</li>
-            <li>Same-day priority booking</li>
-            <li>Odour treatment spray left behind</li>
-          </ul>
-          <button class="btn-ghost" style="display:block;width:100%;margin-left:0;font-size:9px;color:#7abac8;border-color:#b0dcea;"
-            onclick="selectPlan(event,'The Complete Package — Weekly · $79.99 per visit')">Select</button>
-        </div>
-
+    <div class="pricing-grid" style="grid-template-columns:1fr;max-width:420px;margin:0 auto;">
+      <div class="price-card featured" onclick="openPlan('oneandone')">
+        <p class="price-tier">One and Done</p>
+        <div class="price-amount">$19.99</div>
+        <p class="price-period">Per bin</p>
+        <p class="price-monthly">&nbsp;</p>
+        <ul class="price-features">
+          <li>Single bin or multiple bins</li>
+          <li>On-request scheduling</li>
+          <li>Power wash, scrub, deodorise, and restore</li>
+        </ul>
+        <button class="btn-primary" style="display:block;width:100%;font-size:9px;"
+          onclick="selectPlan(event,'One and Done — $19.99 per bin')">Select</button>
       </div>
-      <p style="font-family:'Inter',sans-serif;font-size:12px;color:#a0c8d8;text-align:center;margin-top:1.25rem;">Click any plan card to see full details · Strike-through prices reflect standard market rate</p>
     </div>
-  </section>
+
+    <p style="font-family:'Inter',sans-serif;font-size:12px;color:#a0c8d8;text-align:center;margin-top:1.25rem;">
+      Pay only for the number of bins you want cleaned.
+    </p>
+  </div>
+</section>
 
   <div class="tile-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
@@ -710,13 +659,10 @@
           </div>
           <div class="form-row">
             <label class="form-label" for="plan">Service plan</label>
-            <select class="form-select" id="plan" name="plan">
-              <option value="">— Select a plan —</option>
-              <option value="One and Done — Per Bin · $24.99 per trash can">One and Done — Per Bin · $24.99 per trash can</option>
-              <option value="Keep It Clean — Bi-Weekly · $69.99 per visit">Keep It Clean — Bi-Weekly · $69.99 per visit</option>
-              <option value="Premium Plan — Weekly · $49.99 per visit">Premium Plan — Weekly · $49.99 per visit</option>
-              <option value="The Complete Package — Weekly · $79.99 per visit">The Complete Package — Weekly · $79.99 per visit</option>
-            </select>
+          <select class="form-select" id="plan" name="plan">
+  <option value="">— Select a plan —</option>
+  <option value="One and Done — $19.99 per bin">One and Done — $19.99 per bin</option>
+</select>
             <div class="field-error" id="err-plan">Please select a service plan</div>
           </div>
           <div class="form-row">
@@ -794,83 +740,26 @@
 
     /* ── Plan detail data ── */
     const planData = {
-      oneandone: {
-        label: 'One and Done',
-        name: 'One and Done',
-        was: '$25 per bin',
-        now: '$19.99',
-        period: 'Per bin cleaned',
-        monthly: null,
-        tagline: 'The no-commitment option. Book when you need us, pay per bin, and enjoy a spotless result every time — no strings attached.',
-        bookValue: 'One and Done — Per Bin · $24.99 per trash can',
-        features: [
-          { icon: '🗑️', title: 'Single Bin Service', desc: 'Perfect for a one-off deep clean. One bin, one visit, done to our full standard.' },
-          { icon: '📅', title: 'On-Request Scheduling', desc: 'Book any time that suits you. No recurring commitment or subscription required.' },
-          { icon: '💧', title: 'Full Wash & Deodorise', desc: 'High-pressure wash plus deodorising treatment — same process as all our plans.' },
-          { icon: '💰', title: 'Multi-Bin Discount', desc: 'Booking more than one bin in the same visit? We reduce the per-bin rate automatically.' },
-          { icon: '🚛', title: 'Waste Water Removed', desc: 'We contain and remove all dirty water from your property. No mess left behind.' },
-          { icon: '✅', title: 'No Account Needed', desc: 'Book by filling out our form. Simple, quick, and hassle-free.' },
-        ],
-        ideal: 'Ideal for homeowners who want a one-time restoration, are trying us out for the first time, or simply prefer flexibility over commitment. Also great for post-collection-day deep cleans after a particularly messy week.',
-      },
-      keepitclean: {
-        label: 'Best Seller',
-        name: 'Keep It Clean',
-        was: '$74.99 per visit',
-        now: '$49.99'  ,
-        period: 'Per visit · bi-weekly',
-        monthly: '≈ $99.98 / month',
-        tagline: 'Our most popular plan — bi-weekly visits that keep odour, bacteria, and pests permanently in check without breaking the bank.',
-        bookValue: 'Keep It Clean — Bi-Weekly · $49.99 per visit',
-        features: [
-          { icon: '🗑️', title: 'Up to THREE Bins', desc: 'Cover all your household bins in a single visit — general waste, recycling, and green waste.' },
-          { icon: '🔄', title: 'Bi-Weekly Schedule', desc: 'We come every two weeks like clockwork. You never have to remember to book.' },
-          { icon: '🧫', title: 'Bactericidal Treatment', desc: 'Professional-grade sanitiser applied after every wash — kills 99.9% of bacteria.' },
-          { icon: '📆', title: 'Book Up to 3 Months Ahead', desc: 'Plan your schedule in advance. Lock in your preferred dates with no extra charge.' },
-          { icon: '🔁', title: 'Monthly Subscription', desc: 'Simple monthly billing. Cancel or pause any time — no penalties.' },
-          { icon: '💧', title: 'Full Wash & Deodorise', desc: 'High-pressure wash, scrub, deodorise, and sanitise. Every single visit.' },
-        ],
-        ideal: 'Ideal for families, households with weekly bin collections, and anyone who wants permanent relief from bin odour. The bi-weekly rhythm means your bins never get a chance to build up grime in the first place.',
-      },
-      premium: {
-        label: 'Premium Plan',
-        name: 'Premium Plan',
-        was: '$54.99 per visit',
-        now: '$44.99',
-        period: 'Per visit · weekly',
-        monthly: '≈ $179.96 / month',
-        tagline: 'Weekly visits for households that demand the highest standard of cleanliness — or have bins that fill and empty every single week.',
-        bookValue: 'Premium Plan — Weekly · $44.99 per visit',
-        features: [
-          { icon: '🗑️', title: 'Up to THREE Bins', desc: 'All THREE household bins covered every week without exception.' },
-          { icon: '📅', title: 'Weekly Service', desc: 'Every week, every time. Perfectly synchronised with your bin collection day if needed.' },
-          { icon: '⚡', title: 'Priority Rescheduling', desc: 'Need to move an appointment? Premium customers jump to the front of the queue.' },
-          { icon: '🧫', title: 'Full Sanitisation', desc: 'High-pressure wash, deep scrub, bactericidal treatment, and deodorise — the complete process weekly.' },
-          { icon: '🔁', title: 'Monthly Subscription', desc: 'Straightforward monthly billing. Pause or cancel any time, no questions asked.' },
-          { icon: '💧', title: 'Waste Water Removed', desc: 'We contain every drop of dirty water and take it away. Your driveway stays clean.' },
-        ],
-        ideal: 'Ideal for large households with high bin usage, homes with frequent food waste, or customers who simply want the peace of mind of a weekly clean. Also perfect if you have bins near an entrance or patio where odour is especially noticeable.',
-      },
-      complete: {
-        label: 'The Complete Package',
-        name: 'The Complete Package',
-        was: '$89.99 per visit',
-        now: '$79.99',
-        period: 'Per visit · weekly',
-        monthly: '≈ $319.96 / month',
-        tagline: 'Our most comprehensive offering — for households that want absolute, uncompromising cleanliness with maximum convenience.',
-        bookValue: 'The Complete Package — Weekly · $79.99 per visit',
-        features: [
-          { icon: '🗑️', title: 'Up to FIVE Bins', desc: 'Covers every bin on your property — household, recycling, garden, and more.' },
-          { icon: '🧹', title: 'Weekly + Deep Clean', desc: 'Weekly standard service plus one dedicated deep-clean visit each month at no extra charge.' },
-          { icon: '⚡', title: 'Same-Day Priority Booking', desc: 'Need a clean today? Complete Package customers get same-day slots whenever available.' },
-          { icon: '🧴', title: 'Odour Spray Left Behind', desc: 'We leave a Lustrum-branded odour-neutralising spray so you can freshen between visits.' },
-          { icon: '🔁', title: 'Monthly Subscription', desc: 'All-inclusive monthly billing covering every visit, every bin, every treatment.' },
-          { icon: '🏅', title: 'White Glove Service', desc: 'Dedicated account contact, flexible scheduling, and the highest priority across all our service areas.' },
-        ],
-        ideal: 'Ideal for large properties, households with five or more bins, Airbnb hosts, or customers who simply want the maximum we offer with zero compromises. If the Keep It Clean plan makes your bins clean, the Complete Package makes them immaculate.',
-      },
-    };
+  oneandone: {
+    label: 'Per Bin Pricing',
+    name: 'One and Done',
+    was: null,
+    now: '$19.99',
+    period: 'Per bin',
+    monthly: null,
+    tagline: 'Simple, flexible pricing. Pay only for the bins you want cleaned, with no subscription or recurring commitment.',
+    bookValue: 'One and Done — $19.99 per bin',
+    features: [
+      { icon: '🗑️', title: 'Per Bin Pricing', desc: 'Only pay for the number of bins you want cleaned.' },
+      { icon: '📅', title: 'On-Request Scheduling', desc: 'Book whenever you need service. No subscription required.' },
+      { icon: '💧', title: 'Full Wash & Deodorise', desc: 'Each bin gets the full treatment: power wash, scrub, deodorise, and restore.' },
+      { icon: '✅', title: 'Simple Booking', desc: 'Choose your number of bins and send your request in a few clicks.' },
+      { icon: '🚛', title: 'Waste Water Removed', desc: 'We contain and remove dirty water from your property.' },
+      { icon: '🏡', title: 'Perfect for Any Home', desc: 'Great for one bin, two bins, or more at the same flat per-bin rate.' },
+    ],
+    ideal: 'Ideal for homeowners who want straightforward pricing without any monthly plan. You book only when you need it, and you pay per bin cleaned.',
+  }
+};
 
     /* ── Open plan detail overlay ── */
     function openPlan(key) {
