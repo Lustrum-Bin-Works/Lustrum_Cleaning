@@ -158,8 +158,13 @@
 
     /* PROMOTIONS */
     .promo-bg { background:#ffffff; }
-    .promo-ticker { background:#2a9d8f; color:#ffffff; font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; padding:10px 0; overflow:hidden; white-space:nowrap; margin-bottom:4rem; }
-    .promo-ticker-inner { display:inline-block; animation:ticker 22s linear infinite; }
+    .promo-ticker { background: linear-gradient(90deg, #1f8f84, #48cae4, #1f8f84);
+      color: #ffffff; font-family:'Josefin Sans',sans-serif; font-size: 12px; letter-spacing: 5px; text-transform: uppercase;
+      padding: 18px 0; overflow: hidden; white-space: nowrap; margin: 0 auto 1.75rem;
+      width: min(100%, 1100px);
+      box-shadow: 0 18px 45px rgba(42,157,143,0.18);
+      border: 1px solid #8fdbe6;}
+    .promo-ticker-inner { display:inline-block; animation:ticker 24s linear infinite; }
     @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
     .relief-center { text-align:center; max-width:680px; margin:0 auto 3.5rem; }
     .relief-center h2 { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:700; color:#1a3a3a; line-height:1.25; margin-bottom:1.25rem; }
@@ -167,18 +172,24 @@
     .relief-pills { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:1.75rem; }
     .relief-pill { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#2a9d8f; border:1px solid #b0dcea; padding:7px 14px; background:#e8f5f0; display:flex; align-items:center; gap:8px; }
     .relief-pill::before { content:'◇'; color:#48cae4; font-size:9px; }
-    .promo-cards-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#b0dcea; border:1px solid #b0dcea; }
-    .promo-card { background:#f0f8ff; padding:1.75rem 1.25rem; text-align:center; }
-    .promo-badge { width:52px; height:52px; border:1px solid #48cae4; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; font-family:'Playfair Display',serif; font-size:13px; font-weight:700; color:#2a9d8f; line-height:1.1; text-align:center; }
-    .promo-card h4 { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#1a3a3a; margin-bottom:0.6rem; }
-    .promo-card p { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:#4a8fa8; line-height:1.5; }
+      .promo-focus {
+      max-width: 820px; margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(180deg, #f7feff, #eef9fb);
+      border: 1px solid #b0dcea;
+      box-shadow: 0 16px 38px rgba(72,202,228,0.08);
+      text-align: center; }
+     .promo-focus p {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300;
+      color: #4a7a8a; line-height: 1.7;}
     .promo-note { font-family:'Inter',sans-serif; font-size:13px; color:#7abac8; text-align:center; margin-top:1.25rem; }
 
     /* ════════════════════════════════
        PRICING SECTION
        ════════════════════════════════ */
     .pricing-bg { background:#e8f5f0; }
-    .pricing-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:1060px; margin:0 auto; }
+    .pricing-grid {display: grid; grid-template-columns: 1fr;
+      gap: 16px; max-width: 460px; margin: 0 auto;}
 
     /* Card is clickable — shows pointer */
     .price-card {
@@ -212,10 +223,15 @@
       font-family:'Inter',sans-serif; font-size:13px; font-weight:300;
       color:#a0b8c0; text-decoration:line-through; margin-bottom:6px;
     }
+        .price-was {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300;
+      color: #9eb9c3; text-decoration: line-through; margin-bottom: 0.35rem;
+    }
     .price-amount { font-family:'Playfair Display',serif; font-size:2.5rem; color:#1a3a3a; line-height:1.1; margin-bottom:10px; }
-    .price-period { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:3px; color:#48cae4; text-transform:uppercase; margin-bottom:8px; }
-    .price-monthly { font-family:'Inter',sans-serif; font-size:12px; font-weight:400; color:#7abac8; margin-bottom:2rem; }
-
+     .price-subnote {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
+      color: #2a9d8f; margin-bottom: 1.2rem; line-height: 1.5;
+    }
     .price-features { list-style:none; margin-bottom:2rem; }
     .price-features li { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#4a7a8a; padding:0.5rem 0; border-bottom:1px solid #d0edf5; }
     .price-features li:last-child { border-bottom:none; }
@@ -251,6 +267,51 @@
     .booking-success h3 { font-family:'Playfair Display',serif; font-size:1.6rem; color:#1a3a3a; margin-bottom:0.75rem; }
     .booking-success p { font-family:'Inter',sans-serif; font-size:15px; color:#2a9d8f; line-height:1.6; }
 
+    /* PRICING POPUP */
+    #pricing-popup {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) translateX(112%);
+      z-index: 155;
+      width: 250px;
+      background: #ffffff;
+      border: 1px solid #b0dcea;
+      border-right: none;
+      box-shadow: -10px 0 34px rgba(42,157,143,0.16);
+      transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+      overflow: hidden;
+    }
+    #pricing-popup.visible { transform: translateY(-50%) translateX(0); }
+    #pricing-popup::before {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, #48cae4, #2a9d8f);
+    }
+    .pp-inner { padding: 1.45rem 1.6rem 1.45rem 1.35rem; }
+    .pp-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
+      color: #48cae4; margin-bottom: 0.65rem;
+    }
+    .pp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; line-height: 1.3; color: #1a3a3a; margin-bottom: 0.75rem;
+    }
+    .pp-copy {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300;
+      color: #4a7a8a; line-height: 1.65;
+    }
+    .pp-dismiss {
+      position: absolute; top: 8px; left: 8px;
+      background: none; border: none;
+      font-size: 14px; color: #b0dcea; cursor: pointer; line-height: 1; padding: 2px 4px;
+    }
+    .pp-dismiss:hover { color: #2a9d8f; }
+
+    
     /* FOOTER */
     .footer { background:#1a3a3a; padding:3rem 2rem; border-top:2px solid #2a9d8f; }
     .footer-inner { max-width:960px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
@@ -413,7 +474,6 @@
 
     /* RESPONSIVE */
     @media (max-width:900px) { .pricing-grid { grid-template-columns:1fr 1fr; } }
-    @media (max-width:820px) { .promo-cards-grid { grid-template-columns:1fr 1fr; } }
     @media (max-width:680px) {
       .process-steps { grid-template-columns:1fr 1fr; }
       .process-steps::before { display:none; }
@@ -424,7 +484,7 @@
       .bin-scene { width:180px; height:150px; }
       .detail-features-grid { grid-template-columns:1fr; }
     }
-    @media (max-width:440px) { .promo-cards-grid { grid-template-columns:1fr; } }
+    @media (max-width: 760px) { #pricing-popup { display: none; } }
   </style>
 </head>
 <body>
@@ -542,7 +602,7 @@
       <div class="process-steps">
         <div class="step"><div class="step-num">I</div><h3>Arrival</h3><p>Our team arrives at the scheduled hour with all equipment, ready to begin without delay.</p></div>
         <div class="step"><div class="step-num">II</div><h3>The Purge</h3><p>Our power washers strip bins inside and out — residue, odour, and pests removed completely.</p></div>
-        <div class="step"><div class="step-num">III</div><h3>Sanitation</h3><p>Soap is applied and surfaces are scrubbed to clinically remove harmful bacteria and disease.</p></div>
+        <div class="step"><div class="step-num">III</div><h3>Sanitation</h3><p>Soap is applied and surfaces are pressure-washed to clinically remove harmful bacteria and disease.</p></div>
         <div class="step"><div class="step-num">IV</div><h3>Departure</h3><p>We leave nothing except clean, restored bins behind. Your property is exactly as we found it — just fresher.</p></div>
       </div>
       <div style="text-align:center;margin-top:1rem;"><p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:#7abac8;letter-spacing:0.5px;">All waste water is responsibly contained and removed from your property.</p></div>
@@ -569,16 +629,11 @@
       </div>
       <div class="promo-ticker">
         <span class="promo-ticker-inner">
-          ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 20% on the One and Done &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor that books with us for a Buy One and Done, Get One and Done free discount &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First-time customers save 16% &nbsp;&nbsp;&nbsp; ◆ Refer a neighbor for a Buy One and Done, Get One and Done free discount &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Seasonal deep-clean specials &nbsp;&nbsp;&nbsp;
+          ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First time customers can save up to 33% by cleaning 3 or more bins &nbsp;&nbsp;&nbsp; ◆ Monthly services can be negotiated  &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp; ◆ Promotions always rotating — ask about current deals &nbsp;&nbsp;&nbsp; ◆ First time customers can save up to 33% by cleaning 3 or more bins &nbsp;&nbsp;&nbsp; ◆ Monthly services can be negotiated &nbsp;&nbsp;&nbsp; ◆ Bundle 3+ bins and save &nbsp;&nbsp;&nbsp;
         </span>
       </div>
-      <div class="promo-cards-grid">
-        <div class="promo-card"><div class="promo-badge">20%<br>OFF</div><h4>First Visit Discount</h4><p>New to Lustrum? Your first One and Done clean is 20% off — applied automatically at booking, no code needed.</p></div>
-        <div class="promo-card"><div class="promo-badge">FREE<br>CLEAN</div><h4>Referral Reward</h4><p>Refer a neighbor who books with us for a Buy One and Done, Get One and Done free discount. Good neighbors deserve good deals.</p></div>
-        <div class="promo-card"><div class="promo-badge">3+<br>BINS</div><h4>Bundle &amp; Save</h4><p>Book three or more bins in one visit and receive a reduced per-bin rate. The more you bundle, the more you save.</p></div>
-        <div class="promo-card"><div class="promo-badge">★</div><h4>Seasonal Specials</h4><p>Rotating promotions throughout the year — summer deep-cleans, holiday discounts, and more. Ask what's on now.</p></div>
-      </div>
-      <p class="promo-note">Promotions may be combined. Mention this page or ask at booking.</p>
+       <div class="promo-focus">
+        <p>Your bin pricing stays simple: one bin is $25, three bins are $60, and every bin after the third adds only $15. First-time customers who book 3 or more bins get an even better 33% discount.</p>
     </div>
   </section>
 
@@ -743,12 +798,11 @@
   oneandone: {
     label: 'Per Bin Pricing',
     name: 'One and Done',
-    was: null,
-    now: '$19.99',
+    was: '$35',
+    now: '$20',
     period: 'Per bin',
-    monthly: null,
     tagline: 'Simple, flexible pricing. Pay only for the bins you want cleaned, with no subscription or recurring commitment.',
-    bookValue: 'One and Done — $19.99 per bin',
+    bookValue: 'One and Done — $25 per bin',
     features: [
       { icon: '🗑️', title: 'Per Bin Pricing', desc: 'Only pay for the number of bins you want cleaned.' },
       { icon: '📅', title: 'On-Request Scheduling', desc: 'Book whenever you need service. No subscription required.' },
@@ -929,6 +983,48 @@
 
       xhr.send(payload);
     });
+ <div id="pricing-popup" role="complementary" aria-label="First time customer discount">
+    <button class="pp-dismiss" onclick="dismissPricingPopup()" aria-label="Dismiss">✕</button>
+    <div class="pp-inner">
+      <p class="pp-label">First-time offer</p>
+      <h3 class="pp-title">First time customer?</h3>
+      <p class="pp-copy">Enjoy a 33% discount when you order 3 or more bins. Even without that offer, 3 bins are just $60, and every extra bin after that adds only $15.</p>
+    </div>
+  </div>
+
+       /* ── Pricing popup ── */
+    (function () {
+      const popup = document.getElementById('pricing-popup');
+      const pricingSection = document.getElementById('pricing');
+      let dismissed = false;
+      let shown = false;
+
+      function showPopup() {
+        if (dismissed || shown || !popup) return;
+        shown = true;
+        popup.classList.add('visible');
+      }
+
+      window.dismissPricingPopup = function () {
+        dismissed = true;
+        if (popup) popup.classList.remove('visible');
+      };
+
+      if (!popup || !pricingSection) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(showPopup, 450);
+          } else if (shown && !dismissed) {
+            popup.classList.remove('visible');
+            shown = false;
+          }
+        });
+      }, { threshold: 0.2 });
+
+      observer.observe(pricingSection);
+    })();
 
     /* ── FREE QUOTE POPUP — appears when booking section scrolls into view ── */
     (function () {
